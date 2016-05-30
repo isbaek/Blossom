@@ -72,7 +72,6 @@ class Project extends Component {
          renderScene={(route, navigator) => {
           console.log(route, navigator);
           if (route.component) {
-
             return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route } )}
          }} />
 
@@ -82,8 +81,8 @@ class Project extends Component {
 }
 
 class Details extends Component {
-    constructor(props) {
-    super(props);
+    constructor() {
+    super();
     this.state = {
       name: "",
       partnerName: "",
@@ -111,7 +110,6 @@ class Details extends Component {
     name: 'TabBar',
     component: TabBar,
     passProps: {name: this.name},
-    data: {date:date},
 
   })
 }
@@ -147,7 +145,7 @@ class Details extends Component {
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
 
-         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate(date)}>
+         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate()}>
         <Text> Start </Text>
         </TouchableHighlight>
       </View>
@@ -176,7 +174,7 @@ class Details extends Component {
               selectedTab: 'Home',
             });
           }}>
-        <Home name = {this.name}></Home>
+        <Home/>
             </TabBarIOS.Item>
           <TabBarIOS.Item
           selected = {this.state.selectedTab === 'CalendarPage'}
@@ -231,7 +229,7 @@ class Home extends Component {
   return (
 
 <View style={styles.container}>
-  <Text style = {{paddingTop: 50}} > Loving Days {this.props.date}</Text>
+  <Text style = {{paddingTop: 50}} > Loving Days </Text>
   <Text>Since {this.props.name} and {this.props.partnerName} met</Text>
   <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
@@ -401,4 +399,4 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('newBlossom', () => newBlossom);
+AppRegistry.registerComponent('newBlossom', () => Project);
