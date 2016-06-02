@@ -41,7 +41,7 @@ var moment = require('moment');
 import NavigationBar from 'react-native-navbar';
 
 //Custom Vector Icons
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 //UITableView Library
 
@@ -65,14 +65,13 @@ class Project extends Component {
          initialRoute={{
            title: 'Details',
            component: Details,
-           passProps: {},
          }}
           configureScene = {this.configureScene}
 
          renderScene={(route, navigator) => {
           console.log(route, navigator);
           if (route.component) {
-            return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route } )}
+            return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route} )}
          }} />
 
 
@@ -84,7 +83,7 @@ class Details extends Component {
     constructor() {
     super();
     this.state = {
-      name: "",
+      yourName: "",
       partnerName: "",
       date: new Date(),
       datePickerMode: 'hidden',
@@ -101,15 +100,22 @@ class Details extends Component {
   }
 
   onName(str) {
-    this.setState({name: str});
+    this.setState({yourName: str});
   }
 
+  onPartnerName(str) {
+    this.setState({partnerName: str});
+  }
 
   navigate (){
   this.props.navigator.push({
     name: 'TabBar',
     component: TabBar,
-    passProps: {name: this.name},
+    passProps: {
+      yourName: this.state.yourName,
+      partnerName: this.state.partnerName
+    },
+
 
   })
 }
@@ -133,9 +139,8 @@ class Details extends Component {
 
     return (
           <View style={styles.container}>
-
-        <TextInput style={styles.nameInput} value={this.state.name} placeholder="Your name" />
-        <TextInput style={styles.nameInput} value={this.state.partnerName} placeholder="Partner's name" />
+        <TextInput style={styles.nameInput} value={this.state.yourName} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
+        <TextInput style={styles.nameInput} value={this.state.partnerName} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
         <View style = {{padding: 20, marginTop: 100}}>
         <TouchableWithoutFeedback onPress = {this.toggleDatePicker.bind(this)}>
         <View style = {styles.nameInput} value = {this.state.date}>
@@ -145,7 +150,7 @@ class Details extends Component {
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
 
-         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate()}>
+         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName')}>
         <Text> Start </Text>
         </TouchableHighlight>
       </View>
@@ -165,28 +170,32 @@ class Details extends Component {
     }
     render () {
     return (
-<TabBarIOS>
-        <TabBarIOS.Item
+<TabBarIOS
+    tintColor='#FE2851'>
+        <Icon.TabBarItem
           selected = {this.state.selectedTab === 'Home'}
-          systemIcon = "history"
+          iconName="ios-home-outline"
+          selectedIconName="ios-home"
           onPress={() => {
             this.setState({
               selectedTab: 'Home',
             });
           }}>
-        <Home/>
-            </TabBarIOS.Item>
-          <TabBarIOS.Item
+        <Home yourName= {this.props.yourName}
+              partnerName= {this.props.partnerName}  />
+            </Icon.TabBarItem>
+          <Icon.TabBarItem
           selected = {this.state.selectedTab === 'CalendarPage'}
-          systemIcon = "featured"
+          iconName="ios-calendar-outline"
+          selectedIconName="ios-calendar"
           onPress={() => {
             this.setState({
               selectedTab: 'CalendarPage',
             });
           }}>
          <CalendarPage navigator = {this.props.navigator}/>
-        </TabBarIOS.Item>
-          <TabBarIOS.Item
+        </Icon.TabBarItem>
+          <Icon.TabBarItem
           selected = {this.state.selectedTab === 'Settings'}
           systemIcon = "more"
           onPress={() => {
@@ -195,7 +204,7 @@ class Details extends Component {
             });
           }}>
          <Settings/>
-        </TabBarIOS.Item>
+        </Icon.TabBarItem>
       </TabBarIOS>
 
     );
@@ -223,14 +232,16 @@ class Home extends Component {
     return MOODS[moodName];
   }
 
+
+
   render () {
 
 
   return (
 
 <View style={styles.container}>
-  <Text style = {{paddingTop: 50}} > Loving Days </Text>
-  <Text>Since {this.props.name} and {this.props.partnerName} met</Text>
+  <Text style = {{paddingTop: 50}} > Loving Days  </Text>
+  <Text>Since {this.props.yourName} and {this.props.partnerName} met</Text>
   <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
   <Image source = {this.getMoodImage(this.state.mood)} style = {styles.moody} resizeMode='contain' ></Image>
@@ -288,7 +299,8 @@ class CalendarPage extends Component {
  }
 }
 
-  class AddEvent extends Component {
+
+class AddEvent extends Component {
   state = {
     datefalseSwtichIsOn: false,
     sexfalseSwtichIsOn: false,
