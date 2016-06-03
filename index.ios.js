@@ -99,6 +99,7 @@ class Details extends Component {
     this.setState ({date: date});
   }
 
+  //set variables to string aka user inputed data onChangeText()
   onName(str) {
     this.setState({yourName: str});
   }
@@ -111,6 +112,7 @@ class Details extends Component {
   this.props.navigator.push({
     name: 'TabBar',
     component: TabBar,
+    //Passes data that user inputed
     passProps: {
       yourName: this.state.yourName,
       partnerName: this.state.partnerName
@@ -197,7 +199,8 @@ class Details extends Component {
         </Icon.TabBarItem>
           <Icon.TabBarItem
           selected = {this.state.selectedTab === 'Settings'}
-          systemIcon = "more"
+          iconName="ios-settings-outline"
+          selectedIconName="ios-settings"
           onPress={() => {
             this.setState({
               selectedTab: 'Settings',
@@ -252,8 +255,7 @@ class Home extends Component {
 }
 
 class CalendarPage extends Component {
-
-    constructor (props) {
+  constructor (props) {
   super (props);
     this.state = {
       selectedDate: moment().format(),
