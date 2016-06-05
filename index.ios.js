@@ -1,4 +1,4 @@
-/**
+  /**
  * Sample React Native App
  * https://github.com/facebook/react-native
  * @flow
@@ -115,7 +115,8 @@ class Details extends Component {
     //Passes data that user inputed
     passProps: {
       yourName: this.state.yourName,
-      partnerName: this.state.partnerName
+      partnerName: this.state.partnerName,
+
     },
 
 
@@ -129,12 +130,12 @@ class Details extends Component {
       <Text>Done</Text>
       </TouchableOpacity>
         <DatePickerIOS
-          date={(this.state && this.state.date) || new Date()}
-          onDateChange={(newDate) => {
-            this.setState({date: newDate})
-          }}
-          mode={'date'}
-          timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+                  loveDate={(this.state && this.state.loveDate) || new Date()}
+                  onDateChange={(newDate) => {
+                    this.setState({date: newDate})
+                  }}
+                  mode={'date'}
+                  timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
         </View>
     );
 
@@ -146,13 +147,13 @@ class Details extends Component {
         <View style = {{padding: 20, marginTop: 100}}>
         <TouchableWithoutFeedback onPress = {this.toggleDatePicker.bind(this)}>
         <View style = {styles.nameInput} value = {this.state.date}>
-          <Text> {this.state.date.getDate()}/{this.state.date.getMonth()}/{this.state.date.getFullYear()}</Text>
+          <Text> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
           </View>
         </TouchableWithoutFeedback>
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
 
-         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName')}>
+         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName' )}>
         <Text> Start </Text>
         </TouchableHighlight>
       </View>
@@ -184,7 +185,7 @@ class Details extends Component {
             });
           }}>
         <Home yourName= {this.props.yourName}
-              partnerName= {this.props.partnerName}  />
+              partnerName= {this.props.partnerName} />
             </Icon.TabBarItem>
           <Icon.TabBarItem
           selected = {this.state.selectedTab === 'CalendarPage'}
@@ -243,7 +244,7 @@ class Home extends Component {
   return (
 
 <View style={styles.container}>
-  <Text style = {{paddingTop: 50}} > Loving Days  </Text>
+  <Text style = {{paddingTop: 50}} > Loving Days   </Text>
   <Text>Since {this.props.yourName} and {this.props.partnerName} met</Text>
   <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
