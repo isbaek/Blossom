@@ -116,6 +116,7 @@ class Details extends Component {
     passProps: {
       yourName: this.state.yourName,
       partnerName: this.state.partnerName,
+      date: this.state.date,
 
     },
 
@@ -142,6 +143,10 @@ class Details extends Component {
 
     return (
           <View style={styles.container}>
+
+          <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName', 'date' )}>
+         <Text> Start </Text>
+         </TouchableHighlight>
         <TextInput style={styles.nameInput} value={this.state.yourName} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
         <TextInput style={styles.nameInput} value={this.state.partnerName} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
         <View style = {{padding: 20, marginTop: 100}}>
@@ -153,9 +158,7 @@ class Details extends Component {
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
 
-         <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName' )}>
-        <Text> Start </Text>
-        </TouchableHighlight>
+
       </View>
     );
   }
@@ -185,7 +188,8 @@ class Details extends Component {
             });
           }}>
         <Home yourName= {this.props.yourName}
-              partnerName= {this.props.partnerName} />
+              partnerName= {this.props.partnerName}
+              date = {this.props.date} />
             </Icon.TabBarItem>
           <Icon.TabBarItem
           selected = {this.state.selectedTab === 'CalendarPage'}
@@ -239,12 +243,15 @@ class Home extends Component {
 
 
   render () {
-
+    var now = new Date();
+    var secondsSince = (now.getTime() - this.props.date.getTime()) / 1000;
+    //Day light saving time???
+    var daysSince = Math.floor(secondsSince / 86400);
 
   return (
 
 <View style={styles.container}>
-  <Text style = {{paddingTop: 50}} > Loving Days   </Text>
+    <Text style = {{paddingTop: 50}} > {daysSince} Loving Days   </Text>
   <Text>Since {this.props.yourName} and {this.props.partnerName} met</Text>
   <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
