@@ -20,6 +20,8 @@ import {
   Navigator,
   ListView,
   Switch,
+  ScrollView,
+  Animated,
 } from 'react-native'
 
 // Map mood names to images
@@ -211,7 +213,9 @@ class Details extends Component {
               selectedTab: 'Settings',
             });
           }}>
-         <Settings/>
+         <Settings  yourName= {this.props.yourName}
+               partnerName= {this.props.partnerName}
+               date = {this.props.date} />
         </Icon.TabBarItem>
       </TabBarIOS>
 
@@ -251,7 +255,7 @@ class Home extends Component {
   return (
 
 <View style={styles.container}>
-    <Text style = {{paddingTop: 50}} > {daysSince} Loving Days   </Text>
+    <Text style = {{paddingTop: 50}} > {(daysSince +1)} Loving Days   </Text>
   <Text>Since {this.props.yourName} and {this.props.partnerName} met</Text>
   <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
@@ -350,18 +354,85 @@ class AddEvent extends Component {
 
 
   class Settings extends Component {
+    constructor(props) {
+    super (props);
+      this.state = {
+        expanded: true,
+        animation   : new Animated.Value(),
+        date : new Date(),
+      }
+    }
 
+
+    toggle() {
+      let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
+          finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
+
+      this.setState({
+          expanded : !this.state.expanded
+      });
+
+      this.state.animation.setValue(initialValue);
+      Animated.spring(
+          this.state.animation,
+          {
+              toValue: finalValue
+          }
+      ).start();
+  }
+
+    _setMaxHeight(event){
+        this.setState({
+            maxHeight   : event.nativeEvent.layout.height
+        });
+    }
+
+    _setMinHeight(event){
+        this.setState({
+            minHeight   : event.nativeEvent.layout.height
+        });
+    }
+
+    toggleDatePicker() {
+    var mode = this.state.datePickerMode == 'hidden' ? 'visible' : 'hidden';
+    this.setState ({datePickerMode : mode});
+  }
+
+    onDateChange( date ) {
+      this.setState ({date: date});
+    }
 
   render () {
+    var datePicker =  (
+   <View style = {styles.datePicker}>
+ <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
+   <Text>Done</Text>
+   </TouchableOpacity>
+     <DatePickerIOS
+               loveDate={(this.state && this.state.loveDate) || new Date()}
+               onDateChange={(newDate) => {
+                 this.setState({date: newDate})
+               }}
+               mode={'date'}
+               timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+     </View>
+ );
+
+
   return (
-<View style={{flex:1}}>
+    <Animated.View style={[styles.containerSetting,{height: this.state.animation}]}>
 
-  <Text> About</Text>
-  <Text> Modify Name</Text>
-    <Text> Change Start Date</Text>
-
-
+<View style= {styles.titleSettingContainer}  onLayout={this._setMinHeight.bind(this)}>
+  <Icon.Button name ="ios-arrow-down" backgroundColor="#efeff5" onPress = {this.toggle.bind(this)}>
+    <Text> Change Names</Text>
+    </Icon.Button>
+  </View>
+    <View style={styles.bodySettingContainer} onLayout={this._setMaxHeight.bind(this)}>
+        <TextInput style = {styles.settingInput} placeholder= "New Name"/>
     </View>
+
+</Animated.View>
+
   );
  }
 }
@@ -418,6 +489,29 @@ const styles = StyleSheet.create({
     flex:1,
 
   },
+
+  titleSettingContainer : {
+    flexDirection: 'row'
+  },
+
+
+    bodySettingContainer        : {
+    padding     : 10,
+    paddingTop  : 0
+},
+containerSetting   : {
+    backgroundColor: '#fff',
+    margin:10,
+    overflow:'hidden'
+},
+
+settingInput: {
+  height: 10,
+  backgroundColor: "#2a2f43",
+  borderRadius: 5,
+  padding: 10,
+  margin: 10,
+},
 
 });
 
