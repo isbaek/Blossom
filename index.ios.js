@@ -18,9 +18,7 @@ import {
   TouchableWithoutFeedback,
   TabBarIOS,
   Navigator,
-  ListView,
   Switch,
-  ScrollView,
   Animated,
 } from 'react-native'
 
@@ -133,7 +131,7 @@ class Details extends Component {
       <Text>Done</Text>
       </TouchableOpacity>
         <DatePickerIOS
-                  loveDate={(this.state && this.state.loveDate) || new Date()}
+                  date={(this.state && this.state.date) || new Date()}
                   onDateChange={(newDate) => {
                     this.setState({date: newDate})
                   }}
@@ -145,6 +143,10 @@ class Details extends Component {
 
     return (
           <View style={styles.container}>
+          <View style = {styles.detailsTop}>
+          <Text style = {{fontSize: 30, color: 'white', marginTop: 170, borderRadius: 10,  background: '#dddddd',}}> Details </Text>
+          <Text style = {{fontSize: 13, color: 'white'}}> Write down your love details </Text>
+          </View>
 
           <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName', 'date' )}>
          <Text> Start </Text>
@@ -271,7 +273,9 @@ class CalendarPage extends Component {
   super (props);
     this.state = {
       selectedDate: moment().format(),
-    }
+      AddEvent: false,
+    };
+    this.onAddEvent = this.onAddEvent.bind(this);
   }
 
     navigate (type = 'Normal'){
@@ -282,8 +286,18 @@ class CalendarPage extends Component {
   })
 }
 
+onAddEvent() {
+this.setState({
+  AddEvent: !this.state.AddEvent
+})
+
+}
+
   render () {
+    const hidden = this.state.AddEvent ? '' : 'hidden';
+
   return (
+
 <View style={styles.calendarStyle}>
         <Calendar
           eventDates={['2016-05-20']}
@@ -307,6 +321,11 @@ class CalendarPage extends Component {
            <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('Modal')}>
         <Text> Add Event </Text>
         </TouchableHighlight>
+        <Text> {this.props.date} </Text>
+        <Text> {this.props.sex} </Text>
+
+        <Text style = {{fontSize: 16}}> {this.props.notes} </Text>
+
     </View>
 
   );
@@ -315,9 +334,21 @@ class CalendarPage extends Component {
 
 
 class AddEvent extends Component {
+  constructor (props) {
+  super (props);
+    this.state = {
+      notes: "",
+
+    }
+  }
+
   state = {
     datefalseSwtichIsOn: false,
     sexfalseSwtichIsOn: false,
+  }
+
+  onNotes(str) {
+    this.setState({notes: str});
   }
 
 
@@ -326,8 +357,8 @@ class AddEvent extends Component {
     < View style = {{flex: 1}}>
     <NavigationBar
       title = {{title: 'Add Event', }}
-      leftButton = {{title : 'Cancel', tintColor: '#FE2851', handler:() => this.props.navigator.pop(),}}
-      rightButton = {{title: 'Done', tintColor: '#FE2851', handler:() => this.props.navigator.pop()
+      leftButton = {{title : 'Cancel', tintColor: '#FE2851', handler:() => this.props.navigator.pop() }}
+      rightButton = {{title: 'Done', tintColor: '#FE2851', handler:() => this.props.navigator.replacePreviousAndPop({title: 'CalendarPage', component: CalendarPage, passProps: {notes: this.state.notes}})
    }}
       />
 
@@ -342,10 +373,10 @@ class AddEvent extends Component {
         onValueChange = {(value) => this.setState({sexfalseSwtichIsOn: value})}
         value = {this.state.sexfalseSwtichIsOn}
         onTintColor = "#FE2851"/>
-
+        <View value = {this.state.notes}>
       <Text> Notes </Text>
-      <TextInput style = {styles.nameInput} placeholder= "Time and Location"/>
-
+      <TextInput style = {styles.nameInput} placeholder= "Time and Location" value={this.state.notes} onChangeText={(str) => this.onNotes(str)}/>
+      </View>
     </View>
 
   );
@@ -393,30 +424,12 @@ class AddEvent extends Component {
         });
     }
 
-    toggleDatePicker() {
-    var mode = this.state.datePickerMode == 'hidden' ? 'visible' : 'hidden';
-    this.setState ({datePickerMode : mode});
-  }
 
     onDateChange( date ) {
       this.setState ({date: date});
     }
 
   render () {
-    var datePicker =  (
-   <View style = {styles.datePicker}>
- <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
-   <Text>Done</Text>
-   </TouchableOpacity>
-     <DatePickerIOS
-               loveDate={(this.state && this.state.loveDate) || new Date()}
-               onDateChange={(newDate) => {
-                 this.setState({date: newDate})
-               }}
-               mode={'date'}
-               timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-     </View>
- );
 
 
   return (
@@ -428,8 +441,24 @@ class AddEvent extends Component {
     </Icon.Button>
   </View>
     <View style={styles.bodySettingContainer} onLayout={this._setMaxHeight.bind(this)}>
-        <TextInput style = {styles.settingInput} placeholder= "New Name"/>
+        <TextInput style = {styles.settingInput} placeholder= "New Your Name"/>
+        <TextInput style = {styles.settingInput} placeholder= "New Partner Name"/>
     </View>
+
+    <View style= {styles.titleSettingContainer}  onLayout={this._setMinHeight.bind(this)}>
+      <Icon.Button name ="ios-arrow-down" backgroundColor="#efeff5" onPress = {this.toggle.bind(this)}>
+        <Text> Change Date</Text>
+        </Icon.Button>
+      </View>
+        <View style={styles.bodySettingContainer} onLayout={this._setMaxHeight.bind(this)}>
+        <DatePickerIOS
+                  date={(this.state && this.state.date) || new Date()}
+                  onDateChange={(newDate) => {
+                    this.setState({date: newDate})
+                  }}
+                  mode={'date'}
+                  timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+        </View>
 
 </Animated.View>
 
@@ -438,14 +467,20 @@ class AddEvent extends Component {
 }
 
 
+
+
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FE2851',
   },
+
+  detailsTop: {
+    backgroundColor: '#FABE3B',
+    height: 280,
+    alignItems: 'center',
+  },
+
   nameInput: {
     height: 20,
     backgroundColor: "#fff",
@@ -497,7 +532,7 @@ const styles = StyleSheet.create({
 
     bodySettingContainer        : {
     padding     : 10,
-    paddingTop  : 0
+    paddingTop  : 0,
 },
 containerSetting   : {
     backgroundColor: '#fff',
