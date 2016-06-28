@@ -144,24 +144,22 @@ class Details extends Component {
     return (
           <View style={styles.container}>
           <View style = {styles.detailsTop}>
-          <Text style = {{fontSize: 30, color: 'white', marginTop: 170, borderRadius: 10,  background: '#dddddd',}}> Details </Text>
-          <Text style = {{fontSize: 13, color: 'white'}}> Write down your love details </Text>
+          <Text style = {{fontSize: 30, color: 'white', top: 170, borderRadius: 5,}}> Details </Text>
+          <Text style = {{fontSize: 13, color: 'white', top: 180}}> Write down your love details </Text>
           </View>
-
-          <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName', 'date' )}>
-         <Text> Start </Text>
-         </TouchableHighlight>
         <TextInput style={styles.nameInput} value={this.state.yourName} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
         <TextInput style={styles.nameInput} value={this.state.partnerName} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
-        <View style = {{padding: 20, marginTop: 100}}>
+        <View style = {styles.nameInput}>
         <TouchableWithoutFeedback onPress = {this.toggleDatePicker.bind(this)}>
-        <View style = {styles.nameInput} value = {this.state.date}>
-          <Text> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
+        <View value = {this.state.date}>
+          <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
           </View>
         </TouchableWithoutFeedback>
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
-
+        <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName', 'date' )}>
+       <Text style = {{color: '#FFF'}}> Start </Text>
+       </TouchableHighlight>
 
       </View>
     );
@@ -172,7 +170,7 @@ class Details extends Component {
 
  class TabBar extends Component {
 
-    constructor (props) {
+  constructor (props) {
   super (props);
     this.state = {
       selectedTab: 'Home',
@@ -181,7 +179,7 @@ class Details extends Component {
     render () {
     return (
 <TabBarIOS
-    tintColor='#FE2851'>
+    tintColor='#FF4981'>
         <Icon.TabBarItem
           selected = {this.state.selectedTab === 'Home'}
           iconName="ios-home-outline"
@@ -249,20 +247,23 @@ class Home extends Component {
 
 
   render () {
+    //Get User Inputed Date and convert to loving days
     var now = new Date();
     var secondsSince = (now.getTime() - this.props.date.getTime()) / 1000;
-    //Day light saving time???
     var daysSince = Math.floor(secondsSince / 86400);
 
   return (
 
 <View style={styles.container}>
-    <Text style = {{paddingTop: 50}} > {(daysSince +1)} Loving Days   </Text>
-  <Text>Since {this.props.yourName} and {this.props.partnerName} met</Text>
-  <Text style = {{fontSize: 40, justifyContent : 'center', flex: 1, paddingTop: 20}}>Your Mood Today is... </Text>
+<View style = {{alignItems: 'center', justifyContent: 'center'}}>
+    <Text style = {{color: '#FFF', marginTop: 90, fontSize: 85, backgroundColor: '#FF4981', borderRadius: 5, }}> {(daysSince +1)} </Text>
+    <Text style = {{color: '#FF4981', padding: 10, fontSize: 15}}> Loving Days </Text>
+  <Text style = {{color: '#FFF', padding: 10, fontSize: 15, backgroundColor: '#FF4981', borderRadius: 5,}} >Since {this.props.yourName} and {this.props.partnerName} met</Text>
+  <Text style = {{color: '#FF4981', fontSize: 15, padding: 50}}>Your Mood Today is... </Text>
   <TouchableHighlight onPress = {() => this.onMoodClick()} >
   <Image source = {this.getMoodImage(this.state.mood)} style = {styles.moody} resizeMode='contain' ></Image>
   </TouchableHighlight>
+    </View>
     </View>
   );
  }
@@ -274,6 +275,7 @@ class CalendarPage extends Component {
     this.state = {
       selectedDate: moment().format(),
       AddEvent: false,
+      calendarBox: "",
     };
     this.onAddEvent = this.onAddEvent.bind(this);
   }
@@ -313,19 +315,20 @@ this.setState({
           onSwipeNext={() => console.log('Forward SWIPE')}
           customStyle={{
             calendarContainer: {backgroundColor: 'white'},
-            currentDayCircle: {backgroundColor: '#FE2851'},
-            currentDayText: {color: '#FE2851'},
+            currentDayCircle: {backgroundColor: '#FF4981'},
+            currentDayText: {color: '#FF4981'},
             }}
             />
         <Text>Selected Date: {moment(this.state.selectedDate).format('MMMM DD YYYY')}</Text>
-           <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('Modal')}>
-        <Text> Add Event </Text>
-        </TouchableHighlight>
+        <View value = {this.state.calendarBox}>
+        <Icon.Button name ="ios-heart" color="#FF4981" backgroundColor = "#FFF" alignItems= 'center' justifyContent= 'center' onPress = {() => this.navigate('Modal')}>
+        <Text style = {{alignItems: 'center'}}> Add Event </Text>
+        </Icon.Button>
         <Text> {this.props.date} </Text>
         <Text> {this.props.sex} </Text>
 
         <Text style = {{fontSize: 16}}> {this.props.notes} </Text>
-
+        </View>
     </View>
 
   );
@@ -357,8 +360,8 @@ class AddEvent extends Component {
     < View style = {{flex: 1}}>
     <NavigationBar
       title = {{title: 'Add Event', }}
-      leftButton = {{title : 'Cancel', tintColor: '#FE2851', handler:() => this.props.navigator.pop() }}
-      rightButton = {{title: 'Done', tintColor: '#FE2851', handler:() => this.props.navigator.replacePreviousAndPop({title: 'CalendarPage', component: CalendarPage, passProps: {notes: this.state.notes}})
+      leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
+      rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.props.navigator.replacePreviousAndPop({title: 'CalendarPage', component: CalendarPage, passProps: {notes: this.state.notes}})
    }}
       />
 
@@ -366,13 +369,13 @@ class AddEvent extends Component {
              <Switch
         onValueChange = {(value) => this.setState({datefalseSwtichIsOn: value})}
         value = {this.state.datefalseSwtichIsOn}
-        onTintColor = "#FE2851"/>
+        onTintColor = "#FF4981"/>
 
       <Text> Sexual Relations</Text>
             <Switch
         onValueChange = {(value) => this.setState({sexfalseSwtichIsOn: value})}
         value = {this.state.sexfalseSwtichIsOn}
-        onTintColor = "#FE2851"/>
+        onTintColor = "#FF4981"/>
         <View value = {this.state.notes}>
       <Text> Notes </Text>
       <TextInput style = {styles.nameInput} placeholder= "Time and Location" value={this.state.notes} onChangeText={(str) => this.onNotes(str)}/>
@@ -388,40 +391,8 @@ class AddEvent extends Component {
     constructor(props) {
     super (props);
       this.state = {
-        expanded: true,
-        animation   : new Animated.Value(),
         date : new Date(),
       }
-    }
-
-
-    toggle() {
-      let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
-          finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
-
-      this.setState({
-          expanded : !this.state.expanded
-      });
-
-      this.state.animation.setValue(initialValue);
-      Animated.spring(
-          this.state.animation,
-          {
-              toValue: finalValue
-          }
-      ).start();
-  }
-
-    _setMaxHeight(event){
-        this.setState({
-            maxHeight   : event.nativeEvent.layout.height
-        });
-    }
-
-    _setMinHeight(event){
-        this.setState({
-            minHeight   : event.nativeEvent.layout.height
-        });
     }
 
 
@@ -433,24 +404,16 @@ class AddEvent extends Component {
 
 
   return (
-    <Animated.View style={[styles.containerSetting,{height: this.state.animation}]}>
 
-<View style= {styles.titleSettingContainer}  onLayout={this._setMinHeight.bind(this)}>
-  <Icon.Button name ="ios-arrow-down" backgroundColor="#efeff5" onPress = {this.toggle.bind(this)}>
-    <Text> Change Names</Text>
-    </Icon.Button>
-  </View>
-    <View style={styles.bodySettingContainer} onLayout={this._setMaxHeight.bind(this)}>
+<View style= {styles.container} >
+  <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 40}}>
+        <Text style = {styles.settingDescription}> About </Text>
+        <Text style = {{marginTop:10}}> Inseo Baek</Text>
+        <Text> Credits to... </Text>
+        <Text style = {styles.settingDescription}> Change Names </Text>
         <TextInput style = {styles.settingInput} placeholder= "New Your Name"/>
         <TextInput style = {styles.settingInput} placeholder= "New Partner Name"/>
-    </View>
-
-    <View style= {styles.titleSettingContainer}  onLayout={this._setMinHeight.bind(this)}>
-      <Icon.Button name ="ios-arrow-down" backgroundColor="#efeff5" onPress = {this.toggle.bind(this)}>
-        <Text> Change Date</Text>
-        </Icon.Button>
-      </View>
-        <View style={styles.bodySettingContainer} onLayout={this._setMaxHeight.bind(this)}>
+        <Text style = {styles.settingDescription}> Change First Date </Text>
         <DatePickerIOS
                   date={(this.state && this.state.date) || new Date()}
                   onDateChange={(newDate) => {
@@ -458,9 +421,12 @@ class AddEvent extends Component {
                   }}
                   mode={'date'}
                   timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+              </View>
+              <TouchableHighlight style = {{marginTop: 10, padding: 5, borderRadius: 5, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FABE3B', marginLeft: 100, marginRight: 100}}>
+           <Text style = {{color: '#FFF', fontSize: 12}}> Update </Text>
+           </TouchableHighlight>
         </View>
 
-</Animated.View>
 
   );
  }
@@ -482,13 +448,17 @@ const styles = StyleSheet.create({
   },
 
   nameInput: {
-    height: 20,
-    backgroundColor: "#fff",
-    borderRadius: 5,
+    alignItems: 'flex-start',
+    justifyContent : 'flex-start',
+    backgroundColor: "#EDEDED",
     padding: 20,
-    margin: 20,
-    color: "#333",
+    color: "#8F8E94",
+    marginTop: 40,
+    marginLeft: 40,
+    marginRight: 40,
+    borderRadius: 5,
   },
+
   datePicker : {
     borderTopWidth: 1,
     position: 'absolute',
@@ -501,11 +471,11 @@ const styles = StyleSheet.create({
   },
 
   button : {
-    justifyContent : 'center',
     alignItems : 'center',
-    backgroundColor : '#FFF',
-    height: 20,
-    marginTop: 50,
+    justifyContent : 'center',
+    backgroundColor : '#FF4981',
+    marginTop: 40,
+    padding: 8,
   },
 
     tabContent: {
@@ -525,28 +495,34 @@ const styles = StyleSheet.create({
 
   },
 
-  titleSettingContainer : {
-    flexDirection: 'row'
+  calendarBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#FFF',
   },
 
-
-    bodySettingContainer        : {
-    padding     : 10,
-    paddingTop  : 0,
-},
-containerSetting   : {
-    backgroundColor: '#fff',
-    margin:10,
-    overflow:'hidden'
-},
-
 settingInput: {
-  height: 10,
-  backgroundColor: "#2a2f43",
+  alignItems: 'flex-start',
+  justifyContent : 'flex-start',
+  backgroundColor: "#EDEDED",
+  padding: 20,
+  color: "#8F8E94",
+  marginLeft: 40,
+  marginRight: 40,
+  marginTop: 10,
   borderRadius: 5,
-  padding: 10,
-  margin: 10,
 },
+
+settingDescription: {
+  backgroundColor : '#FF4981',
+  color: '#FFF',
+  fontSize: 12,
+  padding: 5,
+  borderRadius: 5,
+  marginTop: 10,
+
+}
 
 });
 
