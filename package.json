@@ -8,7 +8,7 @@
   "dependencies": {
     "react": "^15.0.2",
     "react-native": "^0.26.1",
-    "react-native-calendar": "^0.7.0",
+    "react-native-calendar": "christopherdro/react-native-calendar#a6670009c2330cafe4f6fedb49d2565b1ead7111",
     "react-native-navbar": "^1.5.0",
     "react-native-vector-icons": "^2.0.3"
   }
