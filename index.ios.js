@@ -34,7 +34,7 @@ var MOODS = {
 var MOOD_LIST =  ["sunny", "cloudy", "thunderstorm", "warm", "suncloudy"];
 
 //Calendar Library
-var Calendar = require('react-native-calendar');
+import Calendar from 'react-native-calendar';
 var moment = require('moment');
 
 //Navigation Bar Library
@@ -303,7 +303,7 @@ this.setState({
 <View style={styles.calendarStyle}>
         <Calendar
           eventDates={['2016-05-20']}
-          scrollEnabled={true}
+          scrollEnabled={false}
           showControls={true}
           titleFormat={'MMMM YYYY'}
           prevButtonText={'Prev'}
