@@ -30,16 +30,16 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-    switch(action.type) {
-        case EDIT_COUPLE:
-            return {
-                ...state,
-                couple: action.couple,
-            };
-        case ADD_DATE:
-            return {
-                ...state,
-                dates: dates.concat(action.date),
-            };
+    if(action.type == EDIT_COUPLE) {
+        return {
+            ...state,
+            couple: action.payload.couple,
+        };
+    } else if(action.type == ADD_DATE) {
+        return {
+            ...state,
+            dates: dates.concat(action.date),
+        };
     }
+    return state;
 }
