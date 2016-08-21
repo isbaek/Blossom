@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
     justifyContent : 'flex-start',
     backgroundColor: "#EDEDED",
     padding: 20,
+    flex: 1,
     color: "#8F8E94",
-    marginTop: 40,
-    marginLeft: 40,
-    marginRight: 40,
+    margin: 40,
+    marginTop: 20,
+    marginBottom: 20,
     borderRadius: 5,
   },
-
   datePicker : {
     borderTopWidth: 1,
     position: 'absolute',
