@@ -15,6 +15,7 @@ import {
 } from 'react-native'
 import TabBar from './TabBar'
 import styles from './styles'
+import TopBar from './TopBar'
 
 // Map mood names to images
 var MOODS = {
@@ -53,6 +54,7 @@ export default class Home extends Component {
 
   return (
     <View style={styles.container}>
+    <TopBar />
   <View style = {{alignItems: 'center', justifyContent: 'center'}}>
     <Text style = {{color: '#FFF', marginTop: 90, fontSize: 85, backgroundColor: '#FF4981', borderRadius: 5, }}> {(daysSince +1)} </Text>
     <Text style = {{color: '#FF4981', padding: 10, fontSize: 15}}> Loving Days </Text>

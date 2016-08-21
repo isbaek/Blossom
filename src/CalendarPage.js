@@ -15,6 +15,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 import AddEvent from './AddEvent'
+import TopBar from './TopBar'
 
 // Calendar Library
 import moment from 'moment'
@@ -54,6 +55,7 @@ this.setState({
   return (
 
 <View style={styles.calendarStyle}>
+      <TopBar/>
         <Calendar
           eventDates={['2016-05-20']}
           scrollEnabled={false}

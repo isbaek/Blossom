@@ -14,6 +14,7 @@ import {
   Animated,
 } from 'react-native'
 import styles from './styles'
+import TopBar from './TopBar'
 
 export default class Settings extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ export default class Settings extends Component {
 
   render () {
   return (
-    <View style= {styles.container} >
+    <View style= {styles.container}>
+     <TopBar/>
       <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 40}}>
         <Text style = {styles.settingDescription}> About </Text>
         <Text style = {{marginTop:10}}> Inseo Baek</Text>

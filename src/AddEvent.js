@@ -65,5 +65,5 @@ export default class AddEvent extends Component {
     </View>
 
   );
-    }
+ }
 }
