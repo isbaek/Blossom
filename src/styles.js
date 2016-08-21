@@ -14,8 +14,6 @@ const styles = StyleSheet.create({
   },
 
   nameInput: {
-    alignItems: 'flex-start',
-    justifyContent : 'flex-start',
     backgroundColor: "#EDEDED",
     padding: 20,
     flex: 1,
