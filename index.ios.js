@@ -21,9 +21,14 @@ import {
   Switch,
   Animated,
 } from 'react-native'
+import { Provider } from 'react-redux'
+
 import styles from './src/styles'
 import Details from './src/Details'
 import TabBar from './src/TabBar'
+import createStore from './src/store/createStore'
+
+const store = createStore()
 
 //INITIAL
 class Project extends Component {
@@ -35,6 +40,7 @@ class Project extends Component {
     return Navigator.SceneConfigs.PushFromRight
   }
 
+  /*
   render () {
     return (
       <Navigator
@@ -50,6 +56,14 @@ class Project extends Component {
           }
         }
         />
+    );
+  }
+  */
+  render() {
+    return (
+      <Provider store={store}>
+        <Details />
+      </Provider>
     );
   }
 }
