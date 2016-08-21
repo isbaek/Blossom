@@ -7,65 +7,25 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-  DatePickerIOS,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  TabBarIOS,
-  Navigator,
-  Switch,
-  Animated,
+  AsyncStorage,
 } from 'react-native'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
-import styles from './src/styles'
-import Details from './src/Details'
-import TabBar from './src/TabBar'
+import App from './src/App'
 import createStore from './src/store/createStore'
 
-const store = createStore()
+const store = createStore();
+const persistor = persistStore(store, {storage: AsyncStorage});
 
-//INITIAL
-class Project extends Component {
-  configureScene(route, routeStack) {
-    if (route.type == 'Modal') {
-      return Navigator.SceneConfigs.VerticalUpSwipeJump
-    }
-
-    return Navigator.SceneConfigs.PushFromRight
-  }
-
-  /*
-  render () {
-    return (
-      <Navigator
-        initialRoute={{
-          title: 'Details',
-          component: Details,
-        }}
-        configureScene={this.configureScene}
-        renderScene={(route, navigator) => {
-          console.log(route, navigator);
-          if (route.component) {
-            return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route} )}
-          }
-        }
-        />
-    );
-  }
-  */
+class Blossom extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Details />
+      <Provider store={store} persistor={persistor}>
+        <App />
       </Provider>
     );
   }
 }
 
-AppRegistry.registerComponent('newBlossom', () => Project);
+AppRegistry.registerComponent('newBlossom', () => Blossom);
