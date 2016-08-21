@@ -45,6 +45,26 @@ class Details extends Component {
     this.setState({partnerName: str});
   }
 
+  yourName() {
+    return this.state.yourName || this.props.couple.you.name;
+  }
+
+  partnerName() {
+    return this.state.partnerName || this.props.couple.partner.name;
+  }
+
+  onSave() {
+    this.props.editCouple({
+      "you": {
+        "name": this.yourName(),
+      },
+      "partner": {
+        "name": this.partnerName(),
+      },
+      date: this.props.couple.date,
+    });
+  }
+
   navigate() {
     this.props.navigator.push({
       name: 'TabBar',
@@ -75,15 +95,14 @@ class Details extends Component {
         </View>
     );
 
-
     return (
           <View style={styles.container}>
           <View style = {styles.detailsTop}>
           <Text style = {{fontSize: 30, color: 'white', top: 170, borderRadius: 5,}}> Details </Text>
           <Text style = {{fontSize: 13, color: 'white', top: 180}}> Write down your love details </Text>
           </View>
-        <TextInput style={styles.nameInput} value={this.state.yourName} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
-        <TextInput style={styles.nameInput} value={this.state.partnerName} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
+        <TextInput style={styles.nameInput} value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
+        <TextInput style={styles.nameInput} value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
         <View style = {styles.nameInput}>
         <TouchableWithoutFeedback onPress = {this.toggleDatePicker.bind(this)}>
         <View value = {this.state.date}>
@@ -92,7 +111,7 @@ class Details extends Component {
         </TouchableWithoutFeedback>
         </View>
         {this.state.datePickerMode == 'visible' ? datePicker : false}
-        <TouchableHighlight style = {styles.button} onPress = {() => this.navigate('yourName', 'partnerName', 'date' )}>
+        <TouchableHighlight style = {styles.button} onPress = {() => this.onSave()}>
        <Text style = {{color: '#FFF'}}> Start </Text>
        </TouchableHighlight>
 

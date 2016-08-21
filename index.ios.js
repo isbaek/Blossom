@@ -7,51 +7,25 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-  DatePickerIOS,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  TabBarIOS,
-  Navigator,
-  Switch,
-  Animated,
+  AsyncStorage,
 } from 'react-native'
-import styles from './src/styles'
-import Details from './src/Details'
-import TabBar from './src/TabBar'
+import { Provider, connect } from 'react-redux'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
-//INITIAL
-class Project extends Component {
-  configureScene(route, routeStack) {
-    if (route.type == 'Modal') {
-      return Navigator.SceneConfigs.VerticalUpSwipeJump
-    }
+import App from './src/App'
+import createStore from './src/store/createStore'
 
-    return Navigator.SceneConfigs.PushFromRight
-  }
+const store = createStore();
+const persistor = persistStore(store, {storage: AsyncStorage});
 
-  render () {
+class Blossom extends Component {
+  render() {
     return (
-      <Navigator
-        initialRoute={{
-          title: 'Details',
-          component: Details,
-        }}
-        configureScene={this.configureScene}
-        renderScene={(route, navigator) => {
-          console.log(route, navigator);
-          if (route.component) {
-            return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route} )}
-          }
-        }
-        />
+      <Provider store={store} persistor={persistor}>
+        <App />
+      </Provider>
     );
   }
 }
 
-AppRegistry.registerComponent('newBlossom', () => Project);
+AppRegistry.registerComponent('newBlossom', () => Blossom);
