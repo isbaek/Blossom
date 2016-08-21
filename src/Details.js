@@ -20,16 +20,16 @@ class Details extends Component {
   constructor() {
     super();
     this.state = {
-      yourName: "",
-      partnerName: "",
+      yourName: null,
+      partnerName: null,
       date: new Date(),
-      datePickerMode: 'hidden',
+      datePicker: false,
     };
   }
 
   toggleDatePicker() {
-    var mode = this.state.datePickerMode == 'hidden' ? 'visible' : 'hidden';
-    this.setState ({datePickerMode : mode});
+    var mode = !this.state.datePicker;
+    this.setState ({datePicker : mode});
   }
 
   onDateChange(date) {
@@ -46,11 +46,11 @@ class Details extends Component {
   }
 
   yourName() {
-    return this.state.yourName || this.props.couple.you.name;
+    return (this.state.yourName !== null ? this.state.yourName : this.props.couple.you.name);
   }
 
   partnerName() {
-    return this.state.partnerName || this.props.couple.partner.name;
+    return (this.state.partnerName !== null ? this.state.partnerName : this.props.couple.partner.name);
   }
 
   onSave() {
@@ -79,42 +79,51 @@ class Details extends Component {
     })
   }
 
-  render() {
-       var datePicker =  (
-      <View style = {styles.datePicker}>
-    <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
-      <Text>Done</Text>
-      </TouchableOpacity>
-        <DatePickerIOS
-                  date={(this.state && this.state.date) || new Date()}
-                  onDateChange={(newDate) => {
-                    this.setState({date: newDate})
-                  }}
-                  mode={'date'}
-                  timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-        </View>
-    );
-
+  renderDatePicker() {
     return (
-          <View style={styles.container}>
-          <View style = {styles.detailsTop}>
+      <View style = {styles.datePicker}>
+        <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
+         <Text>Done</Text>
+        </TouchableOpacity>
+        <DatePickerIOS
+          date={(this.state && this.state.date) || new Date()}
+          onDateChange={(newDate) => {
+            this.setState({date: newDate})
+          }}
+          mode={'date'}
+          timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+      </View>
+    );
+  }
+
+  renderButtonOrDatePicker() {
+    if(this.state.datePicker) {
+      return this.renderDatePicker();
+    }
+    return (
+      <TouchableHighlight style = {styles.button} onPress = {() => this.onSave()}>
+        <Text style = {{color: '#FFF'}}> Start </Text>
+      </TouchableHighlight>
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style = {styles.detailsTop}>
           <Text style = {{fontSize: 30, color: 'white', top: 170, borderRadius: 5,}}> Details </Text>
           <Text style = {{fontSize: 13, color: 'white', top: 180}}> Write down your love details </Text>
-          </View>
+        </View>
         <TextInput style={styles.nameInput} value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
         <TextInput style={styles.nameInput} value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
         <View style = {styles.nameInput}>
-        <TouchableWithoutFeedback onPress = {this.toggleDatePicker.bind(this)}>
-        <View value = {this.state.date}>
-          <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
+        <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
+          <View value={this.state.date}>
+            <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
           </View>
         </TouchableWithoutFeedback>
         </View>
-        {this.state.datePickerMode == 'visible' ? datePicker : false}
-        <TouchableHighlight style = {styles.button} onPress = {() => this.onSave()}>
-       <Text style = {{color: '#FFF'}}> Start </Text>
-       </TouchableHighlight>
-
+        {this.renderButtonOrDatePicker()}
       </View>
     );
   }
