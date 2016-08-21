@@ -51,7 +51,7 @@ class Project extends Component {
 
   configureScene(route, routeStack) {
     if (route.type == 'Modal') {
-      return Navigator.SceneConfigs.FloatFromBottom
+      return Navigator.SceneConfigs.VerticalUpSwipeJump
     }
 
 
@@ -361,7 +361,7 @@ class AddEvent extends Component {
     <NavigationBar
       title = {{title: 'Add Event', }}
       leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
-      rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.props.navigator.replacePreviousAndPop({title: 'CalendarPage', component: CalendarPage, passProps: {notes: this.state.notes}})
+      rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.props.navigator.pop({title: 'CalendarPage', component: CalendarPage, passProps: {notes: this.state.notes}})
    }}
       />
 
