@@ -53,6 +53,10 @@ class Details extends Component {
     return (this.state.partnerName !== null ? this.state.partnerName : this.props.couple.partner.name);
   }
 
+  firstDate() {
+    return this.props.couple.firstDate || (this.state && this.state.date) || new Date();
+  }
+
   onSave() {
     this.props.editCouple({
       "you": {
@@ -61,7 +65,7 @@ class Details extends Component {
       "partner": {
         "name": this.partnerName(),
       },
-      date: this.props.couple.date,
+      firstDate: this.firstDate(),
     });
   }
 
@@ -73,8 +77,7 @@ class Details extends Component {
       passProps: {
         yourName: this.state.yourName,
         partnerName: this.state.partnerName,
-        date: this.state.date,
-
+        firstDate: this.state.date,
       },
     })
   }
@@ -86,7 +89,7 @@ class Details extends Component {
          <Text>Done</Text>
         </TouchableOpacity>
         <DatePickerIOS
-          date={(this.state && this.state.date) || new Date()}
+          date={this.firstDate()}
           onDateChange={(newDate) => {
             this.setState({date: newDate})
           }}

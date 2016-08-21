@@ -14,7 +14,7 @@ const initialState = {
         partner: {
             name: ""
         },
-        fistDate: ""
+        firstDate: null,
     },
     dates: [
     /*

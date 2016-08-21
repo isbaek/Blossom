@@ -1,9 +1,3 @@
-  /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -16,13 +10,25 @@ import App from './src/App'
 import createStore from './src/store/createStore'
 
 const store = createStore();
-const persistor = persistStore(store, {storage: AsyncStorage});
+
 
 class Blossom extends Component {
+  constructor() {
+    super()
+    this.state = { loading: true }
+    this.persistor = null;
+  }
+
+  componentWillMount(){
+    this.persistor = persistStore(store, {storage: AsyncStorage}, () => {
+      this.setState({ loading: false })
+    })
+  }
+
   render() {
     return (
-      <Provider store={store} persistor={persistor}>
-        <App />
+      <Provider store={store} persistor={this.persistor}>
+        <App loading={this.state.loading} />
       </Provider>
     );
   }
