@@ -30,12 +30,12 @@ class App extends React.Component {
 
   initialRoute() {
     const c = this.props.couple;
-    const newApp = (
+    const needsCoupleInfo = (
       c.firstDate === null ||
       c.you.name === "" ||
       c.partner.name === ""
     );
-    if(newApp) {
+    if(needsCoupleInfo || true) {
       return this.route('Details', Details);
     }
     return this.route('Home', Home);

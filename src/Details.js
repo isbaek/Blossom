@@ -16,6 +16,9 @@ import {
 import TabBar from './TabBar'
 import styles from './styles'
 
+
+var blossomimg = require('../design/blossom.jpg')
+
 class Details extends Component {
   constructor() {
     super();
@@ -113,18 +116,21 @@ class Details extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style = {styles.detailsTop}>
-          <Text style = {{fontSize: 30, color: 'white', top: 170, borderRadius: 5,}}> Details </Text>
-          <Text style = {{fontSize: 13, color: 'white', top: 180}}> Write down your love details </Text>
-        </View>
-        <TextInput style={styles.nameInput} value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
-        <TextInput style={styles.nameInput} value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
+          <Image source = {blossomimg} resizeMode='contain' style= {{position:'absolute'}}></Image>
+            <View style= {styles.detailsTop}>
+            <Text style = {{fontSize: 30, color: 'white', alignItems: 'center'}}> Details </Text>
+            <Text style = {{fontSize: 15, color: 'white', alignItems: 'center'}}> Write down your love details </Text>
+            </View>
+        <View style = {styles.textContainer}>
+        <TextInput style={styles.nameInput} value={this.yourName()} placeholder="Your name" placeholderTextColor= 'white' onChangeText={(str) => this.onName(str)} />
+        <TextInput style={styles.nameInput} value={this.partnerName()} placeholder="Partner's name" placeholderTextColor= 'white' onChangeText={(str) => this.onPartnerName(str)} />
         <View style = {styles.nameInput}>
         <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
-          <View value={this.state.date}>
-            <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
+          <View value={this.firstDate()}>
+            <Text style = {{color: 'white'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
           </View>
         </TouchableWithoutFeedback>
+        </View>
         </View>
         {this.renderButtonOrDatePicker()}
       </View>

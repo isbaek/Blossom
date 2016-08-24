@@ -28,9 +28,9 @@ export default class TopBar extends Component {
     return (
       <View style = {{flex: 1}}>
         <NavigationBar
-          title = {{title: 'Blossom', }}
-          rightButton = {{title: 'Add', tintColor: '#FF4981',
-       }}/>
+          tintColor = '#FF4981'
+          title = {{title: 'Blossom', tintColor: '#FFF'}}
+          rightButton = {{title: 'Add', tintColor: '#FFF', }}/>
      </View>
    );
   }
