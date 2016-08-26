@@ -38,8 +38,8 @@ export default class Settings extends Component {
         <Text style = {{marginTop:10}}> Inseo Baek</Text>
         <Text> Credits to... </Text>
         <Text style = {styles.settingDescription}> Change Names </Text>
-        <TextInput style = {styles.settingInput} placeholder= "New Your Name"/>
-        <TextInput style = {styles.settingInput} placeholder= "New Partner Name"/>
+        <TextInput style = {styles.settingInput} placeholder= "New Your Name" value={this.props.couple.you.name} />
+        <TextInput style = {styles.settingInput} placeholder= "New Partner Name" value={this.props.couple.partner.name} />
         <Text style = {styles.settingDescription}> Change First Date </Text>
         <DatePickerIOS
                   date={(this.state && this.state.date) || new Date()}

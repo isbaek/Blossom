@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Home from './Home'
 import Details from './Details'
 import CalendarPage from './CalendarPage'
+import TabBar from './TabBar'
 
 class Loading extends React.Component {
   render() {
@@ -38,7 +39,7 @@ class App extends React.Component {
     if(needsCoupleInfo || true) {
       return this.route('Details', Details);
     }
-    return this.route('Home', Home);
+    return this.route('TabBar', TabBar);
   }
 
   render() {
@@ -51,7 +52,6 @@ class App extends React.Component {
       initialRoute={this.initialRoute()}
       configureScene={this.configureScene}
       renderScene={(route, navigator) => {
-        console.log(route, navigator);
         if (route.component) {
           return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route} )}
         }

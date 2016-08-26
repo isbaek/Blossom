@@ -42,9 +42,7 @@ export default class TabBar extends Component {
             selectedTab: 'Home',
           });
       }}>
-        <Home yourName= {this.props.yourName}
-              partnerName= {this.props.partnerName}
-              date = {this.props.date} />
+        <Home {...this.props} />
       </Icon.TabBarItem>
       <Icon.TabBarItem
         title="Calendar"
@@ -56,7 +54,7 @@ export default class TabBar extends Component {
             selectedTab: 'CalendarPage',
           });
         }}>
-          <CalendarPage navigator = {this.props.navigator}/>
+          <CalendarPage {...this.props} />
       </Icon.TabBarItem>
       <Icon.TabBarItem
         title="Settings"
@@ -68,9 +66,7 @@ export default class TabBar extends Component {
             selectedTab: 'Settings',
           });
         }}>
-          <Settings  yourName= {this.props.yourName}
-             partnerName= {this.props.partnerName}
-             date = {this.props.date} />
+          <Settings {...this.props} />
       </Icon.TabBarItem>
     </TabBarIOS>
   );
