@@ -8,34 +8,30 @@ const styles = StyleSheet.create({
   },
 
   detailsTop: {
+    //backgroundColor: '#FABE3B',
+    height: 280,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 130,
   },
-
-
-  textContainer : {
-    marginTop: 40,
+  detailsForm: {
+    marginTop: 20,
     backgroundColor: 'rgba(0,0,0,0.2)',
     borderRadius: 5,
     marginLeft: 40,
     marginRight: 40,
-
+    flex: 1,
   },
-
   nameInput: {
     flex: 1,
     fontSize: 15,
     backgroundColor: 'rgba(0,0,0,0.2)',
+    color: "#8F8E94",
+    padding: 15,
+    margin: 40,
+    marginTop: 20,
+    marginBottom: 20,
     borderRadius: 5,
-    padding: 20,
-    //borderBottomColor: '#fff',
-    //borderBottomWidth: 1,
-    //color: "#8F8E94",
     color: '#fff',
-    margin: 15,
   },
-
   datePicker : {
     borderTopWidth: 1,
     position: 'absolute',
@@ -51,10 +47,8 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     justifyContent : 'center',
     backgroundColor : '#FF4981',
-    margin: 40,
-    fontSize: 15,
-    padding: 15,
-    borderRadius: 5,
+    marginTop: 40,
+    padding: 8,
   },
 
     tabContent: {
