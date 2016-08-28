@@ -57,5 +57,8 @@ export default React.StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
+  DatePicker: {
+    backgroundColor: '#fff',
+  }
 });
 

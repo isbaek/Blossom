@@ -142,7 +142,7 @@ class Details extends Component {
 
   renderDatePicker() {
     return (
-      <View style = {styles.datePicker}>
+      <View style = {styles.DatePicker}>
         <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
          <Text>Done</Text>
         </TouchableOpacity>
@@ -181,7 +181,7 @@ class Details extends Component {
           <FormField>
           <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
             <View value={this.firstDate()}>
-              <Text style = {{color: '#8F8E94'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
+              <Text style = {{color: '#fff'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
             </View>
           </TouchableWithoutFeedback>
           </FormField>
