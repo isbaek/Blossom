@@ -29,14 +29,17 @@ class App extends React.Component {
     };
   }
 
-  initialRoute() {
+  needsCoupleInfo() {
     const c = this.props.couple;
-    const needsCoupleInfo = (
+    return (
       c.firstDate === null ||
       c.you.name === "" ||
       c.partner.name === ""
     );
-    if(needsCoupleInfo || true) {
+  }
+
+  initialRoute() {
+    if(this.needsCoupleInfo()) {
       return this.route('Details', Details);
     }
     return this.route('TabBar', TabBar);
@@ -78,5 +81,6 @@ export default connect(
   cleanState,
   (dispatch) => ({
     editCouple: (newCouple) => dispatch({ type: 'EDIT_COUPLE', payload: { couple: newCouple }}),
+    addEvent: (newEvent) => dispatch({ type: 'ADD_EVENT', payload: { event: newEvent }}),
   })
 )(App)

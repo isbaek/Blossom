@@ -1,7 +1,7 @@
 // Couple actions
 export const EDIT_COUPLE = 'EDIT_COUPLE'
 
-// Date actions
-export const ADD_DATE = 'ADD_DATE'
-export const DELETE_DATE = 'DELETE_DATE'
-export const EDIT_DATE = 'EDIT_DATE'
+// Event actions
+export const ADD_EVENT = 'ADD_EVENT'
+export const DELETE_EVENT = 'DELETE_EVENT'
+export const EDIT_EVENT = 'EDIT_EVENT'

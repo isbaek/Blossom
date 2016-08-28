@@ -16,7 +16,7 @@ const initialState = {
         },
         firstDate: null,
     },
-    dates: [
+    events: [
     /*
         {
             name: "Throwing Inseo off bridges",
@@ -35,10 +35,10 @@ export default function reducer(state = initialState, action) {
             ...state,
             couple: action.payload.couple,
         };
-    } else if(action.type == ADD_DATE) {
+    } else if(action.type == ADD_EVENT) {
         return {
             ...state,
-            dates: dates.concat(action.date),
+            events: state.events.concat(action.payload.event),
         };
     }
     return state;
