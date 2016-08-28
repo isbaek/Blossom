@@ -80,7 +80,7 @@ class Details extends Component {
     this.state = {
       yourName: null,
       partnerName: null,
-      date: new Date(),
+      date: null,
       datePicker: false,
     };
   }
@@ -112,7 +112,7 @@ class Details extends Component {
   }
 
   firstDate() {
-    return this.props.couple.firstDate || (this.state && this.state.date) || new Date();
+    return (this.state && this.state.date) || this.props.couple.firstDate || new Date();
   }
 
   onSave() {
@@ -180,8 +180,8 @@ class Details extends Component {
           <FormInput value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
           <FormField>
           <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
-            <View value={this.state.date}>
-              <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
+            <View value={this.firstDate()}>
+              <Text style = {{color: '#8F8E94'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
             </View>
           </TouchableWithoutFeedback>
           </FormField>
