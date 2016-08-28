@@ -60,9 +60,9 @@ export default class Home extends Component {
     <Text style = {{color: '#FF4981', padding: 10, fontSize: 15}}> Loving Days </Text>
   <Text style = {{color: '#FFF', padding: 10, fontSize: 15, backgroundColor: '#FF4981', borderRadius: 5,}} >Since {this.props.couple.you.name} and {this.props.couple.partner.name} met</Text>
   <Text style = {{color: '#FF4981', fontSize: 15, padding: 50}}>Your Mood Today is... </Text>
-  <TouchableHighlight onPress = {() => this.onMoodClick()} >
+  <TouchableWithoutFeedback onPress = {() => this.onMoodClick()} >
   <Image source = {this.getMoodImage(this.state.mood)} style = {styles.moody} resizeMode='contain' ></Image>
-  </TouchableHighlight>
+  </TouchableWithoutFeedback>
     </View>
     </View>
   );
