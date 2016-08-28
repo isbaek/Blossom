@@ -36,7 +36,9 @@ export default React.StyleSheet.create({
     height: 200,
   },
   FormInput: {
-    padding: 20,
+    padding: 15,
+    flex: 1,
+    margin: 5,
     fontSize: 15,
     backgroundColor: 'rgba(0,0,0,0.2)',
     color: '#fff',
