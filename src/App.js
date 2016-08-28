@@ -64,17 +64,35 @@ class App extends React.Component {
   }
 }
 
-function cleanState(state) {
-  if(typeof state.couple.firstDate === 'string') {
+////
+// Cleaning functions
+////
+
+function cleanCouple(couple) {
+  if(typeof couple.firstDate === 'string') {
     return {
-      ...state,
-      couple: {
-        ...state.couple,
-        firstDate: (new Date(state.couple.firstDate)),
-      },
+        ...couple,
+        firstDate: (new Date(couple.firstDate)),
     };
   }
-  return state;
+  return couple;
+}
+
+function cleanEvent(event) {
+  if(typeof event.date === 'string') {
+    return {
+        ...event,
+        date: (new Date(event.date)),
+    };
+  }
+  return event;
+}
+
+function cleanState(state) {
+  return {
+    couple: cleanCouple(state.couple),
+    events: state.events.map(cleanEvent),
+  };
 }
 
 export default connect(
