@@ -12,33 +12,41 @@ const COLORS = {
 };
 
 function EventTypeIcon(props) {
+  var bgColor = props.color;
+  var textColor = "#fff";
+  if(props.inverted) {
+    bgColor = "#fff";
+    textColor = props.color;
+  }
+
   return <Icon.Button
+    {...props}
     name={props.icon}
-    color={props.color}
-    iconStyle={[styles.EventTypeIcon, {backgroundColor: props.color, color: '#fff'}]}
-    backgroundColor={"white"}
+    color={bgColor}
+    iconStyle={[styles.EventTypeIcon, {backgroundColor: bgColor, color: textColor}]}
+    backgroundColor={textColor}
     borderRadius={50}
   >{props.text}</Icon.Button>;
 }
 
 function IconFight(props) {
-  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text="Fight" />;
+  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text="Fight" {...props} />;
 }
 
 function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="NightIn" />;
+  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="NightIn" {...props} />;
 }
 
 function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text="NightOut" />;
+  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text="NightOut" {...props} />;
 }
 
 function IconSex(props) {
-  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text="Sex" />;
+  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text="Sex" {...props} />;
 }
 
 function IconAll(props) {
-  return <EventTypeIcon icon={"ios-analytics"} color={COLORS.BLUE && "#FF4981"} text="All Activities" />;
+  return <EventTypeIcon icon={"ios-analytics"} color={COLORS.BLUE && "#FF4981"} text="All Activities" {...props} />;
 }
 
 export default {
