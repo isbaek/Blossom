@@ -17,11 +17,10 @@ import {
 } from 'react-native'
 import styles from './Analytics.styles'
 import TopBar from './TopBar'
+import Icons from './Icons'
 
 // Calendar Library
 import moment from 'moment'
-// Custom Vector Icons
-import Icon from 'react-native-vector-icons/Ionicons'
 import Chart from 'react-native-chart';
 
 ////
@@ -60,44 +59,6 @@ function PillBar(props) {
       })}
     </View>
   );
-}
-
-const COLORS = {
-  RED: "#FE3824",
-  ORANGE: "#FF9600",
-  YELLOW: "#FFCD00",
-  GREEN: "#44DB5E",
-  BLUE: "#0076FF",
-}
-
-function EventTypeIcon(props) {
-  return <Icon.Button
-    name={props.icon}
-    color={props.color}
-    iconStyle={[styles.EventTypeIcon, {backgroundColor: props.color, color: '#fff'}]}
-    backgroundColor={"white"}
-    borderRadius={50}
-  >{props.text}</Icon.Button>;
-}
-
-function IconFight(props) {
-  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text="Fight" />;
-}
-
-function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="NightIn" />;
-}
-
-function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-wine"} color={COLORS.YELLOW && "#FF4981"} text="NightOut" />;
-}
-
-function IconSex(props) {
-  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text="Sex" />;
-}
-
-function IconAll(props) {
-  return <EventTypeIcon icon={"ios-analytics"} color={COLORS.BLUE && "#FF4981"} text="All Activities" />;
 }
 
 function BasicChart(props) {
@@ -209,27 +170,27 @@ export default class Analytics extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <TopBar/>
-        <ScrollView>
+        <ScrollView containerStyle={{flex: 1}}>
           <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
-          <IconAll />
+          <Icons.All />
           <View>
             <PerMonthChart data={nZeroes(12)} />
           </View>
-          <IconFight />
+          <Icons.Sex />
           <View>
             <PerMonthChart data={nZeroes(12)} />
           </View>
-          <IconSex />
+          <Icons.Fight />
           <View>
             <PerMonthChart data={nZeroes(12)} />
           </View>
-          <IconNightIn />
+          <Icons.NightOut />
           <View>
             <PerMonthChart data={nZeroes(12)} />
           </View>
-          <IconNightOut />
+          <Icons.NightIn />
           <View>
             <PerMonthChart data={nZeroes(12)} />
           </View>
