@@ -26,7 +26,7 @@ import Settings from './Settings'
 export default class TopBar extends Component {
   render () {
     return (
-      <View style = {{flex: 1}}>
+      <View>
         <NavigationBar
           tintColor = '#FF4981'
           title = {{title: 'Blossom', tintColor: '#FFF'}}
