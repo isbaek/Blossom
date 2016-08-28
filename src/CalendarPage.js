@@ -23,11 +23,87 @@ import Calendar from 'react-native-calendar'
 // Custom Vector Icons
 import Icon from 'react-native-vector-icons/Ionicons'
 
+////
+// Components
+////
+
+function CalendarWidget(props) {
+  return (
+    <Calendar
+      eventDates={props.eventDates}
+      scrollEnabled={false}
+      showControls={true}
+      titleFormat={'MMMM YYYY'}
+      prevButtonText={'Prev'}
+      nextButtonText={'Next'}
+      onDateSelect={props.onDateSelect}
+      onTouchPrev={() => console.log('Back TOUCH')}
+      onTouchNext={() => console.log('Forward TOUCH')}
+      onSwipePrev={() => console.log('Back SWIPE')}
+      onSwipeNext={() => console.log('Forward SWIPE')}
+      customStyle={{
+        calendarContainer: {backgroundColor: 'white'},
+        currentDayCircle: {backgroundColor: '#FF4981'},
+        currentDayText: {color: '#FF4981'},
+        }}
+        />
+  );
+}
+
+function EventSummary(props) {
+  return (
+    <View>
+      <Text>{props.name}</Text>
+      <Text>{props.notes}</Text>
+    </View>
+  );
+}
+
+function EventList(props) {
+  return (
+    <View>
+      {props.events.map((event) => {
+        return <EventSummary {...event} />;
+      })}
+    </View>
+  );
+}
+
+function AddButton(props) {
+  return (
+    <View style={{margin: 30}}>
+      <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
+        <Text style = {{alignItems: 'center', color: '#fff'}}> Add Event </Text>
+      </Icon.Button>
+    </View>
+  );
+}
+
+////
+// Utility functions
+////
+
+function dateToString(date) {
+  return moment(date).format('YYYY-MM-DD');
+}
+
+function dateToTimestamp(date) {
+  return date.getTime() / 1000;
+}
+
+function sameDay(date1, date2) {
+  return dateToString(date1) === dateToString(date2);
+}
+
+////
+// CalendarPage
+////
+
 export default class CalendarPage extends Component {
   constructor (props) {
   super (props);
     this.state = {
-      selectedDate: moment().format(),
+      selectedDate: moment().toDate(),
       AddEvent: false,
       calendarBox: "",
     };
@@ -48,44 +124,42 @@ this.setState({
 })
 
 }
+  // eventsForDate returns all the events that happened on a given day
+  eventsForDate(events, date) {
+    return events.filter((event) => {
+      return sameDay(event.date, date);
+    });
+  }
+
+  currentEvents() {
+    return this.eventsForDate(this.props.events, this.state.selectedDate);
+  }
+
+  eventDates() {
+    return this.props.events.map((event) => dateToString(event.date));
+  }
+
+  onDateSelect(date) {
+    this.setState({selectedDate: moment(date).toDate()})
+  }
+
+  renderEventsOrButton() {
+    const events = this.currentEvents();
+    if(events.length > 0) {
+      return <EventList events={events} />;
+    }
+    return <AddButton onPress={() => this.navigate('Modal')} />;
+  }
 
   render () {
     const hidden = this.state.AddEvent ? '' : 'hidden';
 
   return (
-
-<View style={styles.calendarStyle}>
+    <View>
       <TopBar/>
-        <Calendar
-          eventDates={['2016-05-20']}
-          scrollEnabled={false}
-          showControls={true}
-          titleFormat={'MMMM YYYY'}
-          prevButtonText={'Prev'}
-          nextButtonText={'Next'}
-          onDateSelect={(date) => this.setState({selectedDate: date})}
-          onTouchPrev={() => console.log('Back TOUCH')}
-          onTouchNext={() => console.log('Forward TOUCH')}
-          onSwipePrev={() => console.log('Back SWIPE')}
-          onSwipeNext={() => console.log('Forward SWIPE')}
-          customStyle={{
-            calendarContainer: {backgroundColor: 'white'},
-            currentDayCircle: {backgroundColor: '#FF4981'},
-            currentDayText: {color: '#FF4981'},
-            }}
-            />
-        <Text>Selected Date: {moment(this.state.selectedDate).format('MMMM DD YYYY')}</Text>
-        <View value = {this.state.calendarBox}>
-        <Icon.Button name ="ios-heart" color="#FF4981" backgroundColor = "#FFF" alignItems= 'center' justifyContent= 'center' onPress = {() => this.navigate('Modal')}>
-        <Text style = {{alignItems: 'center'}}> Add Event </Text>
-        </Icon.Button>
-        <Text> {this.props.date} </Text>
-        <Text> {this.props.sex} </Text>
-
-        <Text style = {{fontSize: 16}}> {this.props.notes} </Text>
-        </View>
+      <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
+      {this.renderEventsOrButton()}
     </View>
-
   );
  }
 }
