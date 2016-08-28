@@ -12,6 +12,7 @@ import {
   Navigator,
   Switch,
   Animated,
+  StyleSheet,
 } from 'react-native'
 import styles from './Analytics.styles'
 import TopBar from './TopBar'
@@ -20,6 +21,7 @@ import TopBar from './TopBar'
 import moment from 'moment'
 // Custom Vector Icons
 import Icon from 'react-native-vector-icons/Ionicons'
+import Chart from 'react-native-chart';
 
 ////
 // Components
@@ -62,32 +64,113 @@ function PillBar(props) {
 function EventTypeIcon(props) {
   return <Icon.Button
     name={props.icon}
+    color={props.color}
     iconStyle={[styles.EventTypeIcon, {backgroundColor: props.color, color: '#fff'}]}
+    backgroundColor={"white"}
     borderRadius={50}
-  />;
+  >{props.text}</Icon.Button>;
 }
 
 function IconFight(props) {
-  return <EventTypeIcon icon={"ios-thunderstorm"} color={"red"} />;
+  return <EventTypeIcon icon={"ios-thunderstorm"} color={"red"} text="Fight" />;
 }
 
 function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={"orange"} />;
+  return <EventTypeIcon icon={"ios-pizza"} color={"orange"} text="NightIn" />;
 }
 
 function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-wine"} color={"red"} />;
+  return <EventTypeIcon icon={"ios-wine"} color={"red"} text="NightOut" />;
 }
 
 function IconSex(props) {
-  return <EventTypeIcon icon={"ios-heart"} color={"red"} />;
+  return <EventTypeIcon icon={"ios-heart"} color={"red"} text="Sex" />;
 }
+
+function BasicChart(props) {
+  return (
+  <View style={styles.ChartContainer}>
+    <Chart
+        style={styles.Chart}
+        verticalGridStep={5}
+        type="bar"
+        showDataPoint={true}
+        showXAxisLabels={true}
+        hideHorizontalGridLines={true}
+        hideVerticalGridLines={true}
+
+        data={props.data}
+        xAxisTransform={props.xAxisTransform}
+     />
+  </View>
+  );
+}
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function axisTickMonths(monthsPerTick) {
+  return function xAxis(idx) {
+    const monthIdx = idx % 12;
+    const month = MONTHS[monthIdx];
+    if(idx % monthsPerTick === 0) {
+      return month;
+    }
+    return "";
+  };
+}
+
+class PerMonthChart extends Component {
+  xAxis(months) {
+    if(months <= 12) {
+      return axisTickMonths(1);
+    } else if(months <= 24) {
+      return axisTickMonths(2);
+    } else if(months <= 36) {
+      return axisTickMonths(3);
+    }
+    return axisTickMonths(6);
+  }
+
+  render() {
+    const nMonths = this.props.data.length;
+    return <BasicChart data={this.props.data} xAxisTransform={this.xAxis(nMonths)} />;
+  }
+}
+
+class WeekChart extends Component {
+  xAxis(value) {
+    return "";
+  }
+
+  render() {
+    return <BasicChart data={this.props.data} xAxisTransform={this.xAxis.bind(this)} />;
+  }
+}
+
+
+class TrimesterChart extends Component {
+  xAxis(value) {
+    return "";
+  }
+
+  render() {
+    return <BasicChart data={this.props.data} xAxisTransform={this.xAxis.bind(this)} />;
+  }
+}
+
 
 ////
 // Utility functions
 ////
 
-
+// nZeroes returns an array of size n filled with zeroes
+function nZeroes(n) {
+  var arr = [];
+  for(var i = 0; i < n; i++) {
+    arr.push([i, Math.floor((Math.random() * 20))]);
+  }
+  return arr;
+}
 
 ////
 // Analytics
@@ -114,9 +197,9 @@ export default class Analytics extends Component {
         <TopBar/>
         <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
         <IconFight />
-        <IconNightOut />
-        <IconNightIn />
-        <IconSex />
+        <View>
+        <PerMonthChart data={nZeroes(24)} />
+        </View>
       </View>
     );
  }

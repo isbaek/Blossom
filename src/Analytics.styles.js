@@ -49,5 +49,17 @@ export default React.StyleSheet.create({
     height: 50,
     textAlign: "center",
   },
+
+  ChartContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  Chart: {
+    width: 350,
+    height: 200,
+  },
+
 });
 
