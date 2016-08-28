@@ -59,6 +59,30 @@ function PillBar(props) {
   );
 }
 
+function EventTypeIcon(props) {
+  return <Icon.Button
+    name={props.icon}
+    iconStyle={[styles.EventTypeIcon, {backgroundColor: props.color, color: '#fff'}]}
+    borderRadius={50}
+  />;
+}
+
+function IconFight(props) {
+  return <EventTypeIcon icon={"ios-thunderstorm"} color={"red"} />;
+}
+
+function IconNightIn(props) {
+  return <EventTypeIcon icon={"ios-pizza"} color={"orange"} />;
+}
+
+function IconNightOut(props) {
+  return <EventTypeIcon icon={"ios-wine"} color={"red"} />;
+}
+
+function IconSex(props) {
+  return <EventTypeIcon icon={"ios-heart"} color={"red"} />;
+}
+
 ////
 // Utility functions
 ////
@@ -89,6 +113,10 @@ export default class Analytics extends Component {
       <View>
         <TopBar/>
         <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
+        <IconFight />
+        <IconNightOut />
+        <IconNightIn />
+        <IconSex />
       </View>
     );
  }

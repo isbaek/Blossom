@@ -38,5 +38,16 @@ export default React.StyleSheet.create({
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 0,
   },
+
+  EventTypeIcon: {
+    backgroundColor: "#fff",
+    color: "#333",
+    borderRadius: 25,
+    padding: 15,
+    fontSize: 20,
+    width: 50,
+    height: 50,
+    textAlign: "center",
+  },
 });
 
