@@ -16,6 +16,7 @@ import {
 import styles from './styles'
 import AddEvent from './AddEvent'
 import TopBar from './TopBar'
+import Icons from './Icons'
 
 // Calendar Library
 import moment from 'moment'
@@ -51,10 +52,14 @@ function CalendarWidget(props) {
 }
 
 function EventSummary(props) {
+  const textStyle = {paddingLeft: 10, paddingTop: 5};
   return (
     <View>
-      <Text>{props.name}</Text>
-      <Text>{props.notes}</Text>
+      <View style={{flexDirection: 'row'}}>
+        {props.sex ? <Icons.Sex /> : null}
+        {props.dateNight ? <Icons.NightOut /> : null}
+      </View>
+      <Text style={textStyle}>{props.name}</Text>
     </View>
   );
 }
