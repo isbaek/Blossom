@@ -58,7 +58,7 @@ export default React.StyleSheet.create({
   },
   Chart: {
     width: 350,
-    height: 200,
+    height: 100,
   },
 
 });
