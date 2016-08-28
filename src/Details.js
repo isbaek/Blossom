@@ -14,9 +14,65 @@ import {
   Animated,
 } from 'react-native'
 import TabBar from './TabBar'
-import styles from './styles'
+import styles from './Details.styles'
 
 import blossomimg from '../design/blossom.jpg'
+
+////
+// Containers
+////
+
+function Container(props) {
+  return (
+    <View style={[
+        styles.Container, styles.center,
+        (props.style || {}), {flex: (props.height || 1)},
+    ]}>
+      {props.children}
+    </View>
+  );
+}
+
+////
+// Components
+////
+
+function Title(props) {
+  return <Text style={[styles.TitleText, styles.Title]}>{props.children}</Text>;
+}
+
+function Subtitle(props) {
+  return <Text style={[styles.TitleText, styles.Subtitle]}>{props.children}</Text>;
+}
+
+function Form(props) {
+  return <View style={[styles.center, styles.Form]}>{props.children}</View>;
+}
+
+function FormInput(props) {
+  return <TextInput style={styles.FormInput} {...props} />
+}
+
+// FormField is like FormInput but not specifically a text input
+function FormField(props) {
+  return <View style={styles.FormInput}>{props.children}</View>;
+}
+
+function Button(props) {
+  return (
+  <TouchableHighlight style={[styles.Button, styles.center]} onPress={props.onPress}>
+    <Text style={styles.ButtonText}>{props.children}</Text>
+  </TouchableHighlight>
+  );
+}
+
+function BackgroundImage(props) {
+  return <Image resizeMode='contain' style={{position:'absolute'}} {...props} />;
+}
+
+////
+// Details
+////
 
 class Details extends Component {
   constructor() {
@@ -106,33 +162,35 @@ class Details extends Component {
       return this.renderDatePicker();
     }
     return (
-      <TouchableHighlight style = {styles.button} onPress = {() => this.onSave()}>
-        <Text style = {{color: '#FFF'}}> Start </Text>
-      </TouchableHighlight>
+      <Button onPress={() => this.onSave()}>Start</Button>
     );
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image source = {blossomimg} resizeMode='contain' style= {{position:'absolute'}}></Image>
-        <View style = {styles.detailsTop}>
-          <Text style = {{fontSize: 30, color: 'white', top: 170, borderRadius: 5,}}> Details </Text>
-          <Text style = {{fontSize: 13, color: 'white', top: 180}}> Write down your love details </Text>
-        </View>
-        <View style={styles.detailsForm}>
-          <TextInput style={styles.nameInput} value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
-          <TextInput style={styles.nameInput} value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
-          <View style = {styles.nameInput}>
+      <Container>
+        <BackgroundImage source={blossomimg} />
+        <Container height={4}>
+          <Title>Details</Title>
+          <Subtitle>Write down your love details</Subtitle>
+        </Container>
+        <Container height={4} style={{justifyContent: 'flex-start'}}>
+        <Form>
+          <FormInput value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
+          <FormInput value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
+          <FormField>
           <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
             <View value={this.state.date}>
               <Text style = {{color: '#8F8E94'}}> {(this.state.date.getMonth()+1)}/{this.state.date.getDate()}/{this.state.date.getFullYear()}</Text>
             </View>
           </TouchableWithoutFeedback>
-        </View>
-        </View>
-        {this.renderButtonOrDatePicker()}
-      </View>
+          </FormField>
+        </Form>
+        </Container>
+        <Container height={2}>
+          {this.renderButtonOrDatePicker()}
+        </Container>
+      </Container>
     );
   }
 }
