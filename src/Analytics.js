@@ -13,6 +13,7 @@ import {
   Switch,
   Animated,
   StyleSheet,
+  ScrollView,
 } from 'react-native'
 import styles from './Analytics.styles'
 import TopBar from './TopBar'
@@ -61,6 +62,14 @@ function PillBar(props) {
   );
 }
 
+const COLORS = {
+  RED: "#FE3824",
+  ORANGE: "#FF9600",
+  YELLOW: "#FFCD00",
+  GREEN: "#44DB5E",
+  BLUE: "#0076FF",
+}
+
 function EventTypeIcon(props) {
   return <Icon.Button
     name={props.icon}
@@ -72,19 +81,23 @@ function EventTypeIcon(props) {
 }
 
 function IconFight(props) {
-  return <EventTypeIcon icon={"ios-thunderstorm"} color={"red"} text="Fight" />;
+  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text="Fight" />;
 }
 
 function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={"orange"} text="NightIn" />;
+  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="NightIn" />;
 }
 
 function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-wine"} color={"red"} text="NightOut" />;
+  return <EventTypeIcon icon={"ios-wine"} color={COLORS.YELLOW && "#FF4981"} text="NightOut" />;
 }
 
 function IconSex(props) {
-  return <EventTypeIcon icon={"ios-heart"} color={"red"} text="Sex" />;
+  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text="Sex" />;
+}
+
+function IconAll(props) {
+  return <EventTypeIcon icon={"ios-analytics"} color={COLORS.BLUE && "#FF4981"} text="All Activities" />;
 }
 
 function BasicChart(props) {
@@ -98,6 +111,9 @@ function BasicChart(props) {
         showXAxisLabels={true}
         hideHorizontalGridLines={true}
         hideVerticalGridLines={true}
+        color="#FF4981"
+        fillColor="#FF4981"
+        cornerRadius={3}
 
         data={props.data}
         xAxisTransform={props.xAxisTransform}
@@ -195,11 +211,29 @@ export default class Analytics extends Component {
     return (
       <View>
         <TopBar/>
-        <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
-        <IconFight />
-        <View>
-        <PerMonthChart data={nZeroes(24)} />
-        </View>
+        <ScrollView>
+          <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
+          <IconAll />
+          <View>
+            <PerMonthChart data={nZeroes(12)} />
+          </View>
+          <IconFight />
+          <View>
+            <PerMonthChart data={nZeroes(12)} />
+          </View>
+          <IconSex />
+          <View>
+            <PerMonthChart data={nZeroes(12)} />
+          </View>
+          <IconNightIn />
+          <View>
+            <PerMonthChart data={nZeroes(12)} />
+          </View>
+          <IconNightOut />
+          <View>
+            <PerMonthChart data={nZeroes(12)} />
+          </View>
+        </ScrollView>
       </View>
     );
  }
