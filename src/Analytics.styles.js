@@ -42,11 +42,11 @@ export default React.StyleSheet.create({
   EventTypeIcon: {
     backgroundColor: "#fff",
     color: "#333",
-    borderRadius: 25,
-    padding: 15,
-    fontSize: 20,
-    width: 50,
-    height: 50,
+    borderRadius: 15,
+    padding: 7,
+    fontSize: 16,
+    width: 30,
+    height: 30,
     textAlign: "center",
   },
 
