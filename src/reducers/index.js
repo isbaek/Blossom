@@ -1,9 +1,9 @@
 import {
     EDIT_COUPLE,
 
-    ADD_DATE,
-    DELETE_DATE,
-    EDIT_DATE
+    ADD_EVENT,
+    DELETE_EVENT,
+    EDIT_EVENT
 } from '../constants/ActionTypes'
 
 const initialState = {
