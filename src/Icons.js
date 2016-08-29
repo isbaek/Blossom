@@ -34,11 +34,11 @@ function IconFight(props) {
 }
 
 function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="NightIn" {...props} />;
+  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="Night In" {...props} />;
 }
 
 function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text="NightOut" {...props} />;
+  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text="Night Out" {...props} />;
 }
 
 function IconSex(props) {
