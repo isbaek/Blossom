@@ -14,7 +14,7 @@ import {
   Animated,
 } from 'react-native'
 import TabBar from './TabBar'
-import styles from './styles'
+import styles from './Home.styles'
 import TopBar from './TopBar'
 
 // Map mood names to images
@@ -28,7 +28,40 @@ var MOODS = {
 // Default order of moods
 var MOOD_LIST =  ["sunny", "cloudy", "thunderstorm", "warm", "suncloudy"];
 
-export default class Home extends Component {
+function TopBarContainer(props) {
+  return <View style = {styles.TopBarContainer}/>;
+}
+
+function Container(props) {
+  return (
+    <View style={[
+        styles.Container, styles.center,
+        (props.style || {}), {flex: (props.height || 1)},
+    ]}>
+      {props.children}
+    </View>
+  );
+}
+
+
+function LovingDaysNumber(props) {
+  return <Text style={[styles.LovingDays, styles.LovingDaysNumber]}>{props.children}</Text>;
+    }
+
+function LovingDaysText(props) {
+  return <Text style={[styles.LovingDays, styles.LovingDaysText]}>{props.children}</Text>;
+    }
+
+function MoodTodayText(props) {
+  return <Text style={[styles.MoodTodayText]}>{props.children}</Text>;
+    }
+
+function MoodTodayImage(props) {
+  return <Image resizeMode='contain' {...props}/>;
+}
+
+
+class Home extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -53,18 +86,25 @@ export default class Home extends Component {
     var daysSince = Math.floor(secondsSince / 86400);
 
   return (
-    <View style={styles.container}>
-    <TopBar />
-  <View style = {{alignItems: 'center', justifyContent: 'center'}}>
-    <Text style = {{color: '#FFF', marginTop: 90, fontSize: 85, backgroundColor: '#FF4981', borderRadius: 5, }}> {(daysSince +1)} </Text>
-    <Text style = {{color: '#FF4981', padding: 10, fontSize: 15}}> Loving Days </Text>
-  <Text style = {{color: '#FFF', padding: 10, fontSize: 15, backgroundColor: '#FF4981', borderRadius: 5,}} >Since {this.props.couple.you.name} and {this.props.couple.partner.name} met</Text>
-  <Text style = {{color: '#FF4981', fontSize: 15, padding: 50}}>Your Mood Today is... </Text>
-  <TouchableWithoutFeedback onPress = {() => this.onMoodClick()} >
-  <Image source = {this.getMoodImage(this.state.mood)} style = {styles.moody} resizeMode='contain' ></Image>
-  </TouchableWithoutFeedback>
-    </View>
+  <View style = {{flex:1}}>
+  <TopBar/>
+  <Container>
+          <Container height = {2}>
+            <LovingDaysNumber> {(daysSince +1)} </LovingDaysNumber>
+            <LovingDaysText> Loving Days </LovingDaysText>
+            <LovingDaysText> Since {this.props.couple.you.name} and {this.props.couple.partner.name} met </LovingDaysText>
+          </Container>
+          <Container height = {2}>
+            <MoodTodayText> Your Mood Today is... </MoodTodayText>
+                <TouchableWithoutFeedback onPress = {() => this.onMoodClick()}>
+                  <MoodTodayImage source = {this.getMoodImage(this.state.mood)} style = {[styles.center, styles.MoodTodayImage]}></MoodTodayImage>
+                </TouchableWithoutFeedback>
+          </Container>
+      </Container>
     </View>
   );
  }
 }
+
+
+export default Home;
