@@ -63,12 +63,9 @@ export default class AddEvent extends Component {
       notes: "",
 
       sex: false,
-      fight: true,
-      nightIn: true,
+      fight: false,
+      nightIn: false,
       nightOut: false,
-
-      datefalseSwtichIsOn: false,
-      sexfalseSwtichIsOn: false,
     }
   }
 
