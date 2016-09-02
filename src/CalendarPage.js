@@ -57,9 +57,11 @@ function EventSummary(props) {
     <View>
       <View style={{flexDirection: 'row'}}>
         {props.sex ? <Icons.Sex /> : null}
-        {props.dateNight ? <Icons.NightOut /> : null}
+        {props.fight ? <Icons.Fight /> : null}
+        {props.nightOut ? <Icons.NightOut /> : null}
+        {props.nightIn ? <Icons.NightIn /> : null}
       </View>
-      <Text style={textStyle}>{props.name}</Text>
+      <Text style={textStyle}>{props.notes || props.name}</Text>
     </View>
   );
 }

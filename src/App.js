@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Home from './Home'
 import Details from './Details'
 import CalendarPage from './CalendarPage'
+import Analytics from './Analytics'
+import AddEvent from './AddEvent'
 import TabBar from './TabBar'
 
 class Loading extends React.Component {
@@ -39,6 +41,7 @@ class App extends React.Component {
   }
 
   initialRoute() {
+    //return this.route('AddEvent', AddEvent);
     if(this.needsCoupleInfo()) {
       return this.route('Details', Details);
     }

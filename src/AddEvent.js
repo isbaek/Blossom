@@ -19,6 +19,7 @@ import Icons from './Icons'
 
 //Navigation Bar Library
 import NavigationBar from 'react-native-navbar'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 function HighlighedIcon(props) {
   var style = [styles.HighlighedIcon];
@@ -56,6 +57,16 @@ function DateTypeGrid(props) {
   );
 }
 
+function AddButton(props) {
+  return (
+    <View style={{margin: 30}}>
+      <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
+        <Text style = {{alignItems: 'center', color: '#fff'}}> Add Event </Text>
+      </Icon.Button>
+    </View>
+  );
+}
+
 export default class AddEvent extends Component {
   constructor (props) {
   super (props);
@@ -79,31 +90,44 @@ export default class AddEvent extends Component {
     });
   }
 
+  onSave() {
+    // Add event
+    this.props.addEvent({
+      // name: "",
+      date: new Date("2016-08-29"),
+      sex: this.state.sex,
+      fight: this.state.fight,
+      nightIn: this.state.nightIn,
+      nightOut: this.state.nightOut,
+      notes: this.state.notes,
+    })
+
+    // TODO: Go back to calendar
+  }
+
   render () {
   return (
     <View style = {{flex: 1}}>
       <NavigationBar
         title = {{title: 'Add Event', }}
         leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
-        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
+        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
       />
 
       <DateTypeGrid onTypeChange={this.onTypeChange.bind(this)} {...this.state} />
 
-      <View value = {this.state.notes}>
-      <Text> Notes </Text>
       <View style={styles.Notes}>
         <TextInput
           style={styles.NotesInput}
 
           multiline={true}
           placeholder={"Notes about the day ...\n\nRemember the best parts :)"}
+          onChangeText={this.onNotes.bind(this)}
         />
       </View>
-      <TextInput style = {styles.nameInput} placeholder= "Time and Location" value={this.state.notes} onChangeText={(str) => this.onNotes(str)}/>
-      </View>
-    </View>
 
+      <AddButton onPress={this.onSave.bind(this)} />
+    </View>
   );
  }
 }
