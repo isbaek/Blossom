@@ -16,6 +16,7 @@ import {
 import TabBar from './TabBar'
 import styles from './Home.styles'
 import TopBar from './TopBar'
+import blossomimg from '../design/Background.png'
 
 // Map mood names to images
 var MOODS = {
@@ -28,9 +29,6 @@ var MOODS = {
 // Default order of moods
 var MOOD_LIST =  ["sunny", "cloudy", "thunderstorm", "warm", "suncloudy"];
 
-function TopBarContainer(props) {
-  return <View style = {styles.TopBarContainer}/>;
-}
 
 function Container(props) {
   return (
@@ -44,12 +42,17 @@ function Container(props) {
 }
 
 
+
 function LovingDaysNumber(props) {
   return <Text style={[styles.LovingDays, styles.LovingDaysNumber]}>{props.children}</Text>;
     }
 
 function LovingDaysText(props) {
   return <Text style={[styles.LovingDays, styles.LovingDaysText]}>{props.children}</Text>;
+    }
+
+function LovingDaysCoupleText(props) {
+  return <Text style={[styles.LovingDays, styles.LovingDaysCoupleText]}>{props.children}</Text>;
     }
 
 function MoodTodayText(props) {
@@ -59,6 +62,10 @@ function MoodTodayText(props) {
 function MoodTodayImage(props) {
   return <Image resizeMode='contain' {...props}/>;
 }
+
+function TipText(props) {
+  return <Text style={[styles.TipText]}>{props.children}</Text>;
+    }
 
 
 class Home extends Component {
@@ -89,16 +96,18 @@ class Home extends Component {
   <View style = {{flex:1}}>
   <TopBar/>
   <Container>
-          <Container height = {2}>
-            <LovingDaysNumber> {(daysSince +1)} </LovingDaysNumber>
-            <LovingDaysText> Loving Days </LovingDaysText>
-            <LovingDaysText> Since {this.props.couple.you.name} and {this.props.couple.partner.name} met </LovingDaysText>
+          <Container height = {3}>
+            <LovingDaysNumber>{(daysSince +1)}{"\n"}
+              <LovingDaysText>DAYS</LovingDaysText>
+            </LovingDaysNumber>
+            <LovingDaysCoupleText> Since {this.props.couple.you.name} and {this.props.couple.partner.name} met </LovingDaysCoupleText>
           </Container>
           <Container height = {2}>
-            <MoodTodayText> Your Mood Today is... </MoodTodayText>
                 <TouchableWithoutFeedback onPress = {() => this.onMoodClick()}>
                   <MoodTodayImage source = {this.getMoodImage(this.state.mood)} style = {[styles.center, styles.MoodTodayImage]}></MoodTodayImage>
                 </TouchableWithoutFeedback>
+          </Container>
+          <Container height = {1}>
           </Container>
       </Container>
     </View>
