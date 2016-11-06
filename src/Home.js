@@ -16,7 +16,6 @@ import {
 import TabBar from './TabBar'
 import styles from './Home.styles'
 import TopBar from './TopBar'
-import blossomimg from '../design/Background.png'
 
 // Map mood names to images
 var MOODS = {
