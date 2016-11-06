@@ -29,6 +29,7 @@ export default class TopBar extends Component {
       <View>
         <NavigationBar
           tintColor = '#FF4981'
+          statusBar = {{style: "light-content"}}
           title = {{title: 'Blossom', tintColor: '#FFF'}}
           rightButton = {{title: 'Add', tintColor: '#FFF', }}/>
      </View>
