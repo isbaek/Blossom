@@ -16,7 +16,7 @@ import {
 import TabBar from './TabBar'
 import styles from './Details.styles'
 
-import blossomimg from '../design/blossom.jpg'
+import blossomimg from '../design/background.png'
 
 ////
 // Containers
@@ -176,8 +176,8 @@ class Details extends Component {
         </Container>
         <Container height={4} style={{justifyContent: 'flex-start'}}>
         <Form>
-          <FormInput value={this.yourName()} placeholder="Your name" onChangeText={(str) => this.onName(str)} />
-          <FormInput value={this.partnerName()} placeholder="Partner's name" onChangeText={(str) => this.onPartnerName(str)} />
+          <FormInput value={this.yourName()} placeholder="Your name" placeholderTextColor="#ddd" onChangeText={(str) => this.onName(str)} />
+          <FormInput value={this.partnerName()} placeholder="Partner's name" placeholderTextColor="#ddd" onChangeText={(str) => this.onPartnerName(str)} />
           <FormField>
           <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
             <View value={this.firstDate()}>
