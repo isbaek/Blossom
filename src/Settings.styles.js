@@ -13,17 +13,32 @@ export default React.StyleSheet.create({
     fontSize: 17,
     color: '#333',
     margin: 20,
+    fontWeight: "bold",
   },
 
+  Form: {
+    margin: 10,
+    padding: 10,
+    marginTop: 0,
+    paddingTop: 0,
+    minHeight: 150,
+  },
 
   FormInput: {
-    padding: 15,
     flex: 1,
-    margin: 5,
-    fontSize: 17,
-    color: '#DBDBDB',
-    borderRadius: 5,
-    backgroundColor:'#DBDBDB',
+    paddingLeft: 10,
+    fontSize: 15,
+    color: '#333',
+  },
+  FormInputTitle: {
+    fontWeight: 'bold',
+    color: '#888',
+  },
+  FormInputHolder: {
+    flex: 1,
+    padding: 5,
+    borderColor: '#ddd',
+    borderBottomWidth: 1,
   },
 
   ButtonContainer: {

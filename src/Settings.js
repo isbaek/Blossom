@@ -34,12 +34,19 @@ function Container(props) {
 ////
 // Components
 ////
-function Subtitle(props) {
-  return <Text style={[styles.Subitle]}>{props.children}</Text>;
+function SubTitle(props) {
+  return <Text style={[styles.SubTitle]}>{props.children}</Text>;
+}
+
+function Form(props) {
+  return <View style={styles.Form} {...props} />;
 }
 
 function FormInput(props) {
-  return <TextInput style={styles.center, styles.FormInput} {...props} />
+  return <View style={styles.FormInputHolder}>
+    <Text style={styles.FormInputTitle}>{props.placeholder}</Text>
+    <TextInput style={styles.FormInput} placeholder={props.placeholder} placeholderTextColor="#bbb" />
+  </View>
 }
 
 
@@ -58,13 +65,15 @@ export default class Settings extends Component {
 
   render () {
   return (
-    <View style= {styles.Container}>
-     <TopBar/>
-     <Container height = {4}>
-     <Subtitle>Name Details</Subtitle>
-        <FormInput placeholder="Your name" placeholderTextColor='rgba(0,0,0,0.2)' />
-        <FormInput placeholder="Partner's name" placeholderTextColor="#ddd"  />
-      </Container>
+    <View>
+      <TopBar/>
+      <SubTitle>Couple info</SubTitle>
+      <Form>
+        <FormInput placeholder="Your name" />
+        <FormInput placeholder="Partner's name" />
+      </Form>
+        <SubTitle>Credits</SubTitle>
+
     </View>
   );
  }
