@@ -4,17 +4,20 @@ export default React.StyleSheet.create({
   PillBar: {
     flex: 1,
     flexDirection: 'row',
-    borderColor: '#FF4981',
-    borderRadius: 5,
-    borderWidth: 1,
+    //borderColor: '#FF4981',
+    //borderRadius: 5,
+    //borderWidth: 1,
+    borderWidth: 0,
     margin: 30,
   },
   Pill: {
     flex: 1,
     borderColor: '#FF4981',
-    borderRightWidth: 1,
+    borderWidth: 1,
+    borderRightWidth: 0,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 5,
   },
   PillActive: {
     backgroundColor: '#FF4981',
@@ -33,6 +36,7 @@ export default React.StyleSheet.create({
     borderBottomLeftRadius: 5,
   },
   PillLast: {
+    borderRightWidth: 1,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
