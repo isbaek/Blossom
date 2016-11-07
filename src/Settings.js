@@ -13,8 +13,35 @@ import {
   Switch,
   Animated,
 } from 'react-native'
-import styles from './styles'
+import styles from './Settings.styles'
 import TopBar from './TopBar'
+
+////
+// Containers
+////
+
+function Container(props) {
+  return (
+    <View style={[
+        styles.Container, styles.center,
+        (props.style || {}), {flex: (props.height || 1)},
+    ]}>
+      {props.children}
+    </View>
+  );
+}
+
+////
+// Components
+////
+function Subtitle(props) {
+  return <Text style={[styles.Subitle]}>{props.children}</Text>;
+}
+
+function FormInput(props) {
+  return <TextInput style={styles.center, styles.FormInput} {...props} />
+}
+
 
 export default class Settings extends Component {
   constructor(props) {
@@ -31,27 +58,13 @@ export default class Settings extends Component {
 
   render () {
   return (
-    <View style= {styles.container}>
+    <View style= {styles.Container}>
      <TopBar/>
-      <View style = {{alignItems: 'center', justifyContent: 'center', marginTop: 40}}>
-        <Text style = {styles.settingDescription}> About </Text>
-        <Text style = {{marginTop:10}}> Inseo Baek</Text>
-        <Text> Credits to... </Text>
-        <Text style = {styles.settingDescription}> Change Names </Text>
-        <TextInput style = {styles.settingInput} placeholder= "New Your Name" value={this.props.couple.you.name} />
-        <TextInput style = {styles.settingInput} placeholder= "New Partner Name" value={this.props.couple.partner.name} />
-        <Text style = {styles.settingDescription}> Change First Date </Text>
-        <DatePickerIOS
-                  date={(this.state && this.state.date) || new Date()}
-                  onDateChange={(newDate) => {
-                    this.setState({date: newDate})
-                  }}
-                  mode={'date'}
-                  timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-      </View>
-      <TouchableHighlight style = {{marginTop: 10, padding: 5, borderRadius: 5, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FABE3B', marginLeft: 100, marginRight: 100}}>
-         <Text style = {{color: '#FFF', fontSize: 12}}> Update </Text>
-      </TouchableHighlight>
+     <Container height = {4}>
+     <Subtitle>Name Details</Subtitle>
+        <FormInput placeholder="Your name" placeholderTextColor='rgba(0,0,0,0.2)' />
+        <FormInput placeholder="Partner's name" placeholderTextColor="#ddd"  />
+      </Container>
     </View>
   );
  }
