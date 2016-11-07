@@ -12,6 +12,7 @@ import {
   Navigator,
   Switch,
   Animated,
+  SegmentedControlIOS,
   StyleSheet,
   ScrollView,
 } from 'react-native'
@@ -173,7 +174,20 @@ export default class Analytics extends Component {
       <View style={{flex: 1}}>
         <TopBar/>
         <ScrollView containerStyle={{flex: 1}}>
-          <PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
+          <View style={styles.PillBar}>
+            <SegmentedControlIOS
+              values={['All time', 'Last 3 months', 'Last week']}
+              selectedIndex={this.state.activeIdx}
+              onChange={(event) => {
+                this.onPillBar(event.nativeEvent.selectedSegmentIndex);
+              }}
+              tintColor="#FF4981"
+              style={{flex: 1}}
+            />
+          </View>
+          {
+          //<PillBar options={['All time', 'Last 3 months', 'Last week']} activeIdx={this.state.activeIdx} onPress={(idx) => this.onPillBar(idx)} />
+          }
           <Icons.All />
           <View>
             <PerMonthChart data={nZeroes(12)} />
