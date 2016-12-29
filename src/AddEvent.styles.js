@@ -20,6 +20,7 @@ export default React.StyleSheet.create({
     borderColor: '#D8D8D8',
     borderWidth: 1,
     margin: 10,
+    minHeight: 120,
   },
   NotesInput: {
     padding: 5,
