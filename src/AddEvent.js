@@ -57,15 +57,20 @@ function DateTypeGrid(props) {
   );
 }
 
+function MonthToString(monthNumber) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months[monthNumber];
+}
+
 function CurrentDate(props) {
   return (
     <View style={{flexDirection: 'column', alignItems: 'center', padding: 20}}>
       <View>
-        <Text style={{fontSize: 70}}>29</Text>
+        <Text style={{fontSize: 70}}>{props.date.getDate()}</Text>
       </View>
       <View style={{flexDirection: 'row'}}>
-        <Text style={{color: '#777', fontSize: 30,}}>Dec </Text>
-        <Text style={{color: '#444', fontSize: 30,}}>2016</Text>
+        <Text style={{color: '#777', fontSize: 30,}}>{MonthToString(props.date.getMonth())} </Text>
+        <Text style={{color: '#444', fontSize: 30,}}>{props.date.getFullYear()}</Text>
       </View>
     </View>
   );
@@ -83,7 +88,7 @@ function AddButton(props) {
 
 export default class AddEvent extends Component {
   constructor (props) {
-  super (props);
+    super (props);
     this.state = {
       notes: "",
 
@@ -92,6 +97,12 @@ export default class AddEvent extends Component {
       nightIn: false,
       nightOut: false,
     }
+  }
+
+  // returns the date passed as a prop
+  // if unset, returns now/today
+  currentDate() {
+    return this.props.date || new Date();
   }
 
   onNotes(str) {
@@ -108,7 +119,7 @@ export default class AddEvent extends Component {
     // Add event
     this.props.addEvent({
       // name: "",
-      date: new Date("2016-08-29"),
+      date: this.currentDate(),
       sex: this.state.sex,
       fight: this.state.fight,
       nightIn: this.state.nightIn,
@@ -128,7 +139,7 @@ export default class AddEvent extends Component {
         rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
       />
 
-      <CurrentDate />
+      <CurrentDate date={this.currentDate()} />
 
       <DateTypeGrid onTypeChange={this.onTypeChange.bind(this)} {...this.state} />
 
