@@ -57,6 +57,20 @@ function DateTypeGrid(props) {
   );
 }
 
+function CurrentDate(props) {
+  return (
+    <View style={{flexDirection: 'column', alignItems: 'center', padding: 20}}>
+      <View>
+        <Text style={{fontSize: 70}}>29</Text>
+      </View>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={{color: '#777', fontSize: 30,}}>Dec </Text>
+        <Text style={{color: '#444', fontSize: 30,}}>2016</Text>
+      </View>
+    </View>
+  );
+}
+
 function AddButton(props) {
   return (
     <View style={{margin: 30}}>
@@ -113,6 +127,8 @@ export default class AddEvent extends Component {
         leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
         rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
       />
+
+      <CurrentDate />
 
       <DateTypeGrid onTypeChange={this.onTypeChange.bind(this)} {...this.state} />
 
