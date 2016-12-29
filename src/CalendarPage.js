@@ -117,11 +117,14 @@ export default class CalendarPage extends Component {
     this.onAddEvent = this.onAddEvent.bind(this);
   }
 
-    navigate (type = 'Normal'){
-  this.props.navigator.push({
+  navigate (type = 'Normal'){
+    this.props.navigator.push({
     name: 'AddEvent',
     component: AddEvent,
     type: type,
+    passProps: {
+      date: this.state.selectedDate,
+    },
   })
 }
 
