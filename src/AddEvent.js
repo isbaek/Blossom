@@ -127,7 +127,8 @@ export default class AddEvent extends Component {
       notes: this.state.notes,
     })
 
-    // TODO: Go back to calendar
+    // Go back to previous page
+    this.props.navigator.pop();
   }
 
   render () {
