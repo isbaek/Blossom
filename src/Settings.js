@@ -45,7 +45,7 @@ function Form(props) {
 function FormInput(props) {
   return <View style={styles.FormInputHolder}>
     <Text style={styles.FormInputTitle}>{props.placeholder}</Text>
-    <TextInput style={styles.FormInput} placeholder={props.placeholder} placeholderTextColor="#bbb" />
+    <TextInput style={styles.FormInput} {...props} placeholderTextColor="#bbb" />
   </View>
 }
 
@@ -69,8 +69,8 @@ export default class Settings extends Component {
       <TopBar/>
       <SubTitle>Couple info</SubTitle>
       <Form>
-        <FormInput placeholder="Your name" />
-        <FormInput placeholder="Partner's name" />
+        <FormInput placeholder="Your name" value={this.props.couple.you.name} />
+        <FormInput placeholder="Partner's name" value={this.props.couple.partner.name} />
       </Form>
         <SubTitle>Credits</SubTitle>
 
