@@ -21,7 +21,7 @@ export default React.StyleSheet.create({
     padding: 10,
     marginTop: 0,
     paddingTop: 0,
-    minHeight: 150,
+    //minHeight: 150,
   },
 
   FormInput: {
@@ -35,10 +35,11 @@ export default React.StyleSheet.create({
     color: '#888',
   },
   FormInputHolder: {
-    flex: 1,
+    //flex: 1,
     padding: 5,
     borderColor: '#ddd',
     borderBottomWidth: 1,
+    minHeight: 70,
   },
 
   ButtonContainer: {
