@@ -10,8 +10,6 @@ import {
   TouchableWithoutFeedback,
   TabBarIOS,
   Navigator,
-  Switch,
-  Animated,
 } from 'react-native'
 import TabBar from './TabBar'
 import styles from './Home.styles'
