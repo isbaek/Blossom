@@ -7,6 +7,7 @@
     "nuke": "rm -rf ./node_modules && npm i && watchman watch-del-all && react-native relink && npm start -- --reset-cache"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "react": "15.3.1",
     "react-native": "0.36.0",
     "react-native-calendar": "0.7.0",
