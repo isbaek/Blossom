@@ -116,6 +116,7 @@ class Details extends Component {
   }
 
   onSave() {
+    // Set couple in database
     this.props.editCouple({
       "you": {
         "name": this.yourName(),
@@ -125,18 +126,15 @@ class Details extends Component {
       },
       firstDate: this.firstDate(),
     });
+
+    // Go to home
+    this.goToHome();
   }
 
-  navigate() {
+  goToHome() {
     this.props.navigator.push({
       name: 'TabBar',
       component: TabBar,
-      //Passes data that user inputed
-      passProps: {
-        yourName: this.state.yourName,
-        partnerName: this.state.partnerName,
-        firstDate: this.state.date,
-      },
     })
   }
 
