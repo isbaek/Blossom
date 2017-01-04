@@ -23,16 +23,15 @@ import Home from './Home'
 import CalendarPage from './CalendarPage'
 import Settings from './Settings'
 
-export default class TopBar extends Component {
-  render () {
-    return (
-      <View>
-        <NavigationBar
-          tintColor = '#FF4981'
-          statusBar = {{style: "light-content"}}
-          title = {{title: 'Blossom', tintColor: '#FFF'}}
-          rightButton = {{title: 'Add', tintColor: '#FFF', }}/>
-     </View>
-   );
-  }
+export default function TopBar(props) {
+  return (
+    <View>
+      <NavigationBar
+        tintColor = '#FF4981'
+        statusBar = {{style: "light-content"}}
+        title = {{title: 'Blossom', tintColor: '#FFF'}}
+        {...props}
+      />
+   </View>
+ );
 }
