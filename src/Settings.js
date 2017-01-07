@@ -64,11 +64,11 @@ function DateToString(date) {
   return `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
 }
 
+
 export default class Settings extends Component {
   constructor(props) {
   super (props);
     this.state = {
-      date : this.props.couple.firstDate,
       datePicker: false,
     }
   }
@@ -82,9 +82,40 @@ export default class Settings extends Component {
       this.setState ({date: date});
     }
 
+    //set variables to string aka user inputed data onChangeText()
+    onName(str) {
+      this.setState({yourName: str});
+    }
+
+    onPartnerName(str) {
+      this.setState({partnerName: str});
+    }
+
+    yourName() {
+      return (this.state.yourName !== null ? this.state.yourName : this.props.couple.you.name);
+    }
+
+    partnerName() {
+      return (this.state.partnerName !== null ? this.state.partnerName : this.props.couple.partner.name);
+    }
+
     firstDate() {
       return (this.state && this.state.date) || this.props.couple.firstDate || new Date();
     }
+
+    onSave() {
+      // Set couple in database
+      this.props.editCouple({
+        "you": {
+          "name": this.yourName(),
+        },
+        "partner": {
+          "name": this.partnerName(),
+        },
+        firstDate: this.firstDate(),
+      });
+    }
+
 
     renderDatePicker() {
         return (
