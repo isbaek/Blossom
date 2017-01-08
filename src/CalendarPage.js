@@ -52,16 +52,15 @@ function CalendarWidget(props) {
 }
 
 function EventSummary(props) {
-  const textStyle = {paddingLeft: 10, paddingTop: 5};
   return (
     <View>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', padding: 15}}>
         {props.sex ? <Icons.Sex /> : null}
         {props.fight ? <Icons.Fight /> : null}
         {props.nightOut ? <Icons.NightOut /> : null}
         {props.nightIn ? <Icons.NightIn /> : null}
       </View>
-      <Text style={textStyle}>{props.notes || props.name}</Text>
+      <Text style={{padding: 15,}}>{props.notes || props.name}</Text>
     </View>
   );
 }
@@ -165,7 +164,7 @@ this.setState({
     const hidden = this.state.AddEvent ? '' : 'hidden';
 
   return (
-    <View styles={styles.Container}>
+    <View style={styles.Container}>
       <TopBar/>
       <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
       {this.renderEventsOrButton()}
