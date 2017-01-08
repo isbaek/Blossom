@@ -1,9 +1,10 @@
-import {
+ import {
     EDIT_COUPLE,
 
     ADD_EVENT,
     DELETE_EVENT,
-    EDIT_EVENT
+    EDIT_EVENT,
+    RESET_ALL,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -39,6 +40,11 @@ export default function reducer(state = initialState, action) {
         return {
             ...state,
             events: state.events.concat(action.payload.event),
+        };
+    }
+    if(action.type == RESET_ALL) {
+        return {
+            ...initialState,
         };
     }
     return state;

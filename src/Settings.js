@@ -134,6 +134,10 @@ export default class Settings extends Component {
       });
     }
 
+    onReset() {
+      return this.props.resetAll();
+    }
+
 
     renderDatePicker() {
         return (
@@ -180,7 +184,10 @@ export default class Settings extends Component {
         saveMessage,
         [
         {text: 'OK', onPress: () => this.onSave()}
-        ]
+        ],
+        {
+          cancelable: false
+        }
         )}>Save</Button>
     );
   }
@@ -193,7 +200,7 @@ export default class Settings extends Component {
         resetMessage,
         [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'OK', onPress: () => console.log('OK Pressed!')},
+        {text: 'OK', onPress: () => this.onReset()},
         ]
         )}>Reset</ResetButton>
     );

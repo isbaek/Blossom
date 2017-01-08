@@ -103,5 +103,6 @@ export default connect(
   (dispatch) => ({
     editCouple: (newCouple) => dispatch({ type: 'EDIT_COUPLE', payload: { couple: newCouple }}),
     addEvent: (newEvent) => dispatch({ type: 'ADD_EVENT', payload: { event: newEvent }}),
+    resetAll: (resetAll) => dispatch({ type: 'RESET_ALL'})
   })
 )(App)
