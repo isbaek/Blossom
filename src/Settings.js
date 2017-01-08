@@ -141,7 +141,7 @@ export default class Settings extends Component {
   }
 
     goToDetails() {
-      this.props.navigator.push({
+      this.props.navigator.resetTo({
       name: 'Details',
       component: Details,
     })
