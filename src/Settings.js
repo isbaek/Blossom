@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import styles from './Settings.styles'
 import TopBar from './TopBar'
+import Details from './Details'
 
 ////
 // Containers
@@ -135,9 +136,16 @@ export default class Settings extends Component {
     }
 
     onReset() {
-      return this.props.resetAll();
-    }
+      this.props.resetAll();
+      this.goToDetails();
+  }
 
+    goToDetails() {
+      this.props.navigator.push({
+      name: 'Details',
+      component: Details,
+    })
+  }
 
     renderDatePicker() {
         return (
