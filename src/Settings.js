@@ -170,20 +170,27 @@ export default class Settings extends Component {
   }
 
   renderButtonOrDatePicker() {
+    var saveMessage = "Your data has been saved"
     if(this.state.datePicker) {
       return this.renderDatePicker();
     }
     return (
-      <Button onPress={() => this.onSave()}>Save</Button>
+      <Button onPress={() => Alert.alert (
+        'Save Data',
+        saveMessage,
+        [
+        {text: 'OK', onPress: () => this.onSave()}
+        ]
+        )}>Save</Button>
     );
   }
 
   renderResetButton() {
-    var alertMessage = "Are you sure you want to reset all of your data? This will erase all your calendar events."
+    var resetMessage = "Are you sure you want to reset all of your data?"
     return (
       <ResetButton onPress={() => Alert.alert (
         'Reset Data',
-        alertMessage,
+        resetMessage,
         [
         {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
         {text: 'OK', onPress: () => console.log('OK Pressed!')},
