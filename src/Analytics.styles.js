@@ -1,6 +1,10 @@
 import React from 'react-native'
 
 export default React.StyleSheet.create({
+  Container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   PillBar: {
     flex: 1,
     flexDirection: 'row',

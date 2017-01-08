@@ -3,8 +3,9 @@ import {
 } from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
+  Container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 
   detailsTop: {

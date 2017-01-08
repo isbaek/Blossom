@@ -171,7 +171,7 @@ export default class Analytics extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.Container}>
         <TopBar/>
         <ScrollView containerStyle={{flex: 1}}>
           <View style={styles.PillBar}>

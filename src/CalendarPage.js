@@ -165,7 +165,7 @@ this.setState({
     const hidden = this.state.AddEvent ? '' : 'hidden';
 
   return (
-    <View>
+    <View styles={styles.Container}>
       <TopBar/>
       <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
       {this.renderEventsOrButton()}

@@ -133,7 +133,7 @@ export default class AddEvent extends Component {
 
   render () {
   return (
-    <View style = {{flex: 1}}>
+    <View style={styles.Container}>
       <NavigationBar
         title = {{title: 'Add Event', }}
         leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}

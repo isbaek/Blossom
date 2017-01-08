@@ -5,6 +5,7 @@ export default React.StyleSheet.create({
 
   Container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   center: {
     justifyContent: 'center',
