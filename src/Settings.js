@@ -31,6 +31,14 @@ function Container(props) {
   );
 }
 
+function Button(props) {
+  return (
+  <TouchableHighlight style={[styles.Button, styles.center]} onPress={props.onPress}>
+    <Text style={styles.ButtonText}>{props.children}</Text>
+  </TouchableHighlight>
+  );
+}
+
 ////
 // Components
 ////
@@ -53,11 +61,13 @@ function FormInput(props) {
   </View>
 }
 
-function FormDateInput(props) {
-  return <View style={styles.FormInputHolder}>
+function FormInputTouch(props) {
+  return <TouchableWithoutFeedback style={styles.FormInputHolder} onPress={props.onPress}>
+    <View style={styles.FormInputHolder}>
     <FormInputTitle>{props.title || props.placeholder}</FormInputTitle>
-    <Text style={styles.FormInput}>{props.value}</Text>
-  </View>
+    <TextInput style={styles.FormInput} editable={false} {...props} onFocus={props.onPress} placeholderTextColor="#bbb" />
+    </View>
+  </TouchableWithoutFeedback>
 }
 
 function DateToString(date) {
@@ -70,6 +80,8 @@ export default class Settings extends Component {
   super (props);
     this.state = {
       datePicker: false,
+      partnerName: null,
+      yourName: null,
     }
   }
 
@@ -134,6 +146,32 @@ export default class Settings extends Component {
         );
       }
 
+    renderDatePicker() {
+    return (
+      <View style = {styles.DatePicker}>
+        <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
+         <Text>Done</Text>
+        </TouchableOpacity>
+        <DatePickerIOS
+          date={this.firstDate()}
+          onDateChange={(newDate) => {
+            this.setState({date: newDate})
+          }}
+          mode={'date'}
+          timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+      </View>
+    );
+  }
+
+  renderButtonOrDatePicker() {
+    if(this.state.datePicker) {
+      return this.renderDatePicker();
+    }
+    return (
+      <Button onPress={() => this.onSave()}>Save</Button>
+    );
+  }
+
   render () {
   return (
     <View>
@@ -141,14 +179,16 @@ export default class Settings extends Component {
 
       <SubTitle>Couple Info</SubTitle>
       <Form>
-        <FormInput placeholder="Your name" value={this.props.couple.you.name} />
-        <FormInput placeholder="Partner's name" value={this.props.couple.partner.name} />
+        <FormInput placeholder="Your name" value={this.yourName()} onChangeText={(str) => this.onName(str)} />
+        <FormInput placeholder="Partner's name" value={this.partnerName()} onChangeText={(str) => this.onPartnerName(str)} />
       </Form>
 
       <SubTitle>Couple Date</SubTitle>
       <Form>
-        <FormInput title="First Date" value={DateToString(this.firstDate())} />
+          <FormInputTouch title="First Date" value={DateToString(this.firstDate())} onPress={this.toggleDatePicker.bind(this)} />
       </Form>
+
+      {this.renderButtonOrDatePicker()}
     </View>
   );
  }
