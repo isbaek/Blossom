@@ -10,8 +10,7 @@ import {
   TouchableWithoutFeedback,
   TabBarIOS,
   Navigator,
-  Switch,
-  Animated,
+  Alert,
 } from 'react-native'
 import styles from './Settings.styles'
 import TopBar from './TopBar'
@@ -179,6 +178,20 @@ export default class Settings extends Component {
     );
   }
 
+  renderResetButton() {
+    var alertMessage = "Are you sure you want to reset all of your data? This will erase all your calendar events."
+    return (
+      <ResetButton onPress={() => Alert.alert (
+        'Reset Data',
+        alertMessage,
+        [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+        {text: 'OK', onPress: () => console.log('OK Pressed!')},
+        ]
+        )}>Reset</ResetButton>
+    );
+  }
+
   render () {
   return (
     <View>
@@ -194,9 +207,8 @@ export default class Settings extends Component {
       <Form>
           <FormInputTouch title="First Date" value={DateToString(this.firstDate())} onPress={this.toggleDatePicker.bind(this)} />
       </Form>
-
       {this.renderButtonOrDatePicker()}
-      <ResetButton onPress={() => this.onSave()}>Reset</ResetButton>
+      {this.renderResetButton()}
     </View>
   );
  }
