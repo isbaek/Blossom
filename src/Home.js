@@ -11,6 +11,7 @@ import {
   TabBarIOS,
   Navigator,
 } from 'react-native'
+import AddEvent from './AddEvent'
 import TabBar from './TabBar'
 import styles from './Home.styles'
 import TopBar from './TopBar'
@@ -82,6 +83,14 @@ class Home extends Component {
   getMoodImage(moodName) {
     return MOODS[moodName];
   }
+  
+  goToAdd() {
+    this.props.navigator.push({
+      name: 'AddEvent',
+      component: AddEvent,
+      type: 'Modal',
+    })
+  }
 
   render () {
     //Get User Inputed Date and convert to loving days
@@ -89,9 +98,17 @@ class Home extends Component {
     var secondsSince = (now.getTime() - this.props.couple.firstDate.getTime()) / 1000;
     var daysSince = Math.floor(secondsSince / 86400);
 
+    //go to add event page
+
+
   return (
   <View style = {{flex:1}}>
-  <TopBar/>
+  <TopBar 
+  rightButton = {{
+    title: 'Add', 
+    tintColor: '#FFF', 
+    handler: () => this.goToAdd()
+  }}/>
   <Container>
           <Container height = {3}>
             <LovingDaysNumber>{(daysSince +1)}{"\n"}
