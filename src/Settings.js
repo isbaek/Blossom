@@ -39,6 +39,13 @@ function Button(props) {
   );
 }
 
+function ResetButton(props) {
+  return (
+  <TouchableHighlight style={[styles.ResetButton, styles.center]} onPress={props.onPress}>
+    <Text style={{color: '#FF0000', textAlign: 'center'}}>{props.children}</Text>
+  </TouchableHighlight>
+  );
+}
 ////
 // Components
 ////
@@ -189,6 +196,7 @@ export default class Settings extends Component {
       </Form>
 
       {this.renderButtonOrDatePicker()}
+      <ResetButton onPress={() => this.onSave()}>Reset</ResetButton>
     </View>
   );
  }

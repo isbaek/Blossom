@@ -51,6 +51,16 @@ export default React.StyleSheet.create({
     margin: 10,
     borderRadius: 5,
   },
+
+  ResetButton: {
+    padding: 20,
+    margin: 10,
+    borderRadius: 5,
+    borderColor: 'red',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+  },
+
   ButtonText: {
     color: '#fff',
     textAlign: 'center',
