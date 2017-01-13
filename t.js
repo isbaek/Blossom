@@ -7,9 +7,12 @@ const events = [
     },
     {
         date: new Date("12/3/2016"),
+        'user' : 'Rachel',
     },
     {
         date: new Date("12/5/2016"),
+        'sex': true,
+        'user' : 'Rachel',
     },
     {
         date: new Date("12/12/2016"),
@@ -24,6 +27,32 @@ const events = [
         date: new Date("3/1/2017"),
     },
 ];
+
+function checkEvent(events) {
+  return _.find(events, 'user');
+}
+
+
+function matchEventDate(events) {
+  var filtered = _.find(events, {date: new Date("12/5/2016") });
+  var b = filtered.user;
+    if ( b === 'Rachel' )
+    return "Yahoo";
+    else
+    return "Wrong";
+}
+
+
+getEventforDay(events) {
+  return _.find(events, props.sex, props.fight, props.nightIn, props.nightOut, props.notes) 
+
+onEdit() {
+  var a = this.getEventforDay();
+  var b = a.event.date;
+  var d = this.currentDate();
+  if { b === d }
+  }
+}
 
 function getWeekOfYear(date) {
     const onejan = new Date(date.getFullYear(), 0, 1);
@@ -49,4 +78,4 @@ function groupByWeek(events) {
     });
 }
 
-log(groupByWeek(events));
+log(matchEventDate(events));

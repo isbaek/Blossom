@@ -123,7 +123,7 @@ export default class AddEvent extends Component {
     var d = this.currentDate();
     if (b === d) {
     return
-      this.setState({
+      this.props.addEvent({
 
       })
     };
