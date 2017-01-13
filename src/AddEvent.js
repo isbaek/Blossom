@@ -21,6 +21,9 @@ import Icons from './Icons'
 import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/Ionicons'
 
+//import lodash
+import _ from 'lodash'
+
 function HighlighedIcon(props) {
   var style = [styles.HighlighedIcon];
   if(props.active) {
@@ -76,11 +79,11 @@ function CurrentDate(props) {
   );
 }
 
-function AddButton(props) {
+function Button(props) {
   return (
     <View style={{margin: 30}}>
       <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
-        <Text style = {{alignItems: 'center', color: '#fff'}}> Add Event </Text>
+        <Text style = {{alignItems: 'center', color: '#fff'}}>{props.children}</Text>
       </Icon.Button>
     </View>
   );
@@ -91,7 +94,6 @@ export default class AddEvent extends Component {
     super (props);
     this.state = {
       notes: "",
-
       sex: false,
       fight: false,
       nightIn: false,
@@ -115,6 +117,27 @@ export default class AddEvent extends Component {
     });
   }
 
+  getEventforDay(events) {
+    return _.find(events, this.props.events)
+  }
+
+  onEdit() {
+    var a = this.getEventforDay();
+    var b = a.events.date;
+    var d = this.currentDate();
+    if (b === d) {
+    return
+      this.props.addEvent({
+        date: this.currentDate(),
+        sex: this.props.sex,
+        fight: this.props.fight,
+        nightIn: this.props.nightIn,
+        nightOut: this.props.nightOut,
+        notes: this.props.notes,
+      })
+    };
+  }
+
   onSave() {
     // Add event
     this.props.addEvent({
@@ -131,13 +154,38 @@ export default class AddEvent extends Component {
     this.props.navigator.pop();
   }
 
+  onDelete() {
+    // Delete event
+    this.props.deleteEvent(this.currentDate());
+    this.props.navigator.pop();
+  }
+
+  buttonEditOrAdd() {
+    if(this.props.events) {
+      return <Button onPress={this.onEdit.bind(this)}>Edit</Button>
+    }
+    return (
+      <Button onPress={this.onSave.bind(this)}>Add</Button>
+    )
+  }
+
+  EditOrAdd() {
+    if(this.props.events) {
+      return this.onEdit()
+    }
+    return (
+      this.onSave()
+    )
+  }
+
+
   render () {
   return (
     <View style={styles.Container}>
       <NavigationBar
         title = {{title: 'Add Event', }}
         leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
-        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
+        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.EditOrAdd() }}
       />
 
       <CurrentDate date={this.currentDate()} />
@@ -153,8 +201,7 @@ export default class AddEvent extends Component {
           onChangeText={this.onNotes.bind(this)}
         />
       </View>
-
-      <AddButton onPress={this.onSave.bind(this)} />
+      {this.buttonEditOrAdd()}
     </View>
   );
  }
