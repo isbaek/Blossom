@@ -117,25 +117,17 @@ export default class AddEvent extends Component {
     });
   }
 
-  getEventforDay(events) {
-    return _.find(events, this.props.events)
-  }
-
   onEdit() {
-    var a = this.getEventforDay();
-    var b = a.events.date;
+    var me = _.find(this.props.events, 'sex', 'fight');
+    var b = me.date;
     var d = this.currentDate();
     if (b === d) {
     return
-      this.props.addEvent({
-        date: this.currentDate(),
-        sex: this.props.sex,
-        fight: this.props.fight,
-        nightIn: this.props.nightIn,
-        nightOut: this.props.nightOut,
-        notes: this.props.notes,
+      this.setState({
+
       })
     };
+    this.props.navigator.pop();
   }
 
   onSave() {
@@ -161,7 +153,7 @@ export default class AddEvent extends Component {
   }
 
   buttonEditOrAdd() {
-    if(this.props.events) {
+    if(this.state.events) {
       return <Button onPress={this.onEdit.bind(this)}>Edit</Button>
     }
     return (
@@ -170,7 +162,7 @@ export default class AddEvent extends Component {
   }
 
   EditOrAdd() {
-    if(this.props.events) {
+    if(this.state.events) {
       return this.onEdit()
     }
     return (
