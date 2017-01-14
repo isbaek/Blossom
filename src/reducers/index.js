@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action) {
             ...state,
             // Remove event on a given day
             events: state.events.filter((event) => {
-                return !isSameDay(event.date, payload.date);
+                return !isSameDay(event.date, action.payload.date);
             })
         };
     }
