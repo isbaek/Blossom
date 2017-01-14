@@ -23,6 +23,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 //import lodash
 import _ from 'lodash'
+import moment from 'moment';
 
 function HighlighedIcon(props) {
   var style = [styles.HighlighedIcon];
@@ -89,22 +90,53 @@ function Button(props) {
   );
 }
 
+function isSameDay(d1, d2) {
+  return moment(d1).format('DD/MM/YYYY') === moment(d2).format('DD/MM/YYYY');
+}
+
 export default class AddEvent extends Component {
   constructor (props) {
     super (props);
-    this.state = {
+    this.state = this.getOurDefaultState(props);
+  }
+
+  getOurDefaultState(props) {
+    // Current date
+    const date = props.date || new Date();
+
+    // Default empty state
+    const EMPTY_STATE = {
+      date: date,
       notes: "",
       sex: false,
       fight: false,
       nightIn: false,
       nightOut: false,
-    }
-  }
 
-  // returns the date passed as a prop
-  // if unset, returns now/today
-  currentDate() {
-    return this.props.date || new Date();
+      isNewEvent: true,
+    };
+
+    // Check if there's already an event for this date
+    const event = _.find(props.events, (e) => {
+      return isSameDay(e.date, date);
+    });
+
+    // If no event, use the empty state
+    if(!event) {
+      return EMPTY_STATE;
+    }
+
+    // Base our event on a pre-existing one
+    return {
+      date: date,
+      notes: event.notes,
+      sex: event.sex,
+      fight: event.fight,
+      nightIn: event.nightIn,
+      nightOut: event.nightOut,
+
+      isNewEvent: false,
+    };
   }
 
   onNotes(str) {
@@ -117,24 +149,11 @@ export default class AddEvent extends Component {
     });
   }
 
-  onEdit() {
-    var me = _.find(this.props.events, 'sex', 'fight');
-    var b = me.date;
-    var d = this.currentDate();
-    if (b === d) {
-    return
-      this.props.addEvent({
-
-      })
-    };
-    this.props.navigator.pop();
-  }
-
   onSave() {
     // Add event
     this.props.addEvent({
       // name: "",
-      date: this.currentDate(),
+      date: this.state.date,
       sex: this.state.sex,
       fight: this.state.fight,
       nightIn: this.state.nightIn,
@@ -148,28 +167,25 @@ export default class AddEvent extends Component {
 
   onDelete() {
     // Delete event
-    this.props.deleteEvent(this.currentDate());
+    this.props.deleteEvent(this.state.date);
     this.props.navigator.pop();
   }
 
+  renderDeleteButton() {
+    if(!this.state.isNewEvent) {
+      return <Button onPress={this.onDelete.bind(this)}>Delete</Button>
+    }
+    return null;
+  }
+
   buttonEditOrAdd() {
-    if(this.state.events) {
-      return <Button onPress={this.onEdit.bind(this)}>Edit</Button>
+    if(!this.state.isNewEvent) {
+      return <Button onPress={this.onSave.bind(this)}>Edit</Button>
     }
     return (
       <Button onPress={this.onSave.bind(this)}>Add</Button>
     )
   }
-
-  EditOrAdd() {
-    if(this.state.events) {
-      return this.onEdit()
-    }
-    return (
-      this.onSave()
-    )
-  }
-
 
   render () {
   return (
@@ -177,23 +193,24 @@ export default class AddEvent extends Component {
       <NavigationBar
         title = {{title: 'Add Event', }}
         leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
-        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.EditOrAdd() }}
+        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
       />
 
-      <CurrentDate date={this.currentDate()} />
+      <CurrentDate date={this.state.date} />
 
       <DateTypeGrid onTypeChange={this.onTypeChange.bind(this)} {...this.state} />
 
       <View style={styles.Notes}>
         <TextInput
           style={styles.NotesInput}
-
+          value={this.state.notes}
           multiline={true}
           placeholder={"Notes about the day ...\n\nRemember the best parts :)"}
           onChangeText={this.onNotes.bind(this)}
         />
       </View>
       {this.buttonEditOrAdd()}
+      {this.renderDeleteButton()}
     </View>
   );
  }
