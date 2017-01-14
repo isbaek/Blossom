@@ -113,7 +113,6 @@ export default class CalendarPage extends Component {
       AddEvent: false,
       calendarBox: "",
     };
-    this.onAddEvent = this.onAddEvent.bind(this);
   }
 
   navigate (type = 'Normal'){
@@ -125,13 +124,6 @@ export default class CalendarPage extends Component {
       date: this.state.selectedDate,
     },
   })
-}
-
-onAddEvent() {
-this.setState({
-  AddEvent: !this.state.AddEvent
-})
-
 }
   // eventsForDate returns all the events that happened on a given day
   eventsForDate(events, date) {
@@ -160,12 +152,30 @@ this.setState({
     return <AddButton onPress={() => this.navigate('Modal')} />;
   }
 
+  rightButton() {
+    // See if we have any events for the selected date
+    const events = this.currentEvents();
+    const hasEvents = events.length > 0;
+
+    // Change our button's title
+    var buttonMsg = 'Add';
+    if(hasEvents) {
+      buttonMsg = 'Edit';
+    }
+
+    // Actual button
+    return {
+      title: buttonMsg,
+      tintColor: '#FFF',
+      handler: () => this.navigate('Modal'),
+    };
+  }
+
   render () {
-    const hidden = this.state.AddEvent ? '' : 'hidden';
 
   return (
     <View style={styles.Container}>
-      <TopBar/>
+      <TopBar rightButton={this.rightButton()} />
       <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
       {this.renderEventsOrButton()}
     </View>
