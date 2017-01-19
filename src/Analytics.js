@@ -85,6 +85,7 @@ function BasicChart(props) {
 }
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const WEEK = ["Mon", "Tues", "Wed", "Thur", "Fri"];
 
 function axisTickMonths(monthsPerTick) {
   return function xAxis(idx) {
