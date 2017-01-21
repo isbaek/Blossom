@@ -150,6 +150,8 @@ class Details extends Component {
             this.setState({date: newDate})
           }}
           mode={'date'}
+          maximumDate={new Date('1/1/2030')}
+          minimumDate={new Date('1/1/2000')}
           timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
       </View>
     );
@@ -185,7 +187,7 @@ class Details extends Component {
           </FormField>
         </Form>
         </Container>
-        <Container height={2}>
+        <Container height = {4}>
           {this.renderButtonOrDatePicker()}
         </Container>
       </Container>
