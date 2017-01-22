@@ -23,8 +23,10 @@ export default React.StyleSheet.create({
     padding: 10,
     backgroundColor: '#FF4981',
     fontSize: 100,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    overflow: 'hidden',
   },
+  
   LovingDaysText: {
     fontSize: 20,
     color: 'white',
