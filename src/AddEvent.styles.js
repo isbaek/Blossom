@@ -5,18 +5,18 @@ export default React.StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+
   HighlighedIcon: {
     flex: 1,
     margin: 10,
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 5,
+    overflow: 'hidden',
   },
+
   HighlighedIconActive: {
     backgroundColor: '#FF4981',
-  },
-  DateTypeRow: {
-
   },
 
   Notes: {
@@ -34,4 +34,3 @@ export default React.StyleSheet.create({
     fontSize: 16,
   }
 });
-
