@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   TextInput,
   View,
@@ -76,6 +77,16 @@ function CurrentDate(props) {
         <Text style={{color: '#777', fontSize: 30,}}>{MonthToString(props.date.getMonth())} </Text>
         <Text style={{color: '#444', fontSize: 30,}}>{props.date.getFullYear()}</Text>
       </View>
+    </View>
+  );
+}
+
+function DeleteButton(props) {
+  return (
+    <View style={{marginBottom: 30, marginRight: 30, marginLeft: 30}}>
+      <Icon.Button style={{borderRadius: 5, borderColor: 'red', borderWidth: 1}} name ="ios-trash" color="#fff" backgroundColor = "#fff" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
+        <Text style = {{alignItems: 'center', color: 'red'}}>{props.children}</Text>
+      </Icon.Button>
     </View>
   );
 }
@@ -172,8 +183,16 @@ export default class AddEvent extends Component {
   }
 
   renderDeleteButton() {
+    var resetMessage = "Are you sure you want to delete data?"
     if(!this.state.isNewEvent) {
-      return <Button onPress={this.onDelete.bind(this)}>Delete</Button>
+      return <DeleteButton onPress={() => Alert.alert (
+        'Delete Data',
+        resetMessage,
+        [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+        {text: 'OK', onPress: () => this.onDelete()},
+        ]
+        )}>Delete</DeleteButton>
     }
     return null;
   }
