@@ -132,7 +132,7 @@ class Details extends Component {
   }
 
   goToHome() {
-    this.props.navigator.resetTo({
+    this.props.navigator.push({
       name: 'TabBar',
       component: TabBar,
     })

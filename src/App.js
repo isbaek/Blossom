@@ -62,6 +62,11 @@ class App extends React.Component {
           return React.createElement(route.component, { ...this.props, ...route.passProps, navigator, route} )}
         }
       }
+      onDidFocus={(route) => {
+        if (route.reset) {
+          this.refs.navigator.immediatelyResetRouteStack([{ name: route.name }])
+        }
+      }}
     />
   );
   }
