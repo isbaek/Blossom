@@ -15,6 +15,8 @@ import AddEvent from './AddEvent'
 import TabBar from './TabBar'
 import styles from './Home.styles'
 import TopBar from './TopBar'
+import moment from 'moment'
+import CalendarPage from './CalendarPage'
 
 // Map mood names to images
 var MOODS = {
@@ -65,11 +67,25 @@ function TipText(props) {
   return <Text style={[styles.TipText]}>{props.children}</Text>;
     }
 
+function dateToString(date) {
+  return moment(date).format('YYYY-MM-DD');
+}
+
+function dateToTimestamp(date) {
+  return date.getTime() / 1000;
+}
+
+function sameDay(date1, date2) {
+  return dateToString(date1) === dateToString(date2);
+}
+
+
 
 class Home extends Component {
     constructor(props) {
     super(props);
     this.state = {
+      selectedDate: moment().toDate(),
       mood: "sunny",
     };
  }
@@ -83,12 +99,45 @@ class Home extends Component {
   getMoodImage(moodName) {
     return MOODS[moodName];
   }
-  
+
+  eventsForDate(events, date) {
+    return events.filter((event) => {
+      return sameDay(event.date, date);
+    });
+  }
+
+  currentEvents() {
+    return this.eventsForDate(this.props.events, this.state.selectedDate);
+  }
+
+
+  rightButton() {
+    // See if we have any events for the selected date
+    const events = this.currentEvents();
+    const hasEvents = events.length > 0;
+
+    // Change our button's title
+    var buttonMsg = 'Add';
+    if(hasEvents) {
+      buttonMsg = 'Edit';
+    }
+
+    // Actual button
+    return {
+      title: buttonMsg,
+      tintColor: '#FFF',
+      handler: () => this.goToAdd('Modal'),
+    };
+  }
+
   goToAdd() {
     this.props.navigator.push({
       name: 'AddEvent',
       component: AddEvent,
       type: 'Modal',
+      passProps: {
+        date: this.state.selectedDate,
+      },
     })
   }
 
@@ -103,12 +152,7 @@ class Home extends Component {
 
   return (
   <View style = {{flex:1}}>
-  <TopBar 
-  rightButton = {{
-    title: 'Add', 
-    tintColor: '#FFF', 
-    handler: () => this.goToAdd()
-  }}/>
+  <TopBar rightButton={this.rightButton()}/>
   <Container>
           <Container height = {3}>
             <LovingDaysNumber>{(daysSince +1)}{"\n"}
