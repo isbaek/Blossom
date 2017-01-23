@@ -28,7 +28,7 @@ import Chart from 'react-native-chart';
 // Components
 ////
 
-function Pill(props) {
+/*function Pill(props) {
   var style = [styles.Pill];
   if(props.active) {
     style = style.concat(styles.PillActive);
@@ -61,7 +61,7 @@ function PillBar(props) {
     </View>
   );
 }
-
+*/
 function BasicChart(props) {
   return (
   <View style={styles.ChartContainer}>
@@ -85,7 +85,7 @@ function BasicChart(props) {
 }
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const WEEK = ["Mon", "Tues", "Wed", "Thur", "Fri"];
+const WEEKS = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
 function axisTickMonths(monthsPerTick) {
   return function xAxis(idx) {
@@ -93,6 +93,17 @@ function axisTickMonths(monthsPerTick) {
     const month = MONTHS[monthIdx];
     if(idx % monthsPerTick === 0) {
       return month;
+    }
+    return "";
+  };
+}
+
+function axisTickWeek(dayPerTick) {
+  return function xAxis(idx) {
+    const weekIdx = idx % 7;
+    const week = WEEKS[weekIdx];
+    if(idx % dayPerTick === 0) {
+      return week;
     }
     return "";
   };
@@ -117,12 +128,19 @@ class PerMonthChart extends Component {
 }
 
 class WeekChart extends Component {
-  xAxis(value) {
-    return "";
+  xAxis(days) {
+    if(days <= 7) {
+      return axisTickWeek(1);
+    } else if(days <= 14) {
+      return axisTickWeek(2);
+    } else if(days <= 21) {
+      return axisTickWeek(3);
+    }
   }
 
   render() {
-    return <BasicChart data={this.props.data} xAxisTransform={this.xAxis.bind(this)} />;
+    const nWeek = this.props.data.length;
+    return <BasicChart data={this.props.data} xAxisTransform={this.xAxis(nWeek)} />;
   }
 }
 
@@ -170,6 +188,18 @@ export default class Analytics extends Component {
     })
   }
 
+  renderMonthOrWeek() {
+    if ( !this.state.activeIdx ) {
+      return <PerMonthChart data={nZeroes(12)} />
+    }
+    else if ( this.state.activeIdx === 1 ) {
+      return <PerMonthChart data={nZeroes(12)} />
+    }
+    else {
+      return <WeekChart data={nZeroes(7)} />
+    }
+  }
+
   render() {
     return (
       <View style={styles.Container}>
@@ -191,23 +221,23 @@ export default class Analytics extends Component {
           }
           <Icons.All />
           <View>
-            <PerMonthChart data={nZeroes(12)} />
+            {this.renderMonthOrWeek()}
           </View>
           <Icons.Sex />
           <View>
-            <PerMonthChart data={nZeroes(12)} />
+            {this.renderMonthOrWeek()}
           </View>
           <Icons.Fight />
           <View>
-            <PerMonthChart data={nZeroes(12)} />
+            {this.renderMonthOrWeek()}
           </View>
           <Icons.NightOut />
           <View>
-            <PerMonthChart data={nZeroes(12)} />
+            {this.renderMonthOrWeek()}
           </View>
           <Icons.NightIn />
           <View>
-            <PerMonthChart data={nZeroes(12)} />
+            {this.renderMonthOrWeek()}
           </View>
         </ScrollView>
       </View>
