@@ -4,6 +4,7 @@ import {
   TextInput,
   View,
   Image,
+  Keyboard,
   DatePickerIOS,
   TouchableOpacity,
   TouchableHighlight,
@@ -11,13 +12,14 @@ import {
   TabBarIOS,
   Navigator,
   Switch,
-  Animated,
+  ScrollView
 } from 'react-native'
 import TabBar from './TabBar'
 import styles from './Details.styles'
 
 import blossomimg from '../design/background.png'
 
+import DismissKeyboard from 'dismissKeyboard';
 ////
 // Containers
 ////
@@ -55,8 +57,12 @@ function FormInput(props) {
 
 // FormField is like FormInput but not specifically a text input
 function FormField(props) {
-  return <View style={styles.FormInput}>{props.children}</View>;
-}
+  return (
+    <TouchableWithoutFeedback onPress={props.onPress}>
+      <View style={styles.FormInput}>{props.children}</View>
+      </TouchableWithoutFeedback>
+    );
+  }
 
 function Button(props) {
   return (
@@ -132,7 +138,7 @@ class Details extends Component {
   }
 
   goToHome() {
-    this.props.navigator.push({
+    this.props.navigator.resetTo({
       name: 'TabBar',
       component: TabBar,
     })
@@ -166,7 +172,14 @@ class Details extends Component {
     );
   }
 
-  render() {
+  _dismissKeyboard() {
+    Keyboard.dismiss();
+    this.toggleDatePicker();
+  }
+
+
+
+  render() { 
     return (
       <Container>
         <BackgroundImage source={blossomimg} />
@@ -176,18 +189,24 @@ class Details extends Component {
         </Container>
         <Container height={4} style={{justifyContent: 'flex-start'}}>
         <Form>
-          <FormInput value={this.yourName()} placeholder="Your name" placeholderTextColor="#ddd" onChangeText={(str) => this.onName(str)} />
-          <FormInput value={this.partnerName()} placeholder="Partner's name" placeholderTextColor="#ddd" onChangeText={(str) => this.onPartnerName(str)} />
-          <FormField>
-          <TouchableWithoutFeedback onPress={this.toggleDatePicker.bind(this)}>
-            <View value={this.firstDate()}>
-              <Text style = {{color: '#fff'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          </FormField>
-        </Form>
-        </Container>
-        <Container height = {4}>
+            <FormInput
+            value={this.yourName()}
+            placeholder="Your name"
+            placeholderTextColor="#ddd"
+            onChangeText={(str) => this.onName(str)}/>
+            <FormInput
+            value={this.partnerName()}
+            placeholder="Partner's name"
+            placeholderTextColor="#ddd"
+            onChangeText={(str) => this.onPartnerName(str)} />
+          <FormField onPress={this._dismissKeyboard.bind(this)}>
+              <View value={this.firstDate()}>
+                <Text style = {{color: '#fff'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
+                </View>
+        </FormField>
+      </Form>
+    </Container>
+      <Container height = {4}>
           {this.renderButtonOrDatePicker()}
         </Container>
       </Container>
