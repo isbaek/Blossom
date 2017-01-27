@@ -172,6 +172,7 @@ class Details extends Component {
     );
   }
 
+//dismisses keyboard from text input on dateinput so the user doesnt have to tap on 'return' manually
   _dismissKeyboard() {
     Keyboard.dismiss();
     this.toggleDatePicker();
@@ -179,12 +180,12 @@ class Details extends Component {
 
 
 
-  render() { 
+  render() {
     return (
       <Container>
         <BackgroundImage source={blossomimg} />
         <Container height={4}>
-          <Title>Details</Title>
+          <Title>Welcome</Title>
           <Subtitle>Write down your love details</Subtitle>
         </Container>
         <Container height={4} style={{justifyContent: 'flex-start'}}>
