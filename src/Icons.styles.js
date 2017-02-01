@@ -10,5 +10,6 @@ export default React.StyleSheet.create({
     width: 30,
     height: 30,
     textAlign: "center",
+    overflow: 'hidden',
   },
 })
