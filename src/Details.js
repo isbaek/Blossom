@@ -144,6 +144,7 @@ class Details extends Component {
     })
   }
 
+
   renderDatePicker() {
     return (
       <View style = {styles.DatePicker}>
@@ -156,7 +157,7 @@ class Details extends Component {
             this.setState({date: newDate})
           }}
           mode={'date'}
-          maximumDate={new Date('1/1/2030')}
+          maximumDate={new Date()}
           minimumDate={new Date('1/1/2000')}
           timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
       </View>
