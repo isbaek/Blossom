@@ -3,8 +3,10 @@ import React from 'react-native'
 export default React.StyleSheet.create({
   Container: {
     flex: 1,
+    flexWrap: 'nowrap',
     backgroundColor: 'white',
   },
+
   center: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -18,6 +20,7 @@ export default React.StyleSheet.create({
   },
 
   Form: {
+    flex: 1,
     margin: 10,
     padding: 10,
     marginTop: 0,
@@ -31,12 +34,12 @@ export default React.StyleSheet.create({
     fontSize: 15,
     color: '#333',
   },
+
   FormInputTitle: {
     fontWeight: 'bold',
     color: '#888',
   },
   FormInputHolder: {
-    //flex: 1,
     padding: 5,
     borderColor: '#ddd',
     borderBottomWidth: 1,
@@ -48,13 +51,13 @@ export default React.StyleSheet.create({
   },
   Button: {
     backgroundColor: "#333",
-    padding: 20,
+    padding: 15,
     margin: 10,
     borderRadius: 5,
   },
 
   ResetButton: {
-    padding: 20,
+    padding: 15,
     margin: 10,
     borderRadius: 5,
     borderColor: 'red',
