@@ -11,6 +11,7 @@ import {
   TabBarIOS,
   Navigator,
   Alert,
+  ScrollView,
 } from 'react-native'
 import styles from './Settings.styles'
 import TopBar from './TopBar'
@@ -23,7 +24,7 @@ import Details from './Details'
 function Container(props) {
   return (
     <View style={[
-        styles.Container, styles.center,
+        styles.Container,
         (props.style || {}), {flex: (props.height || 1)},
     ]}>
       {props.children}
@@ -218,22 +219,26 @@ export default class Settings extends Component {
 
   render () {
   return (
-    <View>
+    <Container>
       <TopBar />
-
+        <Container height = {6}>
       <SubTitle>Couple Info</SubTitle>
       <Form>
         <FormInput placeholder="Your name" value={this.yourName()} onChangeText={(str) => this.onName(str)} />
         <FormInput placeholder="Partner's name" value={this.partnerName()} onChangeText={(str) => this.onPartnerName(str)} />
       </Form>
-
+        </Container>
+        <Container height = {4}>
       <SubTitle>Couple Date</SubTitle>
       <Form>
           <FormInputTouch title="First Date" value={DateToString(this.firstDate())} onPress={this.toggleDatePicker.bind(this)} />
       </Form>
+      </Container>
+      <Container height ={5}>
       {this.renderButtonOrDatePicker()}
       {this.renderResetButton()}
-    </View>
+      </Container>
+    </Container>
   );
  }
 }
