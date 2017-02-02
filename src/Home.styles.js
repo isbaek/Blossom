@@ -22,11 +22,11 @@ export default React.StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     backgroundColor: '#FF4981',
-    fontSize: 100,
+    fontSize: 80,
     fontWeight: 'bold',
     overflow: 'hidden',
   },
-  
+
   LovingDaysText: {
     fontSize: 20,
     color: 'white',
