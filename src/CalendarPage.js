@@ -12,6 +12,7 @@ import {
   Navigator,
   Switch,
   Animated,
+  ScrollView,
 } from 'react-native'
 import styles from './styles'
 import AddEvent from './AddEvent'
@@ -60,7 +61,10 @@ function EventSummary(props) {
         {props.nightOut ? <Icons.NightOut /> : null}
         {props.nightIn ? <Icons.NightIn /> : null}
       </View>
-      <Text style={{padding: 15,}}>{props.notes || props.name}</Text>
+      <ScrollView
+      contentContainerStyle={styles.contentContainer}>
+      <Text style={{padding: 15, color: '#a8a8a8'}}>{props.notes || props.name}</Text>
+      </ScrollView>
     </View>
   );
 }
