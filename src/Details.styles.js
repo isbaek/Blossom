@@ -44,6 +44,15 @@ export default React.StyleSheet.create({
     color: '#fff',
     borderRadius: 5,
   },
+  DateInput: {
+    padding: 15,
+    flex: 1,
+    margin: 5,
+    fontSize: 15,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    color: '#fff',
+    borderRadius: 5,
+  },
   ButtonContainer: {
    flex: 1,
   },
@@ -61,4 +70,3 @@ export default React.StyleSheet.create({
     backgroundColor: '#fff',
   }
 });
-
