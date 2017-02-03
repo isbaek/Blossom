@@ -58,18 +58,6 @@ export default class TabBar extends Component {
           <CalendarPage {...this.props} />
       </Icon.TabBarItem>
       <Icon.TabBarItem
-        title="Analytics"
-        selected = {this.state.selectedTab === 'Analytics'}
-        iconName="ios-analytics-outline"
-        selectedIconName="ios-analytics"
-        onPress={() => {
-          this.setState({
-            selectedTab: 'Analytics',
-          });
-        }}>
-          <Analytics {...this.props} />
-      </Icon.TabBarItem>
-      <Icon.TabBarItem
         title="Settings"
         selected = {this.state.selectedTab === 'Settings'}
         iconName="ios-settings-outline"

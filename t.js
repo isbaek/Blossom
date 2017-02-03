@@ -44,7 +44,7 @@ function matchEventDate(events) {
 
 
 getEventforDay(events) {
-  return _.find(events, props.sex, props.fight, props.nightIn, props.nightOut, props.notes) 
+  return _.find(events, props.sex, props.fight, props.nightIn, props.nightOut, props.notes)
 
 onEdit() {
   var a = this.getEventforDay();
@@ -77,5 +77,18 @@ function groupByWeek(events) {
         return `${getWeekOfYear(e.date)}/${e.date.getFullYear()}`
     });
 }
+
+<Icon.TabBarItem
+  title="Analytics"
+  selected = {this.state.selectedTab === 'Analytics'}
+  iconName="ios-analytics-outline"
+  selectedIconName="ios-analytics"
+  onPress={() => {
+    this.setState({
+      selectedTab: 'Analytics',
+    });
+  }}>
+    <Analytics {...this.props} />
+</Icon.TabBarItem>
 
 log(matchEventDate(events));
