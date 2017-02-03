@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, Text } from 'react-native';
+import { Navigator, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import Home from './Home'
@@ -11,7 +11,7 @@ import TabBar from './TabBar'
 
 class Loading extends React.Component {
   render() {
-    return <Text>Loading ...</Text>
+    return <View style = {{backgroundColor: '#FF4981'}} />
   }
 }
 
