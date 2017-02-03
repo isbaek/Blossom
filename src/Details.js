@@ -59,7 +59,9 @@ function FormInput(props) {
 // FormField is like FormInput but not specifically a text input
 function FormField(props) {
   return (
+     <TouchableWithoutFeedback onPress={props.onPress}>
       <View style={styles.DateInput}>{props.children}</View>
+    </TouchableWithoutFeedback>
     );
   }
 
@@ -90,14 +92,6 @@ class Details extends Component {
     };
   }
 
-  toggleDatePicker() {
-    var mode = !this.state.datePicker;
-    this.setState ({datePicker : mode});
-  }
-
-  onDateChange(date) {
-    this.setState ({date: date});
-  }
 
   //set variables to string aka user inputed data onChangeText()
   onName(str) {
@@ -144,29 +138,7 @@ class Details extends Component {
   }
 
 
-  renderDatePicker() {
-    return (
-      <View style = {styles.DatePicker}>
-        <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
-         <Text>Done</Text>
-        </TouchableOpacity>
-        <DatePickerIOS
-          date={this.firstDate()}
-          onDateChange={(newDate) => {
-            this.setState({date: newDate})
-          }}
-          mode={'date'}
-          maximumDate={new Date()}
-          minimumDate={new Date('1/1/2000')}
-          timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-      </View>
-    );
-  }
-
-  renderButtonOrDatePicker() {
-    if(this.state.datePicker) {
-      return this.renderDatePicker();
-    }
+  renderButton() {
     return (
       <Button onPress={() => this.onSave()}>Start</Button>
     );
@@ -175,7 +147,6 @@ class Details extends Component {
 //dismisses keyboard from text input on dateinput so the user doesnt have to tap on 'return' manually
   _dismissKeyboard() {
     Keyboard.dismiss();
-    this.toggleDatePicker();
   }
 
 
@@ -228,7 +199,7 @@ class Details extends Component {
       </Form>
     </Container>
       <Container height = {4}>
-          {this.renderButtonOrDatePicker()}
+          {this.renderButton()}
         </Container>
       </Container>
     );
