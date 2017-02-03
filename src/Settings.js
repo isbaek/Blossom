@@ -72,12 +72,7 @@ function FormInput(props) {
 }
 
 function FormInputTouch(props) {
-  return <TouchableWithoutFeedback style={styles.FormInputHolder} onPress={props.onPress}>
-    <View style={styles.FormInputHolder}>
-    <FormInputTitle>{props.title || props.placeholder}</FormInputTitle>
-    <TextInput style={styles.FormInput} editable={false} {...props} onFocus={props.onPress} placeholderTextColor="#bbb" />
-    </View>
-  </TouchableWithoutFeedback>
+  return <View style={styles.DateInputHolder}>{props.children}</View>
 }
 
 
@@ -182,28 +177,33 @@ export default class Settings extends Component {
         <Container height = {4}>
       <SubTitle>Couple Date</SubTitle>
       <Form>
+      <FormInputTouch>
       <DatePicker
       style={{width:200}}
+      customStyles={{
+        dateInput: {
+          borderWidth: 0,
+          alignItems: 'flex-start',
+          justifyContent: 'center'
+        },
+        dateText: {
+          color: '#33',
+          paddingLeft: 10
+        }
+      }}
       placeholder="Enter date"
-        customStyles={{
-          btnTextText: {
-            fontSize: 16,
-            color: '#FF4981',
-            },
-            btnTextCancel: {
-              color: '#333',
-            },
-        }}
         date={this.firstDate()}
         onDateChange={(newDate) => {
           this.setState({date: newDate})
         }}
         mode='date'
+        showIcon={false}
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         maxDate={new Date()}
         minDate={new Date('1/1/2000')}
         timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
+      </FormInputTouch>
       </Form>
       </Container>
       <Container height ={5}>

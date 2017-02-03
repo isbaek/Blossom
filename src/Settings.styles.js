@@ -43,9 +43,14 @@ export default React.StyleSheet.create({
     padding: 5,
     borderColor: '#ddd',
     borderBottomWidth: 1,
-    minHeight: 70,
+    minHeight: 60,
   },
-
+  DateInputHolder: {
+    padding: 5,
+    borderColor: '#ddd',
+    borderBottomWidth: 1,
+    minHeight: 50,
+  },
   ButtonContainer: {
    flex: 1,
   },
