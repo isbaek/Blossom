@@ -69,9 +69,9 @@ function MonthToString(monthNumber) {
 
 function CurrentDate(props) {
   return (
-    <View style={{flexDirection: 'column', alignItems: 'center', padding: 20}}>
+    <View style={{flexDirection: 'column', alignItems: 'center', padding: 5}}>
       <View>
-        <Text style={{fontSize: 70}}>{props.date.getDate()}</Text>
+        <Text style={{fontSize: 60}}>{props.date.getDate()}</Text>
       </View>
       <View style={{flexDirection: 'row'}}>
         <Text style={{color: '#777', fontSize: 30,}}>{MonthToString(props.date.getMonth())} </Text>
@@ -93,7 +93,7 @@ function DeleteButton(props) {
 
 function Button(props) {
   return (
-    <View style={{margin: 30}}>
+    <View style={{margin: 30, marginTop: 15, marginBottom: 15}}>
       <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
         <Text style = {{alignItems: 'center', color: '#fff'}}>{props.children}</Text>
       </Icon.Button>
