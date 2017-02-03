@@ -12,6 +12,7 @@
     "react-native": "0.36.0",
     "react-native-calendar": "0.7.0",
     "react-native-chart": "^1.0.8-beta",
+    "react-native-datepicker": "^1.4.3",
     "react-native-navbar": "^1.5.0",
     "react-native-router-flux": "^3.35.0",
     "react-native-vector-icons": "3.0.0",

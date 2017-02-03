@@ -4,7 +4,6 @@ import {
   TextInput,
   View,
   Image,
-  DatePickerIOS,
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
@@ -16,6 +15,9 @@ import {
 import styles from './Settings.styles'
 import TopBar from './TopBar'
 import Details from './Details'
+
+//import custom DatePickerIOS
+import DatePicker from 'react-native-datepicker'
 
 ////
 // Containers
@@ -78,29 +80,16 @@ function FormInputTouch(props) {
   </TouchableWithoutFeedback>
 }
 
-function DateToString(date) {
-  return `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
-}
 
 
 export default class Settings extends Component {
   constructor(props) {
   super (props);
     this.state = {
-      datePicker: false,
       partnerName: null,
       yourName: null,
     }
   }
-
-    toggleDatePicker() {
-      var mode = !this.state.datePicker;
-      this.setState ({datePicker : mode});
-    }
-
-    onDateChange(date) {
-      this.setState ({date: date});
-    }
 
     //set variables to string aka user inputed data onChangeText()
     onName(str) {
@@ -148,47 +137,9 @@ export default class Settings extends Component {
     })
   }
 
-    renderDatePicker() {
-        return (
-          <View style = {styles.DatePicker}>
-            <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
-             <Text>Done</Text>
-            </TouchableOpacity>
-            <DatePickerIOS
-              date={this.firstDate()}
-              onDateChange={(newDate) => {
-                this.setState({date: newDate})
-              }}
-              mode={'date'}
-              maximumDate={new Date()}
-              minimumDate={new Date('1/1/2000')}
-              timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-          </View>
-        );
-      }
 
-    renderDatePicker() {
-    return (
-      <View style = {styles.DatePicker}>
-        <TouchableOpacity onPress = {this.toggleDatePicker.bind(this)} style = {{padding : 5, alignItems: 'flex-end'}}>
-         <Text>Done</Text>
-        </TouchableOpacity>
-        <DatePickerIOS
-          date={this.firstDate()}
-          onDateChange={(newDate) => {
-            this.setState({date: newDate})
-          }}
-          mode={'date'}
-          timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
-      </View>
-    );
-  }
-
-  renderButtonOrDatePicker() {
+  renderSaveButton() {
     var saveMessage = "Your data has been saved"
-    if(this.state.datePicker) {
-      return this.renderDatePicker();
-    }
     return (
       <Button onPress={() => Alert.alert (
         'Save Data',
@@ -231,11 +182,32 @@ export default class Settings extends Component {
         <Container height = {4}>
       <SubTitle>Couple Date</SubTitle>
       <Form>
-          <FormInputTouch title="First Date" value={DateToString(this.firstDate())} onPress={this.toggleDatePicker.bind(this)} />
+      <DatePicker
+      style={{width:200}}
+      placeholder="Enter date"
+        customStyles={{
+          btnTextText: {
+            fontSize: 16,
+            color: '#FF4981',
+            },
+            btnTextCancel: {
+              color: '#333',
+            },
+        }}
+        date={this.firstDate()}
+        onDateChange={(newDate) => {
+          this.setState({date: newDate})
+        }}
+        mode='date'
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        maxDate={new Date()}
+        minDate={new Date('1/1/2000')}
+        timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
       </Form>
       </Container>
       <Container height ={5}>
-      {this.renderButtonOrDatePicker()}
+      {this.renderSaveButton()}
       {this.renderResetButton()}
       </Container>
     </Container>
