@@ -5,7 +5,6 @@ import {
   View,
   Image,
   Keyboard,
-  DatePickerIOS,
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
@@ -20,6 +19,8 @@ import styles from './Details.styles'
 import blossomimg from '../design/background.png'
 
 import DismissKeyboard from 'dismissKeyboard';
+
+import DatePicker from 'react-native-datepicker'
 ////
 // Containers
 ////
@@ -58,9 +59,7 @@ function FormInput(props) {
 // FormField is like FormInput but not specifically a text input
 function FormField(props) {
   return (
-    <TouchableWithoutFeedback onPress={props.onPress}>
-      <View style={styles.FormInput}>{props.children}</View>
-      </TouchableWithoutFeedback>
+      <View style={styles.DateInput}>{props.children}</View>
     );
   }
 
@@ -202,9 +201,29 @@ class Details extends Component {
             placeholderTextColor="#ddd"
             onChangeText={(str) => this.onPartnerName(str)} />
           <FormField onPress={this._dismissKeyboard.bind(this)}>
-              <View value={this.firstDate()}>
-                <Text style = {{color: '#fff'}}> {(this.firstDate().getMonth()+1)}/{this.firstDate().getDate()}/{this.firstDate().getFullYear()}</Text>
-                </View>
+              <DatePicker
+              customStyles={{
+                dateInput: {
+                  borderWidth: 0,
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start'
+                },
+                dateText: {
+                  color: '#fff',
+                }
+              }}
+              placeholder="Enter date"
+              showIcon={false}
+                date={this.firstDate()}
+                onDateChange={(newDate) => {
+                  this.setState({date: newDate})
+                }}
+                mode='date'
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                maxDate={new Date()}
+                minDate={new Date('1/1/2000')}
+                timeZoneOffsetInMinutes={-1 * new Date().getTimezoneOffset()} />
         </FormField>
       </Form>
     </Container>
