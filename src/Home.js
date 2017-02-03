@@ -155,7 +155,7 @@ class Home extends Component {
   <TopBar rightButton={this.rightButton()}/>
   <Container>
           <Container height = {3}>
-            <LovingDaysNumber>{(daysSince +1)}{"\n"}
+            <LovingDaysNumber>{daysSince}{"\n"}
               <LovingDaysText>DAYS</LovingDaysText>
             </LovingDaysNumber>
             <LovingDaysCoupleText> Since {this.props.couple.you.name} and {this.props.couple.partner.name} met </LovingDaysCoupleText>
