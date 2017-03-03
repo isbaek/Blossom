@@ -1,6 +1,7 @@
 import React from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export default React.StyleSheet.create({
+const styles = EStyleSheet.create({
 
 
   Container: {
@@ -17,42 +18,40 @@ export default React.StyleSheet.create({
 
   },
 
+'@media (max-width: 350)' : {
   LovingDaysNumber: {
     color: 'white',
     borderRadius: 20,
-    padding: 10,
+    padding: '0.5rem',
     backgroundColor: '#FF4981',
-    fontSize: 80,
+    fontSize: '4rem',
     fontWeight: 'bold',
     overflow: 'hidden',
   },
 
   LovingDaysText: {
-    fontSize: 20,
+    fontSize: '0.75rem',
     color: 'white',
   },
 
   LovingDaysCoupleText: {
-    fontSize: 15,
+    fontSize: '0.75rem',
     color: '#FF4981',
-    margin: 15,
+    margin: '1rem',
   },
 
   MoodTodayText: {
     color: '#FF4981',
-    fontSize: 15,
+    fontSize: '0.75rem',
 
   },
 
   MoodTodayImage: {
-    height: 150,
-    width: 150,
+    height: '6rem',
+    width: '6rem',
   },
 
-  TipText: {
-    color: 'white',
-    borderRadius: 10,
-    padding: 5,
-    backgroundColor: '#FF4981',
-  }
+},
 });
+
+export default styles

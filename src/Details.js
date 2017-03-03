@@ -23,9 +23,9 @@ import DismissKeyboard from 'dismissKeyboard';
 
 import DatePicker from 'react-native-datepicker'
 
-
+//import extended stylesheet
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+//set rem based on screen size
 let {height, width} = Dimensions.get('window');
 EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
 ////

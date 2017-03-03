@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   TabBarIOS,
   Navigator,
+  Dimensions,
 } from 'react-native'
 import AddEvent from './AddEvent'
 import TabBar from './TabBar'
@@ -17,6 +18,12 @@ import styles from './Home.styles'
 import TopBar from './TopBar'
 import moment from 'moment'
 import CalendarPage from './CalendarPage'
+
+//import extended stylesheet
+import EStyleSheet from 'react-native-extended-stylesheet';
+//set rem based on screen size
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
 
 // Map mood names to images
 var MOODS = {
