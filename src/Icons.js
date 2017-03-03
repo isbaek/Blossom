@@ -1,5 +1,15 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
+import {
+  Dimensions,
+  Text
+} from 'react-native'
+
+//import extended stylesheet
+import EStyleSheet from 'react-native-extended-stylesheet';
+//set rem based on screen size
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
 
 import styles from './Icons.styles'
 
@@ -26,7 +36,7 @@ function EventTypeIcon(props) {
     iconStyle={[styles.EventTypeIcon, {backgroundColor: bgColor, color: textColor}]}
     backgroundColor={textColor}
     borderRadius={50}
-  >{props.text}</Icon.Button>;
+  ><Text style = {styles.iconText}>{props.text}</Text></Icon.Button>;
 }
 
 function IconFight(props) {
