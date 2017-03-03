@@ -11,7 +11,6 @@ import {
   TouchableWithoutFeedback,
   Navigator,
 } from 'react-native'
-import styles from './styles'
 
 // Custom Vector Icons
 import Icon from 'react-native-vector-icons/Ionicons';
