@@ -13,8 +13,8 @@ import {
   Switch,
   Animated,
   ScrollView,
+  Dimensions,
 } from 'react-native'
-import styles from './styles'
 import AddEvent from './AddEvent'
 import TopBar from './TopBar'
 import Icons from './Icons'
@@ -24,6 +24,24 @@ import moment from 'moment'
 import Calendar from 'react-native-calendar'
 // Custom Vector Icons
 import Icon from 'react-native-vector-icons/Ionicons'
+
+//import extended stylesheet
+import EStyleSheet from 'react-native-extended-stylesheet';
+//set rem based on screen size
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
+
+
+function Container(props) {
+  return (
+    <View style={[
+        styles.Container, styles.center,
+        (props.style || {}), {flex: (props.height || 1)},
+    ]}>
+      {props.children}
+    </View>
+  );
+}
 
 ////
 // Components
@@ -43,12 +61,7 @@ function CalendarWidget(props) {
       onTouchNext={() => console.log('Forward TOUCH')}
       onSwipePrev={() => console.log('Back SWIPE')}
       onSwipeNext={() => console.log('Forward SWIPE')}
-      customStyle={{
-        calendarContainer: {backgroundColor: 'white'},
-        currentDayCircle: {backgroundColor: '#FF4981'},
-        currentDayText: {color: '#FF4981'},
-        }}
-        />
+      customStyle={styles} />
   );
 }
 
@@ -81,9 +94,9 @@ function EventList(props) {
 
 function AddButton(props) {
   return (
-    <View style={{margin: 30}}>
+    <View style={styles.Button}>
       <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
-        <Text style = {{alignItems: 'center', color: '#fff'}}> Add Event </Text>
+        <Text style = {styles.ButtonText}> Add Event </Text>
       </Icon.Button>
     </View>
   );
@@ -179,10 +192,62 @@ export default class CalendarPage extends Component {
 
   return (
     <View style={styles.Container}>
-      <TopBar rightButton={this.rightButton()} />
-      <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
-      {this.renderEventsOrButton()}
+        <TopBar
+        title={{title:'Blossom', tintColor: '#FFF' }}
+        rightButton={this.rightButton()}
+        style={styles.navBar} />
+      <Container height ={3}>
+        <CalendarWidget eventDates={this.eventDates()} onDateSelect={this.onDateSelect.bind(this)} />
+      </Container>
+      <Container height ={2}>
+        {this.renderEventsOrButton()}
+      </Container>
     </View>
   );
  }
 }
+
+
+const styles = EStyleSheet.create({
+  Container: {
+    flex: 1,
+  },
+
+  '@media (max-width: 350)' : {
+      calendarContainer: {
+        backgroundColor: 'white',
+        maxHeight: '2.5rem',
+      },
+      day: {
+        fontSize: '0.75rem',
+      },
+      title: {
+        fontSize: '0.75rem',
+      },
+      dayHeading:{
+        fontSize: '0.75rem',
+      },
+      weekendHeading: {
+        fontSize: '0.75rem',
+      },
+      controlButtonText: {
+        fontSize: '0.75rem',
+      },
+      currentDayCircle: {
+        backgroundColor: '#FF4981',
+      },
+      currentDayText: {
+        color: '#FF4981',
+        fontSize: '0.75rem',
+      },
+      Button:{
+        margin: '3rem',
+      },
+      ButtonText: {
+        alignItems: 'center',
+        color: '#fff',
+        fontSize: '0.75rem'
+      }
+  },
+
+});
