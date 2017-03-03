@@ -13,6 +13,7 @@ import {
   Navigator,
   Switch,
   Animated,
+  Dimensions,
 } from 'react-native'
 import styles from './AddEvent.styles'
 
@@ -25,6 +26,12 @@ import Icon from 'react-native-vector-icons/Ionicons'
 //import lodash
 import _ from 'lodash'
 import moment from 'moment';
+
+//import extended stylesheet
+import EStyleSheet from 'react-native-extended-stylesheet';
+//set rem based on screen size
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
 
 function HighlighedIcon(props) {
   var style = [styles.HighlighedIcon];
@@ -71,11 +78,11 @@ function CurrentDate(props) {
   return (
     <View style={{flexDirection: 'column', alignItems: 'center', padding: 5}}>
       <View>
-        <Text style={{fontSize: 60}}>{props.date.getDate()}</Text>
+        <Text style={styles.day}>{props.date.getDate()}</Text>
       </View>
       <View style={{flexDirection: 'row'}}>
-        <Text style={{color: '#777', fontSize: 30,}}>{MonthToString(props.date.getMonth())} </Text>
-        <Text style={{color: '#444', fontSize: 30,}}>{props.date.getFullYear()}</Text>
+        <Text style={styles.month}>{MonthToString(props.date.getMonth())} </Text>
+        <Text style={styles.year}>{props.date.getFullYear()}</Text>
       </View>
     </View>
   );
@@ -83,9 +90,9 @@ function CurrentDate(props) {
 
 function DeleteButton(props) {
   return (
-    <View style={{marginBottom: 30, marginRight: 30, marginLeft: 30}}>
+    <View style={styles.deleteButton}>
       <Icon.Button style={{borderRadius: 5, borderColor: 'red', borderWidth: 1}} name ="ios-trash" color="#fff" backgroundColor = "#fff" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
-        <Text style = {{alignItems: 'center', color: 'red'}}>{props.children}</Text>
+        <Text style = {styles.deleteButtonText}>{props.children}</Text>
       </Icon.Button>
     </View>
   );
@@ -93,9 +100,9 @@ function DeleteButton(props) {
 
 function Button(props) {
   return (
-    <View style={{margin: 30, marginTop: 15, marginBottom: 15}}>
+    <View style={styles.button}>
       <Icon.Button style={{borderRadius: 5}} name ="ios-heart" color="#fff" backgroundColor = "#FF4981" alignItems= 'center' justifyContent= 'center' onPress={props.onPress}>
-        <Text style = {{alignItems: 'center', color: '#fff'}}>{props.children}</Text>
+        <Text style = {styles.buttonText}>{props.children}</Text>
       </Icon.Button>
     </View>
   );
