@@ -76,7 +76,7 @@ function EventSummary(props) {
       </View>
       <ScrollView
       contentContainerStyle={styles.contentContainer}>
-      <Text style={{padding: 15, color: '#a8a8a8'}}>{props.notes || props.name}</Text>
+      <Text style={styles.Notes}>{props.notes || props.name}</Text>
       </ScrollView>
     </View>
   );
@@ -247,6 +247,13 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
         color: '#fff',
         fontSize: '0.75rem'
+      },
+      //notes
+      Notes: {
+        padding: '0.9rem',
+        color: '#a8a8a8',
+        fontSize: '0.75rem'
+
       }
   },
 
