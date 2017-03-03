@@ -11,7 +11,8 @@ import {
   TabBarIOS,
   Navigator,
   Switch,
-  ScrollView
+  ScrollView,
+  Dimensions,
 } from 'react-native'
 import TabBar from './TabBar'
 import styles from './Details.styles'
@@ -21,6 +22,12 @@ import blossomimg from '../design/background.png'
 import DismissKeyboard from 'dismissKeyboard';
 
 import DatePicker from 'react-native-datepicker'
+
+
+import EStyleSheet from 'react-native-extended-stylesheet';
+
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
 ////
 // Containers
 ////
@@ -181,6 +188,7 @@ class Details extends Component {
                 },
                 dateText: {
                   color: '#fff',
+                  fontSize: 13,
                 }
               }}
               placeholder="Enter date"
