@@ -75,7 +75,13 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     color: '#fff',
     fontSize: '0.75rem'
-  }
+  },
+  //navBar
+  navBar: {
+      fontSize: '0.9rem',
+      paddingBottom: '2.5rem'
+  },
+
 }
 });
 

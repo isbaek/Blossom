@@ -16,7 +16,6 @@ import {
   Dimensions,
 } from 'react-native'
 import styles from './AddEvent.styles'
-
 import Icons from './Icons'
 
 //Navigation Bar Library
@@ -31,7 +30,7 @@ import moment from 'moment';
 import EStyleSheet from 'react-native-extended-stylesheet';
 //set rem based on screen size
 let {height, width} = Dimensions.get('window');
-EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
+EStyleSheet.build({styles, rem: width > 400 ? 18 : 16});
 
 function HighlighedIcon(props) {
   var style = [styles.HighlighedIcon];
@@ -51,18 +50,18 @@ function DateTypeGrid(props) {
     <View>
       <View style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: "space-between"}}>
         <HighlighedIcon active={props.sex} >
-          <Icons.Sex inverted={props.sex} onPress={() => props.onTypeChange({sex: !props.sex})} />
+          <Icons.Sex text="Sex" inverted={props.sex} onPress={() => props.onTypeChange({sex: !props.sex})} />
         </HighlighedIcon>
         <HighlighedIcon active={props.fight} >
-          <Icons.Fight inverted={props.fight} onPress={() => props.onTypeChange({fight: !props.fight})} />
+          <Icons.Fight text="Fight" inverted={props.fight} onPress={() => props.onTypeChange({fight: !props.fight})} />
         </HighlighedIcon>
       </View>
       <View style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: "space-around"}}>
         <HighlighedIcon active={props.nightIn} >
-          <Icons.NightIn inverted={props.nightIn} onPress={() => props.onTypeChange({nightIn: !props.nightIn})} />
+          <Icons.NightIn text="Night In" inverted={props.nightIn} onPress={() => props.onTypeChange({nightIn: !props.nightIn})} />
         </HighlighedIcon>
         <HighlighedIcon active={props.nightOut} >
-          <Icons.NightOut inverted={props.nightOut} onPress={() => props.onTypeChange({nightOut: !props.nightOut})} />
+          <Icons.NightOut text= "Night Out" inverted={props.nightOut} onPress={() => props.onTypeChange({nightOut: !props.nightOut})} />
         </HighlighedIcon>
       </View>
     </View>
@@ -217,9 +216,9 @@ export default class AddEvent extends Component {
   return (
     <View style={styles.Container}>
       <NavigationBar
-        title = {{title: 'Add Event', }}
-        leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
-        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
+        title = {{title: 'Add Event', style: styles.navBar}}
+        leftButton = {{title : 'Cancel', tintColor: '#FF4981', style: styles.navBar, handler:() => this.props.navigator.pop() }}
+        rightButton = {{title: 'Done', tintColor: '#FF4981', style: styles.navBar, handler:() => this.onSave() }}
       />
 
       <CurrentDate date={this.state.date} />
