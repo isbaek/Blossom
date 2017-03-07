@@ -68,14 +68,16 @@ function CalendarWidget(props) {
 function EventSummary(props) {
   return (
     <View>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', padding: 15}}>
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', padding: 10}}>
         {props.sex ? <Icons.Sex /> : null}
         {props.fight ? <Icons.Fight /> : null}
         {props.nightOut ? <Icons.NightOut /> : null}
         {props.nightIn ? <Icons.NightIn /> : null}
       </View>
       <ScrollView
-      contentContainerStyle={styles.contentContainer}>
+      contentContainerStyle={styles.contentContainer}
+      automaticallyAdjustContentInsets={false}
+      contentInset={{bottom:48}} >
       <Text style={styles.Notes}>{props.notes || props.name}</Text>
       </ScrollView>
     </View>
@@ -249,7 +251,8 @@ const styles = EStyleSheet.create({
       },
       //notes
       Notes: {
-        padding: '0.9rem',
+        paddingLeft: '0.9rem',
+        paddingRight: '0.9rem',
         color: '#a8a8a8',
         fontSize: '0.75rem'
 
