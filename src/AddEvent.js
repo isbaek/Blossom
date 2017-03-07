@@ -50,18 +50,18 @@ function DateTypeGrid(props) {
     <View>
       <View style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: "space-between"}}>
         <HighlighedIcon active={props.sex} >
-          <Icons.Sex text="Sex" inverted={props.sex} onPress={() => props.onTypeChange({sex: !props.sex})} />
+          <Icons.Sex text="Sex" active={props.sex} onPress={() => props.onTypeChange({sex: !props.sex})} />
         </HighlighedIcon>
         <HighlighedIcon active={props.fight} >
-          <Icons.Fight text="Fight" inverted={props.fight} onPress={() => props.onTypeChange({fight: !props.fight})} />
+          <Icons.Fight text="Fight" active={props.fight} onPress={() => props.onTypeChange({fight: !props.fight})} />
         </HighlighedIcon>
       </View>
       <View style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: "space-around"}}>
         <HighlighedIcon active={props.nightIn} >
-          <Icons.NightIn text="Night In" inverted={props.nightIn} onPress={() => props.onTypeChange({nightIn: !props.nightIn})} />
+          <Icons.NightIn text="Night In" active={props.nightIn} onPress={() => props.onTypeChange({nightIn: !props.nightIn})} />
         </HighlighedIcon>
         <HighlighedIcon active={props.nightOut} >
-          <Icons.NightOut text= "Night Out" inverted={props.nightOut} onPress={() => props.onTypeChange({nightOut: !props.nightOut})} />
+          <Icons.NightOut text= "Night Out" active={props.nightOut} onPress={() => props.onTypeChange({nightOut: !props.nightOut})} />
         </HighlighedIcon>
       </View>
     </View>

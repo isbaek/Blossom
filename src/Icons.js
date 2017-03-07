@@ -21,21 +21,38 @@ const COLORS = {
   BLUE: "#0076FF",
 };
 
+// Style an icon's text according to a given color
+function iconTextStyle(color) {
+  // We have to wrap this in an EStyleSheet.create call
+  // because react-native doesn't natively understand the 'rem' font-size unit
+  return EStyleSheet.create({
+    abc: {
+      fontSize: '0.75rem',
+      color: color,
+    }
+  }).abc;
+}
+
 function EventTypeIcon(props) {
-  var bgColor = props.color;
-  var textColor = "#fff";
-  if(props.inverted) {
-    bgColor = "#fff";
-    textColor = props.color;
+  // Default background color
+  const DEFAULT_BG = "#fff";
+
+  // By default background is white/transparent
+  var bgColor = DEFAULT_BG;
+  var textColor = props.color;
+  // Invert colors if icon is active/selected
+  if(props.active) {
+    bgColor = props.color;
+    textColor = DEFAULT_BG;
   }
 
   return <Icon.Button
     {...props}
     name={props.icon}
-    color={bgColor}
+    color={textColor}
     iconStyle={[styles.EventTypeIcon, {backgroundColor: bgColor, color: textColor}]}
-    backgroundColor={textColor}
-    borderRadius={50}><Text style={styles.iconText}>{props.text}</Text></Icon.Button>;
+    backgroundColor={bgColor}
+    borderRadius={50}><Text style={iconTextStyle(textColor)}>{props.text}</Text></Icon.Button>;
 }
 
 function IconFight(props) {

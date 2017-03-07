@@ -17,10 +17,6 @@ const styles = EStyleSheet.create({
     textAlign: "center",
     overflow: 'hidden',
   },
-  iconText: {
-    fontSize: '0.75rem',
-    color: this.textColor,
-  }
 },
 })
 
