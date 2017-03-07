@@ -251,8 +251,8 @@ const styles = EStyleSheet.create({
       },
       //notes
       Notes: {
-        paddingLeft: '0.9rem',
-        paddingRight: '0.9rem',
+        paddingLeft: '1.2rem',
+        paddingRight: '1.2rem',
         color: '#a8a8a8',
         fontSize: '0.75rem'
 
