@@ -174,7 +174,7 @@ export default class Settings extends Component {
   return (
     <Container>
       <TopBar />
-        <Container height = {6}>
+        <Container height = {5}>
       <SubTitle>Couple Info</SubTitle>
       <Form>
         <FormInput placeholder="Your name" value={this.yourName()} onChangeText={(str) => this.onName(str)} />
@@ -214,7 +214,7 @@ export default class Settings extends Component {
       </FormInputTouch>
       </Form>
       </Container>
-      <Container height ={5}>
+      <Container  style = {{bottom: 48}} height ={3}>
       {this.renderSaveButton()}
       {this.renderResetButton()}
       </Container>

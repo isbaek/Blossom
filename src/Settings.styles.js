@@ -17,17 +17,17 @@ const styles = EStyleSheet.create({
   SubTitle: {
     fontSize: '0.8rem',
     color: '#333',
-    margin: '1.2rem',
+    marginLeft: '1.2rem',
+    marginRight: '1.2rem',
     fontWeight: "bold",
   },
 
   Form: {
     flex: 1,
-    margin: 10,
     padding: 10,
-    marginTop: 0,
-    paddingTop: 0,
-    //minHeight: 150,
+    marginLeft: '1.2rem',
+    marginRight: '1.2rem',
+    marginBottom: 0,
   },
 
   FormInput: {
