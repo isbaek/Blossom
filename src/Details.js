@@ -27,7 +27,7 @@ import DatePicker from 'react-native-datepicker'
 import EStyleSheet from 'react-native-extended-stylesheet';
 //set rem based on screen size
 let {height, width} = Dimensions.get('window');
-EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
+EStyleSheet.build({styles, rem: width > 400 ? 18 : 16});
 ////
 // Containers
 ////
@@ -188,7 +188,7 @@ class Details extends Component {
                 },
                 dateText: {
                   color: '#fff',
-                  fontSize: 13,
+                  fontSize: 12,
                 }
               }}
               placeholder="Enter date"

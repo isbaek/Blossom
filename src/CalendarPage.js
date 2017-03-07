@@ -29,7 +29,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import EStyleSheet from 'react-native-extended-stylesheet';
 //set rem based on screen size
 let {height, width} = Dimensions.get('window');
-EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
+EStyleSheet.build({styles, rem: width > 400 ? 18 : 16});
 
 
 function Container(props) {
@@ -193,7 +193,6 @@ export default class CalendarPage extends Component {
   return (
     <View style={styles.Container}>
         <TopBar
-        title={{title:'Blossom', tintColor: '#FFF' }}
         rightButton={this.rightButton()}
         style={styles.navBar} />
       <Container height ={3}>
@@ -216,7 +215,7 @@ const styles = EStyleSheet.create({
   '@media (max-width: 350)' : {
       calendarContainer: {
         backgroundColor: 'white',
-        maxHeight: '2.5rem',
+        maxHeight: '2.6rem',
       },
       day: {
         fontSize: '0.75rem',
