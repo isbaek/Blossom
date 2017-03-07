@@ -50,7 +50,7 @@ function EventTypeIcon(props) {
     {...props}
     name={props.icon}
     color={textColor}
-    iconStyle={[styles.EventTypeIcon, {backgroundColor: bgColor, color: textColor}]}
+    iconStyle={[styles.EventTypeIcon, {backgroundColor: textColor, color: bgColor}]}
     backgroundColor={bgColor}
     borderRadius={50}><Text style={iconTextStyle(textColor)}>{props.text}</Text></Icon.Button>;
 }
