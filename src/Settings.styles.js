@@ -62,16 +62,16 @@ const styles = EStyleSheet.create({
   Button: {
     backgroundColor: "#333",
     padding: '0.75rem',
-    marginBottom: '0.3rem',
-    marginLeft: '0.3rem',
-    marginRight: '0.3rem',
+    marginBottom: '0.5rem',
+    marginLeft: '1.2rem',
+    marginRight: '1.2rem',
     borderRadius: 5,
   },
 
   ResetButton: {
     padding: '0.75rem',
-    marginLeft: '0.3rem',
-    marginRight: '0.3rem',
+    marginLeft: '1.2rem',
+    marginRight: '1.2rem',
     //margin: '0.3rem',
     borderRadius: 5,
     borderColor: 'red',
