@@ -218,6 +218,7 @@ const styles = EStyleSheet.create({
       calendarContainer: {
         backgroundColor: 'white',
         maxHeight: '2.6rem',
+        top: -20,
       },
       day: {
         fontSize: '0.75rem',
