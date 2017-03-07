@@ -11,6 +11,7 @@ import {
   Navigator,
   Alert,
   ScrollView,
+  Dimensions,
 } from 'react-native'
 import styles from './Settings.styles'
 import TopBar from './TopBar'
@@ -18,6 +19,12 @@ import Details from './Details'
 
 //import custom DatePickerIOS
 import DatePicker from 'react-native-datepicker'
+
+//import extended stylesheet
+import EStyleSheet from 'react-native-extended-stylesheet';
+//set rem based on screen size
+let {height, width} = Dimensions.get('window');
+EStyleSheet.build({styles, rem: width > 400 ? 18 : 16});
 
 ////
 // Containers
@@ -45,9 +52,9 @@ function Button(props) {
 function ResetButton(props) {
   return (
   <TouchableHighlight style={[styles.ResetButton, styles.center]} onPress={props.onPress}>
-    <Text style={{color: '#FF0000', textAlign: 'center'}}>{props.children}</Text>
+    <Text style={styles.ResetButtonText}>{props.children}</Text>
   </TouchableHighlight>
-  );
+);
 }
 ////
 // Components
@@ -188,7 +195,8 @@ export default class Settings extends Component {
         },
         dateText: {
           color: '#33',
-          paddingLeft: 10
+          paddingLeft: 10,
+          fontSize: 12,
         }
       }}
       placeholder="Enter date"

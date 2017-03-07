@@ -1,6 +1,7 @@
 import React from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export default React.StyleSheet.create({
+const styles = EStyleSheet.create({
   Container: {
     flex: 1,
     flexWrap: 'nowrap',
@@ -12,10 +13,11 @@ export default React.StyleSheet.create({
     alignItems: 'center',
   },
 
+'@media (max-width: 350)' : {
   SubTitle: {
-    fontSize: 17,
+    fontSize: '0.8rem',
     color: '#333',
-    margin: 20,
+    margin: '1.2rem',
     fontWeight: "bold",
   },
 
@@ -31,39 +33,46 @@ export default React.StyleSheet.create({
   FormInput: {
     flex: 1,
     paddingLeft: 10,
-    fontSize: 15,
+    fontSize: '0.75rem',
     color: '#333',
   },
 
   FormInputTitle: {
     fontWeight: 'bold',
     color: '#888',
+    fontSize: '0.75rem',
   },
   FormInputHolder: {
     padding: 5,
     borderColor: '#ddd',
     borderBottomWidth: 1,
-    minHeight: 60,
+    minHeight: '4rem'
   },
+
   DateInputHolder: {
     padding: 5,
     borderColor: '#ddd',
     borderBottomWidth: 1,
-    minHeight: 50,
+    //maxHeight: '2rem'
   },
+
   ButtonContainer: {
    flex: 1,
   },
   Button: {
     backgroundColor: "#333",
-    padding: 15,
-    margin: 10,
+    padding: '0.75rem',
+    marginBottom: '0.3rem',
+    marginLeft: '0.3rem',
+    marginRight: '0.3rem',
     borderRadius: 5,
   },
 
   ResetButton: {
-    padding: 15,
-    margin: 10,
+    padding: '0.75rem',
+    marginLeft: '0.3rem',
+    marginRight: '0.3rem',
+    //margin: '0.3rem',
     borderRadius: 5,
     borderColor: 'red',
     backgroundColor: '#FFFFFF',
@@ -73,8 +82,19 @@ export default React.StyleSheet.create({
   ButtonText: {
     color: '#fff',
     textAlign: 'center',
+    fontSize: '0.75rem'
   },
+  ResetButtonText: {
+    color: '#FF0000',
+    textAlign: 'center',
+    fontSize: '0.75rem'
+  },
+
   DatePicker: {
     backgroundColor: '#fff',
-  }
+  },
+},
+
 });
+
+export default styles
