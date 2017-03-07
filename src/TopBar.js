@@ -53,13 +53,8 @@ const styles = EStyleSheet.create({
 
   '@media (max-width: 350)' : {
       navBar: {
-        maxHeight: '2.5rem'
+        top: -20
       },
-      title: {
-        fontSize: '0.9rem',
-        paddingBottom: '2.5rem'
-      },
-
   },
 
 });
