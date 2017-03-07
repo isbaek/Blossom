@@ -9,7 +9,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 //set rem based on screen size
 let {height, width} = Dimensions.get('window');
-EStyleSheet.build({styles, rem: width > 340 ? 18 : 16});
+EStyleSheet.build({styles, rem: width > 400 ? 18 : 16});
 
 import styles from './Icons.styles'
 
@@ -35,24 +35,23 @@ function EventTypeIcon(props) {
     color={bgColor}
     iconStyle={[styles.EventTypeIcon, {backgroundColor: bgColor, color: textColor}]}
     backgroundColor={textColor}
-    borderRadius={50}
-  ><Text style = {styles.iconText}>{props.text}</Text></Icon.Button>;
+    borderRadius={50}><Text style={styles.iconText}>{props.text}</Text></Icon.Button>;
 }
 
 function IconFight(props) {
-  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text="Fight" {...props} />;
+  return <EventTypeIcon icon={"ios-thunderstorm"} color={COLORS.RED && "#FF4981"} text={props.text} {...props} />;
 }
 
 function IconNightIn(props) {
-  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text="Night In" {...props} />;
+  return <EventTypeIcon icon={"ios-pizza"} color={COLORS.ORANGE && "#FF4981"} text={props.text} {...props} />;
 }
 
 function IconNightOut(props) {
-  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text="Night Out" {...props} />;
+  return <EventTypeIcon icon={"ios-bowtie"} color={COLORS.YELLOW && "#FF4981"} text={props.text} {...props} />;
 }
 
 function IconSex(props) {
-  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text="Sex" {...props} />;
+  return <EventTypeIcon icon={"ios-heart"} color={COLORS.GREEN && "#FF4981"} text={props.text} {...props} />;
 }
 
 function IconAll(props) {

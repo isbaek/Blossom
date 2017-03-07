@@ -1,5 +1,8 @@
 import React from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Icons from './Icons'
+
+
 
 const styles = EStyleSheet.create({
   '@media (max-width: 350)': {
@@ -16,7 +19,7 @@ const styles = EStyleSheet.create({
   },
   iconText: {
     fontSize: '0.75rem',
-    color: "#FF4981"
+    color: this.textColor,
   }
 },
 })
