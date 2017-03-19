@@ -13,7 +13,7 @@ const styles = EStyleSheet.create({
     alignItems: 'stretch',
   },
 
-'@media (max-width: 350)' : {
+'@media (max-width: 350) and (max-height: 380)' : {
   TitleText: {
     color: '#fff',
     textAlign: 'center',
@@ -80,7 +80,7 @@ const styles = EStyleSheet.create({
   }
 },
 
-'@media (max-width: 400) and (min-height: 400)' : {
+'@media (max-width: 350) and (min-height: 400)' : {
   TitleText: {
     color: '#fff',
     textAlign: 'center',
@@ -89,10 +89,10 @@ const styles = EStyleSheet.create({
     textShadowRadius: 4,
   },
   Title: {
-    fontSize: 30,
+    fontSize: 28,
   },
   SubTitle: {
-    fontSize: '0.9rem',
+    fontSize: 15,
   },
   FormContainer: {
     flex: 4,
@@ -110,7 +110,7 @@ const styles = EStyleSheet.create({
     padding: 15,
     flex: 1,
     margin: 5,
-    fontSize: 16,
+    fontSize: 15,
     backgroundColor: 'rgba(0,0,0,0.2)',
     color: '#fff',
     borderRadius: 5,
@@ -119,7 +119,7 @@ const styles = EStyleSheet.create({
     padding: 15,
     flex: 1,
     margin: 5,
-    fontSize: 16,
+    fontSize: 15,
     backgroundColor: 'rgba(0,0,0,0.2)',
     color: '#fff',
     borderRadius: 5,
@@ -136,13 +136,13 @@ const styles = EStyleSheet.create({
   ButtonText: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 15,
   },
   DatePicker: {
     backgroundColor: '#fff',
   },
   dateSize: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#ddd"
   }
 
