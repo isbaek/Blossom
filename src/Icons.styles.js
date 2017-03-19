@@ -5,7 +5,7 @@ import Icons from './Icons'
 
 
 const styles = EStyleSheet.create({
-  '@media (max-width: 350)': {
+  '@media (max-width: 350) and (max-height: 380)': {
   EventTypeIcon: {
     backgroundColor: "#fff",
     color: "#333",
@@ -18,6 +18,21 @@ const styles = EStyleSheet.create({
     overflow: 'hidden',
   },
 },
+
+//iphone 5
+'@media (max-width: 350) and (min-height: 400)' : {
+    EventTypeIcon: {
+      backgroundColor: "#fff",
+      color: "#333",
+      borderRadius: 15,
+      padding: 7,
+      fontSize: 15,
+      width: 28,
+      height: 28,
+      textAlign: "center",
+      overflow: 'hidden',
+    },
+  },
 })
 
 export default styles

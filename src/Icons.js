@@ -26,11 +26,19 @@ function iconTextStyle(color) {
   // We have to wrap this in an EStyleSheet.create call
   // because react-native doesn't natively understand the 'rem' font-size unit
   return EStyleSheet.create({
-    abc: {
-      fontSize: '0.75rem',
-      color: color,
-    }
-  }).abc;
+    '@media (max-width: 350) and (min-height: 400)' :{
+        abc: {
+          color: color,
+          fontSize: 15,
+        }
+      },
+      '@media (max-width: 350) and (max-height: 380)':{
+        abc: {
+          color: color,
+          fontSize: '0.75rem',
+        }
+      },
+    }).abc;
 }
 
 function EventTypeIcon(props) {
