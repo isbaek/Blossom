@@ -52,6 +52,42 @@ const styles = EStyleSheet.create({
   },
 
 },
+
+//iphone 5
+'@media (max-width: 350) and (min-height: 460)'  : {
+  LovingDaysNumber: {
+    color: 'white',
+    borderRadius: 20,
+    padding: 10,
+    backgroundColor: '#FF4981',
+    fontSize: 65,
+    fontWeight: 'bold',
+    overflow: 'hidden',
+  },
+
+  LovingDaysText: {
+    fontSize: 16,
+    color: 'white',
+  },
+
+  LovingDaysCoupleText: {
+    fontSize: 16,
+    color: '#FF4981',
+    margin: 15,
+  },
+
+  MoodTodayText: {
+    color: '#FF4981',
+    fontSize: 16,
+
+  },
+
+  MoodTodayImage: {
+    height: 130,
+    width: 130,
+  },
+
+},
 });
 
 export default styles
