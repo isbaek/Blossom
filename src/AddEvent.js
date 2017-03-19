@@ -216,9 +216,10 @@ export default class AddEvent extends Component {
   return (
     <View style={styles.Container}>
       <NavigationBar
-        title = {{title: 'Add Event', style: styles.navBar}}
-        leftButton = {{title : 'Cancel', tintColor: '#FF4981', style: styles.navBar, handler:() => this.props.navigator.pop() }}
-        rightButton = {{title: 'Done', tintColor: '#FF4981', style: styles.navBar, handler:() => this.onSave() }}
+        containerStyle = {styles.navBar}
+        title = {{title: 'Add Event'}}
+        leftButton = {{title : 'Cancel', tintColor: '#FF4981', handler:() => this.props.navigator.pop() }}
+        rightButton = {{title: 'Done', tintColor: '#FF4981', handler:() => this.onSave() }}
       />
 
       <CurrentDate date={this.state.date} />
