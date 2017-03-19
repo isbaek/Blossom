@@ -20,7 +20,7 @@ const styles = EStyleSheet.create({
 },
 
 //iphone 5
-'@media (max-width: 350) and (min-height: 400)' : {
+'@media (max-width: 350) and (max-height: 470)' : {
     EventTypeIcon: {
       backgroundColor: "#fff",
       color: "#333",
@@ -34,8 +34,8 @@ const styles = EStyleSheet.create({
     },
   },
 
-  //iphone 6
-'@media (max-width: 400) and (min-height: 550)': {
+  //iphone 6/+
+'@media (min-width: 375) and (min-height: 550)': {
       EventTypeIcon: {
         backgroundColor: "#fff",
         color: "#333",

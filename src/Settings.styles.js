@@ -100,7 +100,8 @@ const styles = EStyleSheet.create({
   }
 },
 
-'@media (max-width: 350) and (min-height: 400)'  : {
+//iphone 5
+'@media (max-width: 350) and (max-height: 470)'  : {
   SubTitle: {
     fontSize: 16,
     color: '#333',
@@ -187,7 +188,7 @@ const styles = EStyleSheet.create({
   }
 },
 
-'@media (max-width: 400) and (min-height: 550)' : {
+'@media (min-width: 375) and (min-height: 550)' : {
   SubTitle: {
     fontSize: 16,
     color: '#333',

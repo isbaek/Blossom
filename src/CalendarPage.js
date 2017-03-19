@@ -321,7 +321,7 @@ const styles = EStyleSheet.create({
       }
   },
 
-'@media (max-width: 400) and (min-height: 550)' : {
+'@media (min-width: 375) and (min-height: 550)' : {
         eventSummary: {
           flexDirection: 'row',
           flexWrap: 'wrap',

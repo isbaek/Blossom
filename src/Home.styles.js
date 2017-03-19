@@ -54,7 +54,7 @@ const styles = EStyleSheet.create({
 },
 
 //iphone 5
-'@media (max-width: 350) and (min-height: 460)'  : {
+'@media (max-width: 350) and (max-height: 470)'  : {
   LovingDaysNumber: {
     color: 'white',
     borderRadius: 20,
@@ -90,7 +90,7 @@ const styles = EStyleSheet.create({
 },
 
 //iphone 6
-'@media (max-width: 400) and (min-height: 550)' : {
+'@media (min-width: 375) and (min-height: 550)' : {
   LovingDaysNumber: {
     color: 'white',
     borderRadius: 20,

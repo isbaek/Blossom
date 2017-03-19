@@ -26,7 +26,7 @@ function iconTextStyle(color) {
   // We have to wrap this in an EStyleSheet.create call
   // because react-native doesn't natively understand the 'rem' font-size unit
   return EStyleSheet.create({
-    '@media (max-width: 350) and (min-height: 400)' :{
+    '@media (max-width: 350) and (max-height: 470)' :{
         abc: {
           color: color,
           fontSize: 15,
@@ -38,7 +38,7 @@ function iconTextStyle(color) {
           fontSize: '0.75rem',
         }
       },
-      '@media (max-width: 400) and (min-height: 550)' : {
+      '@media (min-width: 375) and (min-height: 550)' : {
         abc: {
           color: color,
           fontSize: 16,
