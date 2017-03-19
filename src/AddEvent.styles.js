@@ -76,9 +76,86 @@ const styles = EStyleSheet.create({
     color: '#fff',
     fontSize: '0.75rem'
   },
-  
+
   navBar: {
     top: -20
+  },
+
+},
+
+//iphone 5
+'@media (max-width: 350) and (min-height: 400)'  : {
+  HighlighedIcon: {
+    flex: 1,
+    margin: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+
+  HighlighedIconActive: {
+    backgroundColor: '#FF4981',
+    color: '#333',
+  },
+
+  HighlighedIconActiveText: {
+    color: '#333'
+  },
+
+  Notes: {
+    borderRadius: 5,
+    borderColor: '#D8D8D8',
+    borderWidth: 1,
+    margin: 10,
+    minHeight: 120,
+  },
+  NotesInput: {
+    padding: 5,
+    minHeight: 120,
+    flex: 1,
+    color: '#bbb',
+    fontSize: 15,
+  },
+  //date section
+  day: {
+    fontSize: 50,
+  },
+  month: {
+    fontSize: 20,
+    color: '#777',
+  },
+  year: {
+    fontSize: 20,
+    color: '#444',
+  },
+  //Button
+  deleteButton: {
+    marginTop:  15,
+    marginRight: 20,
+    marginLeft: 20
+  },
+
+  button: {
+    marginTop: 15,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+
+  deleteButtonText: {
+    alignItems: 'center',
+    color: 'red',
+    fontSize: 15,
+  },
+
+  buttonText: {
+    alignItems: 'center',
+    color: '#fff',
+    fontSize: 15,
+  },
+
+  navBar: {
+    top: 0,
   },
 
 }
