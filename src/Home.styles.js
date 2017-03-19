@@ -18,7 +18,7 @@ const styles = EStyleSheet.create({
 
   },
 
-'@media (max-width: 350)' : {
+'@media (max-width: 350)  and (max-height: 380)' : {
   LovingDaysNumber: {
     color: 'white',
     borderRadius: 20,
