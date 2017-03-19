@@ -66,12 +66,12 @@ const styles = EStyleSheet.create({
   },
 
   LovingDaysText: {
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
   },
 
   LovingDaysCoupleText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#FF4981',
     margin: 15,
   },

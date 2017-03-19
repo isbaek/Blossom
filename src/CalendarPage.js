@@ -68,7 +68,7 @@ function CalendarWidget(props) {
 function EventSummary(props) {
   return (
     <View>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', padding: 10}}>
+      <View style={styles.eventSummary}>
         {props.sex ? <Icons.Sex /> : null}
         {props.fight ? <Icons.Fight /> : null}
         {props.nightOut ? <Icons.NightOut /> : null}
@@ -215,6 +215,14 @@ const styles = EStyleSheet.create({
   },
 
   '@media (max-width: 350)' : {
+    eventSummary: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      paddingLeft: 10,
+      paddingRight: 10,
+      paddingBottom: 10,
+    },
       calendarContainer: {
         backgroundColor: 'white',
         maxHeight: '2.6rem',
@@ -260,4 +268,56 @@ const styles = EStyleSheet.create({
       }
   },
 
+'@media (max-width: 400) and (min-height: 400)' : {
+      eventSummary: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 10,
+      },
+      calendarContainer: {
+        backgroundColor: 'white',
+        top: 0,
+      },
+      day: {
+        fontSize: 15,
+      },
+      title: {
+        fontSize: 15,
+      },
+      dayHeading:{
+        fontSize: 15,
+      },
+      weekendHeading: {
+        fontSize: 15,
+      },
+      controlButtonText: {
+        fontSize: 15,
+      },
+      currentDayCircle: {
+        backgroundColor: '#FF4981',
+      },
+      currentDayText: {
+        color: '#FF4981',
+        fontSize: 15,
+      },
+      Button:{
+        margin: 20,
+      },
+      ButtonText: {
+        alignItems: 'center',
+        color: '#fff',
+        fontSize: 15,
+      },
+      //notes
+      Notes: {
+        paddingLeft: '1.2rem',
+        paddingRight: '1.2rem',
+        color: '#a8a8a8',
+        fontSize: '0.75rem'
+
+      }
+  },
 });
