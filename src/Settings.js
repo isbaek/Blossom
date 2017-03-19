@@ -193,11 +193,7 @@ export default class Settings extends Component {
           alignItems: 'flex-start',
           justifyContent: 'center'
         },
-        dateText: {
-          color: '#33',
-          paddingLeft: 10,
-          fontSize: 12,
-        }
+        dateText: styles.dateSize
       }}
       placeholder="Enter date"
         date={this.firstDate()}
