@@ -316,8 +316,62 @@ const styles = EStyleSheet.create({
         paddingLeft: '1.2rem',
         paddingRight: '1.2rem',
         color: '#a8a8a8',
-        fontSize: '0.75rem'
+        fontSize: 15,
 
       }
   },
+
+'@media (max-width: 400) and (min-height: 550)' : {
+        eventSummary: {
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          paddingLeft: 10,
+          paddingRight: 10,
+          paddingBottom: 10,
+        },
+
+        calendarContainer: {
+          backgroundColor: 'white',
+          top: 0,
+        },
+        day: {
+          fontSize: 16,
+        },
+        title: {
+          fontSize: 16,
+        },
+        dayHeading:{
+          fontSize: 16,
+        },
+        weekendHeading: {
+          fontSize: 16,
+        },
+        controlButtonText: {
+          fontSize: 16,
+        },
+        currentDayCircle: {
+          backgroundColor: '#FF4981',
+        },
+        currentDayText: {
+          color: '#FF4981',
+          fontSize: 16,
+        },
+        Button:{
+          margin: 20,
+        },
+        ButtonText: {
+          alignItems: 'center',
+          color: '#fff',
+          fontSize: 16,
+        },
+        //notes
+        Notes: {
+          paddingLeft: '1.2rem',
+          paddingRight: '1.2rem',
+          color: '#a8a8a8',
+          fontSize: 16,
+
+        }
+    },
 });

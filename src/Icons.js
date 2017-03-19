@@ -38,6 +38,12 @@ function iconTextStyle(color) {
           fontSize: '0.75rem',
         }
       },
+      '@media (max-width: 400) and (min-height: 550)' : {
+        abc: {
+          color: color,
+          fontSize: 16,
+        }
+      },
     }).abc;
 }
 

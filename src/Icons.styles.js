@@ -33,6 +33,21 @@ const styles = EStyleSheet.create({
       overflow: 'hidden',
     },
   },
+
+  //iphone 6
+'@media (max-width: 400) and (min-height: 550)': {
+      EventTypeIcon: {
+        backgroundColor: "#fff",
+        color: "#333",
+        borderRadius: 15,
+        padding: 7,
+        fontSize: 16,
+        width: 30,
+        height: 30,
+        textAlign: "center",
+        overflow: 'hidden',
+      },
+    },
 })
 
 export default styles

@@ -7,7 +7,7 @@ const styles = EStyleSheet.create({
     backgroundColor: 'white',
   },
 
-'@media (max-width: 350)' : {
+'@media (max-width: 350) and (max-height: 380)' : {
   HighlighedIcon: {
     flex: 1,
     margin: 10,
@@ -158,7 +158,86 @@ const styles = EStyleSheet.create({
     top: 0,
   },
 
-}
+},
+
+//iphone 6
+'@media (max-width: 400) and (min-height: 550)' : {
+  HighlighedIcon: {
+    flex: 1,
+    margin: 10,
+    marginTop: 5,
+    marginBottom: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+
+  HighlighedIconActive: {
+    backgroundColor: '#FF4981',
+    color: '#333',
+  },
+
+  HighlighedIconActiveText: {
+    color: '#333'
+  },
+
+  Notes: {
+    borderRadius: 5,
+    borderColor: '#D8D8D8',
+    borderWidth: 1,
+    margin: 15,
+    minHeight: 150,
+  },
+
+  NotesInput: {
+    padding: 5,
+    minHeight: 150,
+    flex: 1,
+    color: '#bbb',
+    fontSize: 16,
+  },
+  //date section
+  day: {
+    fontSize: 60,
+  },
+  month: {
+    fontSize: 30,
+    color: '#777',
+  },
+  year: {
+    fontSize: 30,
+    color: '#444',
+  },
+  //Button
+  deleteButton: {
+    marginTop:  15,
+    marginRight: 20,
+    marginLeft: 20
+  },
+
+  button: {
+    marginTop: 15,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+
+  deleteButtonText: {
+    alignItems: 'center',
+    color: 'red',
+    fontSize: 16,
+  },
+
+  buttonText: {
+    alignItems: 'center',
+    color: '#fff',
+    fontSize: 16,
+  },
+
+  navBar: {
+    top: 0,
+  },
+
+},
+
 });
 
 export default styles

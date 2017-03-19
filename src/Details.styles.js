@@ -76,7 +76,7 @@ const styles = EStyleSheet.create({
   },
   dateSize: {
     fontSize: '0.75rem',
-    color: "#ddd"
+    color: "#fff"
   }
 },
 
@@ -143,7 +143,75 @@ const styles = EStyleSheet.create({
   },
   dateSize: {
     fontSize: 15,
-    color: "#ddd"
+    color: "#fff"
+  }
+
+},
+//iphone 6
+'@media (max-width: 400) and (min-height: 550)' : {
+  TitleText: {
+    color: '#fff',
+    textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.4)',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 4,
+  },
+  Title: {
+    fontSize: 30,
+  },
+  SubTitle: {
+    fontSize: 16,
+  },
+  FormContainer: {
+    flex: 4,
+  },
+  Form: {
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    height: 200,
+  },
+  FormInput: {
+    padding: 16,
+    flex: 1,
+    margin: 5,
+    fontSize: 16,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    color: '#fff',
+    borderRadius: 5,
+  },
+  DateInput: {
+    padding: 16,
+    flex: 1,
+    margin: 5,
+    fontSize: 16,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    color: '#fff',
+    borderRadius: 5,
+  },
+  ButtonContainer: {
+   flex: 1,
+  },
+  Button: {
+    backgroundColor: "#333",
+    padding: 20,
+    margin: 10,
+    borderRadius: 5,
+  },
+  ButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  DatePicker: {
+    backgroundColor: '#fff',
+  },
+  dateSize: {
+    fontSize: 16,
+    color: "#fff"
   }
 
 },
