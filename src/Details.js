@@ -186,10 +186,7 @@ class Details extends Component {
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start'
                 },
-                dateText: {
-                  color: '#fff',
-                  fontSize: 12,
-                }
+                dateText: styles.dateSize,
               }}
               placeholder="Enter date"
               showIcon={false}
