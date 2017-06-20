@@ -6,7 +6,7 @@
  <br>
 </h1>
 
-<h4 align="center">🌷 Blossom is an IOS app that allows couples to track anniversaries and key events in their relationship 🌷</h4>
+<h4 align="center"> Blossom is an IOS app that allows couples to track anniversaries and key events in their relationship 🌷</h4>
 <p align="center"><i> Built using <a href="https://facebook.github.io/react-native/">React Native</a> technology</i></p>
 
 <br>
