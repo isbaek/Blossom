@@ -11,6 +11,14 @@
 
 <br>
 
+### Screenshots
+<div align="center">
+<img src="https://github.com/isbaek/Blossom/assets/2745549/4d32ff25-4905-407d-81e6-0f58aa5f0bbb" width="150" height="auto">
+<img src="https://github.com/isbaek/Blossom/assets/2745549/7de22128-4b05-40e6-902d-e95df870065b" width="150" height="auto">
+<img src="https://github.com/isbaek/Blossom/assets/2745549/eb92a4e7-e00e-4483-a5e0-5950f26c6d6d" width="150" height="auto">
+<img src="https://github.com/isbaek/Blossom/assets/2745549/ba056679-bf3c-43f8-9cc8-01cf1878519a" width="150" height="auto">
+</div>
+
 ### Key Features 🌷
 * Home: Length of love duration display 
 * Home: Weather icon to represent your love mood [options: sunny, cloudy, thunderstorm, mild, warm]
